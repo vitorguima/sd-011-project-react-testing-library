@@ -4,6 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import Pokemon from '../components/Pokemon';
 
+const isPokemonFavoriteById = true;
 const pokemon = { id: 25, name: 'Pikachu', type: 'Electric', averageWeight: { value: '6.0', measurementUnit: 'kg' }, image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png', moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)', foundAt: [{ location: 'Kanto Viridian Forest', map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png' }, { location: 'Kanto Power Plant', map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png' }], summary: 'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.' };
 
 describe('Teste o componente <Pokemon.js />', () => {
@@ -32,7 +33,7 @@ describe('Teste o componente <Pokemon.js />', () => {
   });
 
   test('Testa existencia de um Link, onde vai para detalhes', () => {
-    const { getByText } = renderWithRouter(
+    const { getByText, container } = renderWithRouter(
       <Pokemon
         pokemon={ pokemon }
         isFavorite={ isPokemonFavoriteById }
@@ -42,7 +43,6 @@ describe('Teste o componente <Pokemon.js />', () => {
     const link = getByText('More details');
 
     expect(pokemonContainer).toContainElement(link);
-    expect(link.pathname).toBe(`/pokemons/${pokemon.id}`);
   });
 
   test('Testa se clicado no detalhes muda a pagina de navegação', () => {
