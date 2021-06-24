@@ -12,7 +12,7 @@ class FavoritePokemons extends React.Component {
   static notFound() {
     return (
       <div>
-        <p data-testid="favPoke-not-found">{`No favorite ` + `pokemon found`}</p>
+        <p>{`No favorite ` + `pokemon found`}</p>
       </div>
     );
   }

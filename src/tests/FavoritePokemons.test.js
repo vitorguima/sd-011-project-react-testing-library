@@ -8,9 +8,9 @@ const pokemons = [data[0], data[2]];
 
 describe('FavoritePokemons tests', () => {
   test('Teste se é exibido na tela a mensagem No favorite pokemon found', () => {
-    const { getByTestId } = render(<FavoritePokemons />);
-    const title = getByTestId('favPoke-not-found');
-    expect(title.textContent).toBe('No favorite pokemon found');
+    const { getByText } = render(<FavoritePokemons />);
+    const title = getByText('No favorite pokemon found');
+    expect(title).toBeInTheDocument();
   });
 
   test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
