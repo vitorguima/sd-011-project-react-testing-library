@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/dom';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
 
 describe('shows the Pokédex when the route is `/`.', () => {
