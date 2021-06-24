@@ -15,16 +15,16 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
   });
   it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
     const {
-      getAllByTestId
+      getAllByTestId,
     } = renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
     const favoritePokemons = getAllByTestId('pokemon-name');
     expect(favoritePokemons.length).toBe(pokemons.length);
   });
   it('Teste se nenhum card de pokémon é exibido, se ele não estiver favoritado.', () => {
     const {
-      queryAllByTestId
+      queryAllByTestId,
     } = renderWithRouter(<FavoritePokemons pokemons={ emptyPokemon } />);
-    const pokemons = queryAllByTestId('pokemon-name');
-    expect(pokemons.length < 1).toBe(true);
+    const pokemonsEmpty = queryAllByTestId('pokemon-name');
+    expect(pokemonsEmpty.length < 1).toBe(true);
   });
 });
