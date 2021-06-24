@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Teste o componente <About.js />', () => {
@@ -29,6 +29,6 @@ describe('Teste o componente <About.js />', () => {
     const { getByRole } = render(<About />);
     const getImage = getByRole('img');
     expect(getImage).toBeInTheDocument();
-    expect(getImage.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png')
+    expect(getImage.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
