@@ -1,82 +1,52 @@
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import React from 'react';
 import App from '../App';
+import Pokemon from '../components/Pokemon';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
-const nextPokemonButton = 'Próximo pokémon';
+const caterpie = pokemons[2];
 
 describe('Teste o componente <Pokemon.js />', () => {
-  it('Teste se página contém um heading h2 com o texto Encountered pokémons.', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const encountredPokemon = getByText('Encountered pokémons');
-    expect(encountredPokemon.tagName).toBe('H2');
-    expect(encountredPokemon.textContent).toBe('Encountered pokémons');
+  it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
+    const { value, measurementUnit } = caterpie.averageWeight;
+    const { getByText, container } = renderWithRouter(
+      <Pokemon pokemon={caterpie} isFavorite={false} />,
+    );
+    const imagePokemon = container.querySelector('img');
+    expect(imagePokemon.src).toBe(caterpie.image);
+    expect(imagePokemon.alt).toBe(`${caterpie.name} sprite`);
+    expect(getByText(caterpie.name)).toBeInTheDocument();
+    expect(getByText(caterpie.type)).toBeInTheDocument();
+    expect(getByText(`Average weight: ${value} ${measurementUnit}`)).toBeInTheDocument();
   });
 
-  it('Verifica se ao clickar no prox button um novo pokemon aparece', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const NextPokemon = getByText(nextPokemonButton);
-    pokemons.forEach((pokemon) => {
-      expect(getByText(pokemon.name)).toBeInTheDocument();
-      fireEvent.click(NextPokemon);
-    });
-    expect(getByText('Pikachu')).toBeInTheDocument();
+  it('Teste se o card do Pokémon indicado na Pokédex contém um link de nav.', () => {
+    const { container } = renderWithRouter(
+      <Pokemon pokemon={caterpie} isFavorite={false} />,
+    );
+    const linkPokemon = container.querySelector('a');
+    expect(linkPokemon.href).toBe(`http://localhost/pokemons/${caterpie.id}`);
   });
 
-  it('Teste se é mostrado apenas um Pokémon por vez.', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText('Pikachu')).toBeInTheDocument();
-    pokemons.filter(({ name }) => name !== 'Pikachu').forEach((pokemon) => {
-      expect(screen.queryByText(pokemon.name)).toBeNull();
-    });
-    const NextPokemon = getByText(nextPokemonButton);
-    fireEvent.click(NextPokemon);
-    expect(getByText('Charmander')).toBeInTheDocument();
-    pokemons.filter(({ name }) => name !== 'Charmander').forEach((pokemon) => {
-      expect(screen.queryByText(pokemon.name)).toBeNull();
-    });
+  it('Ao clicar no link de navegação do Pokémon, redireciona para os detalhes.', () => {
+    const { container, history } = renderWithRouter(
+      <Pokemon pokemon={caterpie} isFavorite={false} />,
+    );
+    const linkPokemon = container.querySelector('a');
+    fireEvent.click(linkPokemon);
+    const { pathname } = history.location;
+    expect(pathname).toBe(`/pokemons/${caterpie.id}`);
   });
 
-  it('Teste se a Pokédex tem os botões de filtro.', () => {
-    const { getAllByTestId, getByText } = renderWithRouter(<App />);
-    const typeFilter = [...new Set(pokemons.map(({ type }) => type)), 'All'];
-    const allButtons = getAllByTestId('pokemon-type-button');
-    const allButtonsText = allButtons.map((element) => element.textContent);
-    expect(allButtonsText.every((type) => typeFilter.includes(type))).toBeTruthy();
-    fireEvent.click(allButtons[1]);
-    const NextPokemon = getByText(nextPokemonButton);
-    const pokemonTypesNames = pokemons.filter(({ type }) => type === allButtons[1])
-      .map(({ name }) => name);
-    pokemonTypesNames.forEach((pokeName) => {
-      expect(pokeName).toBeInTheDocument();
-      fireEvent.click(NextPokemon);
-    });
-  });
+  it('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
+    const { container, getByText } = renderWithRouter(<App />);
+    fireEvent.click(getByText('More details'));
+    const favorite = getByText('Pokémon favoritado?');
+    fireEvent.click(favorite);
 
-  it('Teste se a Pokédex contém um botão para resetar o filtro.', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const allButton = getByText('All');
-    expect(allButton.textContent).toBe('All');
-    const NextPokemon = getByText(nextPokemonButton);
-    pokemons.forEach((pokemon) => {
-      expect(getByText(pokemon.name)).toBeInTheDocument();
-      fireEvent.click(NextPokemon);
-    });
-    expect(getByText('Pikachu')).toBeInTheDocument();
-  });
-
-  // Não sei verificar como faz dinâmico :(
-
-  it('O botão de Próximo pokémon deve ser desabilitado quando só tem 1 pokemon.', () => {
-    const { getAllByTestId, getByText } = renderWithRouter(<App />);
-    const allButtons = getAllByTestId('pokemon-type-button');
-    fireEvent.click(allButtons[0]);
-    const NextPokemon = getByText(nextPokemonButton);
-    expect(NextPokemon.disabled).toBeTruthy();
-    fireEvent.click(allButtons[2]);
-    expect(NextPokemon.disabled).toBeTruthy();
-    fireEvent.click(allButtons[1]);
-    expect(NextPokemon.disabled).toBeFalsy();
+    const imagePokemon = container.querySelectorAll('img');
+    expect(imagePokemon[1].src).toContain('/star-icon.svg');
+    expect(imagePokemon[1].alt).toContain('Pikachu is marked as favorite');
   });
 });
