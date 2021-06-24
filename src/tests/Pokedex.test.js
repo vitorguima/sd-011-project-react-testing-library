@@ -23,10 +23,22 @@ test('Testando componente Pokedex.js', () => {
   expect(getByText('Pikachu')).toBeInTheDocument();
 });
 
-it('Verificando button ', () => {
+it('Verificando se está sendo rederizado os butons de tipos de pokemons', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
   const but = getAllByTestId('pokemon-type-button');
   const mapButton = but.map((b) => b.textContent);
   const verify = typePokemons.every((type) => mapButton.includes(type));
   expect(verify).toBeTruthy();
+});
+
+it('Verifica se renderiza todos os pokemons', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const ButtonAll = getByText('All');
+  const Button = getByText(/Próximo pokémon/);
+  fireEvent.click(ButtonAll);
+  namePokemons.forEach((Pokemon) => {
+    expect(getByText(Pokemon)).toBeInTheDocument();
+    fireEvent.click(Button);
+  });
+  expect(getByText('Pikachu')).toBeInTheDocument();
 });
