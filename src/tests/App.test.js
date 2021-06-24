@@ -45,4 +45,11 @@ describe('Test if the top of the application contains a fixed set of navigation 
       const favoritePokemons = getByText(/Favorite Pokémons/);
       expect(favoritePokemons).toBeInTheDocument();
     });
+
+    it('Test if the application redirects NotFound page', () => {
+      const { getByText, history } = renderWithRouter(<App />);
+      history.push('/NotFound');
+      const notFound = getByText(/Not Found/i);
+      expect(notFound).toBeInTheDocument();
+    });
   });
