@@ -5,13 +5,13 @@ import App from '../App';
 
 import pokemons from '../data';
 
+const details = 'More details';
+
 describe('Testando o componente <PokemonDetails.js />', () => {
   it('Verifica se as informações detalhadas do Pokémon são mostradas na tela', () => {
     const caterpie = pokemons[2];
     const { name } = caterpie;
     const { getByText } = renderWithRouter(<App />);
-
-    const details = 'More details';
 
     fireEvent.click(getByText('Bug'));
     fireEvent.click(getByText(details));
