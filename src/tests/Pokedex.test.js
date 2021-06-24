@@ -1,7 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
-import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../renderWithRouter';
 import data from '../data';
 
@@ -54,6 +53,7 @@ describe('5 - Testa o componente <Pokedex.js />', () => {
   it('Testa se a Pokédex contém um botão para resetar o filtro', () => {
     const { queryByRole, queryByText } = renderWithRouter(<App />);
     fireEvent.click(queryByRole('button', { name: 'All' }));
+    expect(queryByText('Pikachu')).toBeInTheDocument();
     expect(queryByText('All')).toBeInTheDocument();
   });
 
