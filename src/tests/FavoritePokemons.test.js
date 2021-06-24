@@ -85,5 +85,22 @@ describe('FavoritePokemons component tests', () => {
       favoriteHeading.nextElementSibling.classList.contains('favorite-pokemons'),
     ).toBe(true);
     expect(favoriteHeading.nextElementSibling.children.length).toBe(2);
+
+    let detailsButtons = screen.getAllByRole('link', { name: detailsLinkName });
+    do {
+      fireEvent.click(detailsButtons[0]);
+      fireEvent.click(screen.getByRole('checkbox'));
+      fireEvent.click(screen.getByRole('link', { name: favoriteLinkName }));
+      favoriteHeading = screen.getByRole('heading', { level: 2 });
+      if (detailsButtons.length > 1) {
+        detailsButtons = screen.getAllByRole('link', { name: detailsLinkName });
+      } else {
+        detailsButtons.pop();
+      }
+    } while (detailsButtons.length > 0);
+
+    favoriteHeading = screen.getByRole('heading', { level: 2 });
+    expect(favoriteHeading.nextElementSibling)
+      .toHaveTextContent(/no favorite pokemon found/i);
   });
 });
