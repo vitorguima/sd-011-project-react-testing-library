@@ -35,15 +35,3 @@ describe('Testes relativos ao componente About', () => {
     expect(paragraphs.length).toBe(2);
   });
 });
-
-/* it('verifica se, ao clicar nos favoritos o site renderiza os favoritos', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
-  const favorite = getByText(favoritePoks);
-
-  fireEvent.click(favorite);
-  expect(getByText(favoritePoks)).toBeInTheDocument();
-}); */
