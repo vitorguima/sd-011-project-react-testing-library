@@ -38,6 +38,7 @@ describe('testes componente Pokedex', () => {
     const { getByTestId, getAllByTestId, getByText } = renderWithRouter(<App />);
     const allBtn = getByTestId('all-button');
     expect(allBtn).toBeInTheDocument();
+    expect(allBtn.textContent).toBe('All');
     fireEvent.click(allBtn);
     const nextButton = getByTestId('next-pokemon');
     expect(nextButton.textContent).toBe('Próximo pokémon');
