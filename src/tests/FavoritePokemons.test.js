@@ -12,16 +12,15 @@ describe('teste componente FavoritePokemons', () => {
   });
 
   test('teste se é exibido cards de pokemons favoritados', () => {
-    const { getByText, getByTestId, history } = renderWithRouter(<App />);
-    history.push('/');
+    const { getByText, getByTestId } = renderWithRouter(<App />);
     const moreDetails = getByText(/More details/i);
     fireEvent.click(moreDetails);
     const favoriteCheck = getByText(/Pokémon favoritado/i);
     fireEvent.click(favoriteCheck);
     const favoriteLink = getByText(/Favorite Pokémons/i);
     fireEvent.click(favoriteLink);
-    renderWithRouter(<FavoritePokemons />);
-    const favoriteIcon = getByTestId('favorite-star');
-    expect(favoriteIcon).toBeInTheDocument();
+    // renderWithRouter(<FavoritePokemons />);
+    const favoriteIcon = getByTestId('pokemon-name');
+    expect(favoriteIcon.textContent).toBe('Pikachu');
   });
 });
