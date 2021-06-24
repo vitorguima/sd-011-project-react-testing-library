@@ -1,8 +1,6 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import About from '../components/About';
-import renderWithRouter from '../renderWithRouter';
 
 test('A página contém um heading h2 com o texto About Pokédex', () => {
   const { getByText } = render(<About />);
