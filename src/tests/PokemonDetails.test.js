@@ -5,11 +5,12 @@ import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
 const pikachu = pokemons[0];
+const moreDetailsText = 'More details';
 
 describe('Teste o componente <PokemonDetails.js />', () => {
   it('Teste se página contém um heading h2 com o texto Page requested not found', () => {
     const { getByText, container } = renderWithRouter(<App />);
-    const moreDetails = getByText('More details');
+    const moreDetails = getByText(moreDetailsText);
     fireEvent.click(moreDetails);
     expect(getByText(`${pikachu.name} Details`)).toBeInTheDocument();
     expect(moreDetails).not.toBeInTheDocument();
@@ -24,7 +25,7 @@ describe('Teste o componente <PokemonDetails.js />', () => {
 
   it('Teste se existe na página uma seção com os mapas contendo as localizações', () => {
     const { getByText, container } = renderWithRouter(<App />);
-    const moreDetails = getByText('More details');
+    const moreDetails = getByText(moreDetailsText);
     fireEvent.click(moreDetails);
     expect(getByText(`Game Locations of ${pikachu.name}`)).toBeInTheDocument();
     const allImages = [...container.querySelectorAll('img')];
@@ -40,7 +41,7 @@ describe('Teste o componente <PokemonDetails.js />', () => {
 
   it('Teste se o usuário pode favoritar um pokémon na página de detalhes.', () => {
     const { getByText, container } = renderWithRouter(<App />);
-    const moreDetails = getByText('More details');
+    const moreDetails = getByText(moreDetailsText);
     fireEvent.click(moreDetails);
     const checkbox = container.querySelector('input');
     expect(checkbox).toBeInTheDocument();
