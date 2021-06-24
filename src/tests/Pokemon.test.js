@@ -14,8 +14,6 @@ describe('Verificando o componente <Pokemon.js />', () => {
       <Pokemon pokemon={ charmander } showDetailsLink isFavorite />,
     );
 
-    console.log(charmander);
-
     const img = container.querySelector('img');
     const pokemonLink = container.querySelector('a');
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent, screen } from '@testing-library/dom';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-
 import pokemons from '../data';
 
 const details = 'More details';
@@ -18,8 +17,8 @@ describe('Testando o componente <PokemonDetails.js />', () => {
     expect(getByText(`${name} Details`)).toBeInTheDocument();
 
     expect(screen.queryByText(details)).toBeNull();
-    const summary = getByText('Summary');
 
+    const summary = getByText('Summary');
     expect(summary).toBeInTheDocument();
     expect(summary.tagName).toBe('H2');
 
