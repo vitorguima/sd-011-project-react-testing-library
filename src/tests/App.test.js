@@ -17,21 +17,27 @@ test('renders a reading with the text `Pokédex`', () => {
 describe('Primeiro requisito do projeto', () => {
   describe('Conjunto fixo de links de navegação.', () => {
     it('Link da página Home', () => {
-      const { getByText } = renderWithRouter(<App />);
+      const { getByText, history } = renderWithRouter(<App />);
       const home = getByText(/Home/i);
       fireEvent.click(home);
+      const homePath = history.location.pathname;
+      expect(homePath).toBe('/');
     });
 
     it('Link da página About.', () => {
-      const { getByText } = renderWithRouter(<App />);
+      const { getByText, history } = renderWithRouter(<App />);
       const about = getByText(/About/i);
       fireEvent.click(about);
+      const aboutPath = history.location.pathname;
+      expect(aboutPath).toBe('/about');
     });
 
     it('Link da página favoritos', () => {
-      const { getByText } = renderWithRouter(<App />);
+      const { getByText, history } = renderWithRouter(<App />);
       const favoritos = getByText(/Favorite Pokémons/i);
       fireEvent.click(favoritos);
+      const favoritePath = history.location.pathname;
+      expect(favoritePath).toBe('/favorites');
     });
   });
 });
