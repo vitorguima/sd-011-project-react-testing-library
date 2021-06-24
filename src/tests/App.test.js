@@ -4,7 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Testa o componente <App.js />', () => {
-  it('se a página principal é renderizada ao carregar a aplicação no caminho /.', () => {
+  it('se a página principal é renderizada ao carregar a aplicação no caminho /', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/');
     const heading = getByText('Pokédex');
@@ -12,22 +12,22 @@ describe('Testa o componente <App.js />', () => {
   });
 });
 
-describe('Testa se o topo contém um conjunto fixo de links de navegação.', () => {
-  it('O primeiro link deve possuir o texto Home.', () => {
+describe('Testa se o topo contém um conjunto fixo de links de navegação', () => {
+  it('O primeiro link deve possuir o texto Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText('Home'));
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
 
-  it('O segundo link deve possuir o texto About.', () => {
+  it('O segundo link deve possuir o texto About', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText('About'));
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
-  it('O terceiro link deve possuir o texto Favorite Pokémons.', () => {
+  it('O terceiro link deve possuir o texto Favorite Pokémons', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText('Favorite Pokémons'));
     const { pathname } = history.location;

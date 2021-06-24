@@ -3,19 +3,23 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-describe('testa os elementos da aplicação Favorites Pokémons', () => {
-  it('mensagem no favorite pokemon found', () => {
+describe('Testa o componente <FavoritePokemons.js />', () => {
+  it('se é exibido na tela a mensagem No favorite pokemon found, se a pessoa não tiver pokémons favoritos', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('Favorite Pokémons'));
     const noMatch = getByText('No favorite pokemon found');
     expect(noMatch).toBeInTheDocument();
   });
-  it('e exibido todos os cards favoritados', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const events = ['More details', 'Pokémon favoritado?', 'Home', 'Próximo pokémon',
-      'More details', 'Pokémon favoritado?', 'Favorite Pokémons'];
 
-    for (const event of events) { fireEvent.click(getByText(event)) }
+  it('se é exibido todos os cards de pokémons favoritados', () => {
+    const { getByText } = renderWithRouter(<App />);
+    fireEvent.click(getByText('More details'));
+    fireEvent.click(getByText('Pokémon favoritado?'));
+    fireEvent.click(getByText('Home'));
+    fireEvent.click(getByText('Próximo pokémon'));
+    fireEvent.click(getByText('More details'));
+    fireEvent.click(getByText('Pokémon favoritado?'));
+    fireEvent.click(getByText('Favorite Pokémons'));
 
     expect(getByText('Pikachu')).toBeInTheDocument();
     expect(getByText('Charmander')).toBeInTheDocument();
