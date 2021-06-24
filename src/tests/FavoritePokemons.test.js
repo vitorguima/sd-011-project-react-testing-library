@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
-describe('Testa o componente "FavoritePokemons"', () => {
+describe('Testa o componente FavoritePokemons', () => {
   it('Teste No favorite pokemon found', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons />);
     const text = getByText('No favorite pokemon found');

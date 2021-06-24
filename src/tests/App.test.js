@@ -71,7 +71,7 @@ describe('Testes do componente App', () => {
 
   it('Página desconhecida vai para Not Found', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    history.push('/pagina/que-nao-existe');
+    history.push('/page-not-found');
 
     const notFound = getByText(/Page requested not found/);
     expect(notFound).toBeInTheDocument();
