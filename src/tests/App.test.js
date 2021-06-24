@@ -24,7 +24,7 @@ it('Aplicação é redirecionada para a página inicial ao clicar em Home', () =
   const { getByText, history } = renderWithRouter(<App />);
   const homeLink = getByText(/Home/i);
   fireEvent.click(homeLink);
-  const { pathname } = history.location.pathname;
+  const { pathname } = history.location;
   expect(pathname).toBe('/');
 });
 
@@ -32,7 +32,7 @@ it('Aplicação é redirecionada para a página de About', () => {
   const { getByText, history } = renderWithRouter(<App />);
   const aboutLink = getByText(/About/i);
   fireEvent.click(aboutLink);
-  const { pathname } = history.location.pathname;
+  const { pathname } = history.location;
   expect(pathname).toBe('/about');
 });
 
@@ -40,7 +40,7 @@ it('Aplicação é redirecionada para a página de Pokémons Favoritados.', () =
   const { getByText, history } = renderWithRouter(<App />);
   const favoriteLink = getByText(/Favorite Pokémons/i);
   fireEvent.click(favoriteLink);
-  const { pathname } = history.location.pathname;
+  const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
 });
 
