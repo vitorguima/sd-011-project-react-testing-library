@@ -15,8 +15,8 @@ describe('Testa informações no /About', () => {
     expect(Header).toBeInTheDocument();
   });
   test('Testa se a página contém dois parágrafos', () => {
-    const { getAllByRole } = render(<About />);
-    const ParagraphArray = getAllByRole('paragraph');
+    const { container } = render(<About />);
+    const ParagraphArray = container.querySelectorAll('p');
     expect(ParagraphArray.length).toBe(2);
   });
   test('Testa a imagem pokédex ', () => {
