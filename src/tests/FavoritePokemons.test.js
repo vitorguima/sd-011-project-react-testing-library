@@ -1,13 +1,13 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
-import renderWithRouter from '../renderWithRouter';
+// import renderWithRouter from '../renderWithRouter';
 
 describe('Teste o componente <FavoritePokemons.js />', () => {
   test('testa mensagem No favorite pokemon found', () => {
-    const { getByRole } = render(<FavoritePokemons />);
-    const head = getByRole('heading');
+    const { getByText } = render(<FavoritePokemons />);
+    const head = getByText(/No favorite pokemon found/i);
     expect(head).toBeInTheDocument();
-    expect(head.textContent).toBe(/No favorite pokemon found/i);
+    expect(head.textContent).toMatch(/No favorite pokemon found/i);
   });
 });
