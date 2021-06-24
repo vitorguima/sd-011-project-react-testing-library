@@ -41,12 +41,12 @@ describe('Verifica requisito 3', () => {
     },
     ];
 
-    const { getByTestId } = renderWithRouter(
+     renderWithRouter(
       <FavoritePokemons
         pokemons={ FAVORITO }
       />,
     );
-    const render = getByTestId('renderiza-favorito');
+    const render = screen.getByTestId('renderiza-favorito');
     expect(render).toBeInTheDocument();
     expect(render).toHaveTextContent(/Pikachu/i);
   });
