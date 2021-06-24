@@ -72,11 +72,11 @@ describe('Check the behavior of the Pokedex page', () => {
       const pokemonWeight = getByTestId('pokemon-weight');
 
       expect(pokemonName).toBeInTheDocument();
-      expect(pokemonName.innerHTML).toBe(name);
+      expect(pokemonName).toHaveTextContent(name);
       expect(pokemonType).toBeInTheDocument();
-      expect(pokemonType.innerHTML).toBe(type);
+      expect(pokemonType).toHaveTextContent(type);
       expect(pokemonWeight).toBeInTheDocument();
-      expect(pokemonWeight.innerHTML).toBe(`Average weight: ${value} ${measurementUnit}`);
+      expect(pokemonWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
 
       const nextPokemonBtn = getByText(/Próximo pokémon/);
       fireEvent.click(nextPokemonBtn);
