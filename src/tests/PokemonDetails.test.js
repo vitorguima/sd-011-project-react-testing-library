@@ -40,10 +40,10 @@ describe('Check the behavior of the PokemonDetails component', () => {
     const summaryInfo = getByText(summary);
 
     expect(title).toBeInTheDocument();
-    expect(pokemonName.innerHTML).toBe(`${name}`);
-    expect(pokemonType.innerHTML).toBe(`${type}`);
-    expect(pokemonAverageWeight.innerHTML)
-      .toBe(`Average weight: ${value} ${measurementUnit}`);
+    expect(pokemonName).toHaveTextContent(`${name}`);
+    expect(pokemonType).toHaveTextContent(`${type}`);
+    expect(pokemonAverageWeight)
+      .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
     expect(moreDetailsBtn).not.toBeInTheDocument();
     expect(summaryTitle).toBeInTheDocument();
     expect(summaryInfo).toBeInTheDocument();
