@@ -19,7 +19,7 @@ describe('Testes relativos ao componente FavoritePokemons', () => {
   );
 
   it(
-    'Verifica se aparece um card de pokemon para cada pokemon favoritado',
+    'Verifica se aparece um card para cada pokemon favoritado',
     () => {
       const { getByText } = render(
         <MemoryRouter initialEntries={ ['/favorites'] }>
