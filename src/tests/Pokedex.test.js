@@ -76,7 +76,8 @@ describe('Check the behavior of the Pokedex page', () => {
       expect(pokemonType).toBeInTheDocument();
       expect(pokemonType).toHaveTextContent(type);
       expect(pokemonWeight).toBeInTheDocument();
-      expect(pokemonWeight).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
+      expect(pokemonWeight)
+        .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
 
       const nextPokemonBtn = getByText(/Próximo pokémon/);
       fireEvent.click(nextPokemonBtn);
@@ -99,7 +100,7 @@ describe('Check the behavior of the Pokedex page', () => {
     // pokemons.forEach((pokemon) => {
     //   const filter = getByRole('button', { name: pokemon.type });
     //   expect(filter).toBeInTheDocument();
-    //   expect(filter.innerHTML).toBe(pokemon.type);
+    //   expect(filter).toHaveTextContent(pokemon.type);
     // });
 
     // Sempre que possível utilizar o getByRole que recebe dois parâmetros => getByRole('button', {name: /submit/i})
