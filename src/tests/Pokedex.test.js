@@ -42,3 +42,11 @@ it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   });
   expect(getByText(/Pikachu/i)).toBeInTheDocument();
 });
+
+it('Testando Pŕoximo Pokemon desabilitado quando existe apenas um tipo', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const buttonNext = getByText(/Próximo pokémon/i);
+  const buttonBug = getByText(/Bug/i);
+  fireEvent.click(buttonBug);
+  expect(buttonNext.disabled).toBeTruthy();
+});
