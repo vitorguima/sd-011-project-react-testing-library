@@ -1,5 +1,5 @@
 import React from 'react';
-import NotFound from '../components/NotFound';
+import { NotFound } from '../components';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Teste o componente <NotFound.js />', () => {
