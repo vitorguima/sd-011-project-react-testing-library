@@ -21,4 +21,7 @@ test('shows the Pokédex when the route is `/`', () => {
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  expect(getByText('Home')).toBeInTheDocument();
+  expect(getByText('About')).toBeInTheDocument();
+  expect(getByText('Favorite Pokémons')).toBeInTheDocument();
 });
