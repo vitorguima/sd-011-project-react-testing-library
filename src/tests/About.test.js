@@ -12,7 +12,7 @@ describe('Check the behavior of the About page', () => {
     const image = getByAltText(/Pokédex/);
 
     expect(title).toBeInTheDocument();
-    expect(title.innerHTML).toBe('About Pokédex');
+    expect(title).toHaveTextContent('About Pokédex');
     expect(image).toHaveAttribute('src', url);
   });
 });
