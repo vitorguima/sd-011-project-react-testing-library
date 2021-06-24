@@ -13,13 +13,20 @@ describe('When the app loads:', () => {
   });
 
   describe('on the nav bar:', () => {
-    let links;
+    let links = [];
     let getByText;
     let getAllByTestId;
 
     beforeAll(() => {
-      ({ getAllByTestId, getByText } = renderWithHistory(<App />));
-      links = getAllByTestId('nav-bar-link');
+      let getByRole;
+      ({ getAllByTestId, getByText, getByRole } = renderWithHistory(<App />));
+
+      const nav = getByRole('navigation');
+
+      while (nav.lastChild) {
+        links.unshift(nav.lastChild);
+        nav.lastChild.remove();
+      }
     });
 
     it('there are three links', () => {
