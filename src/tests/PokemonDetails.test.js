@@ -25,6 +25,8 @@ const pokemon = {
     + ' tender enough to eat.',
 };
 
+const moreDetails = 'More details';
+
 describe('Testa o componente <PokemonDetails.js />', () => {
   it('se as informações detalhadas do Pokémon selecionado são mostradas na tela', () => {
     const { getByRole, getByText, getByTestId, history } = renderWithRouter(<App />);
@@ -36,7 +38,7 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     fireEvent.click(electricPokemonFilter);
     expect(nextPokemonBtn.disabled).toBe(true);
 
-    const moreDetailsBtn = getByText('More details');
+    const moreDetailsBtn = getByText(moreDetails);
     expect(moreDetailsBtn).toBeInTheDocument();
 
     fireEvent.click(moreDetailsBtn);
@@ -65,7 +67,7 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     fireEvent.click(electricPokemonFilter);
     expect(nextPokemonBtn.disabled).toBe(true);
 
-    const moreDetailsBtn = getByText('More details');
+    const moreDetailsBtn = getByText(moreDetails);
     expect(moreDetailsBtn).toBeInTheDocument();
 
     fireEvent.click(moreDetailsBtn);
@@ -84,8 +86,8 @@ describe('Testa o componente <PokemonDetails.js />', () => {
 
   it('se o usuário pode favoritar um pokémon através da página de detalhes', () => {
     const { getByText, getByLabelText, getByAltText } = renderWithRouter(<App />);
-
-    fireEvent.click(getByText('More details'));
+    const moreDetailsBtn = getByText(moreDetails);
+    fireEvent.click(moreDetailsBtn);
     fireEvent.click(getByLabelText('Pokémon favoritado?'));
     const starIcon = getByAltText(`${pokemon.name} is marked as favorite`);
 
