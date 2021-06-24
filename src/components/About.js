@@ -3,13 +3,13 @@ import './about.css';
 
 const About = () => (
   <section>
-    <h2 data-testid="h2-title">{ `About ` + `Pokédex` }</h2>
+    <h2>{ `About ` + `Pokédex` }</h2>
     <section>
-      <p data-testid="about-descrition-one">
+      <p>
         This application simulates a Pokédex, a
         digital encyclopedia containing all Pokémons
       </p>
-      <p data-testid="about-descrition-two">
+      <p>
         One can filter Pokémons by type, and see more details for each one of them
       </p>
       <img

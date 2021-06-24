@@ -10,18 +10,16 @@ describe('Testando o componente About', () => {
   });
 
   it('A page contém um título <h2> About Pokédex?', () => {
-    const { getByTestId, getByText } = renderWithRouter(<About />);
-    const aboutTitle = getByTestId(/h2-title/);
+    const { getByText } = renderWithRouter(<About />);
+    const aboutTitle = getByText(/About Pokédex/);
     expect(aboutTitle).toBeInTheDocument();
-    const title = getByText(/About Pokédex/);
-    expect(title).toBeInTheDocument();
   });
 
   it('A page contém dois parágrafos descritivos?', () => {
-    const { getByTestId } = renderWithRouter(<About />);
-    const aboutParagraphOne = getByTestId(/about-descrition-one/);
+    const { getByText } = renderWithRouter(<About />);
+    const aboutParagraphOne = getByText(/This application simulates a Pokédex/);
     expect(aboutParagraphOne).toBeInTheDocument();
-    const aboutParagraphTwo = getByTestId(/about-descrition-two/);
+    const aboutParagraphTwo = getByText(/One can filter Pokémons by type/);
     expect(aboutParagraphTwo).toBeInTheDocument();
   });
 
