@@ -11,9 +11,9 @@ describe('Testing component About', () => {
 
   it('If the pages have 2 paragraph with the correct text', () => {
     const { getByText } = renderWithRouter(<About />);
-    const paragraphOne = getByText(/This application simulates a Pokédex, a digital encyclopedia containing all Pokémons/i);
+    const paragraphOne = getByText(/This application simulates a Pokédex/i);
     const paragraphOneText = paragraphOne.textContent;
-    const paragraphTwo = getByText(/One can filter Pokémons by type, and see more details for each one of them/i);
+    const paragraphTwo = getByText(/One can filter Pokémons by type/i);
     const paragraphTwoText = paragraphTwo.textContent;
     expect(paragraphOne).toBeInTheDocument();
     expect(paragraphOne.textContent).toBe(paragraphOneText);
