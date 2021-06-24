@@ -15,7 +15,6 @@ describe('Teste o componente <About.js />', () => {
     const headingInfos = getByText(/About Pokédex/i);
     expect(headingInfos).toBeInTheDocument();
     expect(heading).toBeInTheDocument();
-
   });
 
   test('se a página contém dois parágrafos com texto sobre a Pokédex.', () => {

@@ -61,7 +61,7 @@ describe('Teste o componente <App.js />', () => {
 
   test('se a aplicação é redirecionada para a página Not Found', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    history.push('/pagina/xablau')
+    history.push('/pagina/xablau');
     const noMatch = getByText(/Page requested not found/);
     expect(noMatch).toBeInTheDocument();
   });
