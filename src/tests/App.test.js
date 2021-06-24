@@ -13,12 +13,12 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+// test('shows the Pokédex when the route is `/`', () => {
+//   const { getByText } = render(
+//     <MemoryRouter initialEntries={ ['/'] }>
+//       <App />
+//     </MemoryRouter>,
+//   );
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
-});
+//   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+// });
