@@ -13,13 +13,10 @@ describe('When the app loads:', () => {
   });
 
   describe('on the nav bar:', () => {
-    let links = [];
-    let getByText;
-    let getAllByTestId;
+    const links = [];
 
     beforeAll(() => {
-      let getByRole;
-      ({ getAllByTestId, getByText, getByRole } = renderWithHistory(<App />));
+      const { getByRole } = renderWithHistory(<App />);
 
       const nav = getByRole('navigation');
 
@@ -45,37 +42,46 @@ describe('When the app loads:', () => {
         expect(links[2].innerHTML).toBe('Favorite Pokémons');
       });
     });
+  });
+});
 
-    describe('the links redirect correctly', () => {
-      beforeEach(() => {
-        ({ getByText } = renderWithHistory(<App />));
-        links = getAllByTestId('nav-bar-link');
-      });
+describe('The links on the nav bar redirect correctly', () => {
+  let getByText;
 
-      it('to the /home page', async () => {
-        fireEvent.click(links[0]);
+  beforeEach(() => {
+    let getByRole;
+    ({ getByText, getByRole } = renderWithHistory(<App />));
 
-        await sleep(NAVIGATE_DELAY);
+    const nav = getByRole('navigation');
 
-        expect(getByText('Encountered pokémons')).toBeInTheDocument();
-      });
+    while (nav.lastChild) {
+      links.unshift(nav.lastChild);
+      nav.lastChild.remove();
+    }
+  });
 
-      it('to the /about page', async () => {
-        fireEvent.click(links[1]);
+  it('to the /home page', async () => {
+    fireEvent.click(links[0]);
 
-        await sleep(NAVIGATE_DELAY);
+    await sleep(NAVIGATE_DELAY);
 
-        expect(getByText('About Pokédex')).toBeInTheDocument();
-      });
+    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  });
 
-      it('to the /favorites page', async () => {
-        fireEvent.click(links[2]);
+  it('to the /about page', async () => {
+    fireEvent.click(links[1]);
 
-        await sleep(NAVIGATE_DELAY);
+    await sleep(NAVIGATE_DELAY);
 
-        expect(getByText('Favorite pokémons')).toBeInTheDocument();
-      });
-    });
+    expect(getByText('About Pokédex')).toBeInTheDocument();
+  });
+
+  it('to the /favorites page', async () => {
+    fireEvent.click(links[2]);
+
+    await sleep(NAVIGATE_DELAY);
+
+    expect(getByText('Favorite pokémons')).toBeInTheDocument();
   });
 });
 
