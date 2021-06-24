@@ -12,3 +12,14 @@ test('renders a reading with the text `Pokédex`', () => {
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
+
+test('Pokédex is rendered when loading application in URL path /', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ ['/'] }>
+      <App />
+    </MemoryRouter>,
+  );
+  expect(getByText('Home')).toBeInTheDocument();
+  expect(getByText('About')).toBeInTheDocument();
+  expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+});
