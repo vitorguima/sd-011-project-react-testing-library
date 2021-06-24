@@ -1,7 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
@@ -26,6 +27,10 @@ it('Teste se o topo da aplicação contém um conjunto fixo de links de navegaç
   const about = getByText(/About/i);
   fireEvent.click(about);
   const linkAbout = history.location.pathname;
-
   expect(linkAbout).toBe('/about');
+
+  const Favorites = getByText(/Favorite Pokémons/i);
+  fireEvent.click(Favorites);
+  const linkFavorites = history.location.pathname;
+  expect(linkFavorites).toBe('/favorites');
 });
