@@ -12,6 +12,7 @@ describe('Testando o componente Not-Found', () => {
   it('Test if the component show image', () => {
     const { getByAltText } = renderWithRouter(<NotFound />);
     const notFoundImg = getByAltText(/Pikachu crying because/);
+    expect(notFoundImg).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
     expect(notFoundImg).toBeInTheDocument();
   });
 });
