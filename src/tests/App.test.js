@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
-// import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 describe('Test if all the Home page is being exhibited correctly', () => {
   test('renders a reading with the text `Pokédex`', () => {
@@ -27,5 +27,11 @@ describe('Test if all the Home page is being exhibited correctly', () => {
     expect(Home && About && Favorite).toBeInTheDocument();
   });
 
-  // test('', () => {})
+  test('test Home redirect', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    const linkHome = getByText(/Home/);
+    fireEvent.click(linkHome);
+    const url = history.location.pathname;
+    expect(url).toBe('/');
+  });
 });
