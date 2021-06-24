@@ -12,7 +12,7 @@ class FavoritePokemons extends React.Component {
   static notFound() {
     return (
       <div>
-        <p>{`No favorite ` + `pokemon found`}</p>
+        <p data-testid="favPoke-not-found">{`No favorite ` + `pokemon found`}</p>
       </div>
     );
   }
@@ -40,7 +40,6 @@ class FavoritePokemons extends React.Component {
     const { notFound } = FavoritePokemons;
     const { pokemons } = this.props;
     const isEmpty = pokemons.length === ZERO;
-
     return (
       <div>
         <h2> Favorite pokémons </h2>
