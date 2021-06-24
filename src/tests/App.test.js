@@ -13,36 +13,39 @@ describe('When the app loads:', () => {
   });
 
   describe('on the nav bar:', () => {
+    let links;
+    let getByText;
+    let getAllByTestId;
+
+    beforeAll(() => {
+      ({ getAllByTestId, getByText } = renderWithHistory(<App />));
+      links = getAllByTestId('nav-bar-link');
+    });
 
     it('there are three links', () => {
-      const { getAllByTestId, getByText } = renderWithHistory(<App />);
-      const links = getAllByTestId('nav-bar-link');
       const TOTAL_LINKS = 3;
       expect(links.length).toBe(TOTAL_LINKS);
     });
 
     describe('the links are, in order:', () => {
       it('Home', () => {
-        const { getAllByTestId, getByText } = renderWithHistory(<App />);
-        const links = getAllByTestId('nav-bar-link');
         expect(links[0].innerHTML).toBe('Home');
       });
       it('About', () => {
-        const { getAllByTestId, getByText } = renderWithHistory(<App />);
-        const links = getAllByTestId('nav-bar-link');
         expect(links[1].innerHTML).toBe('About');
       });
       it('Favorite Pokémons', () => {
-        const { getAllByTestId, getByText } = renderWithHistory(<App />);
-        const links = getAllByTestId('nav-bar-link');
         expect(links[2].innerHTML).toBe('Favorite Pokémons');
       });
     });
 
     describe('the links redirect correctly', () => {
+      beforeEach(() => {
+        ({ getByText } = renderWithHistory(<App />));
+        links = getAllByTestId('nav-bar-link');
+      });
+
       it('to the /home page', async () => {
-        const { getAllByTestId, getByText } = renderWithHistory(<App />);
-        const links = getAllByTestId('nav-bar-link');
         fireEvent.click(links[0]);
 
         await sleep(NAVIGATE_DELAY);
@@ -51,8 +54,6 @@ describe('When the app loads:', () => {
       });
 
       it('to the /about page', async () => {
-        const { getAllByTestId, getByText } = renderWithHistory(<App />);
-        const links = getAllByTestId('nav-bar-link');
         fireEvent.click(links[1]);
 
         await sleep(NAVIGATE_DELAY);
@@ -61,8 +62,6 @@ describe('When the app loads:', () => {
       });
 
       it('to the /favorites page', async () => {
-        const { getAllByTestId, getByText } = renderWithHistory(<App />);
-        const links = getAllByTestId('nav-bar-link');
         fireEvent.click(links[2]);
 
         await sleep(NAVIGATE_DELAY);
