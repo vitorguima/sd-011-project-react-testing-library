@@ -36,7 +36,7 @@ describe('testes componente Pokedex', () => {
 
   test('teste botão All para resetar filtro', () => {
     const { getByTestId, getAllByTestId, getByText } = renderWithRouter(<App />);
-    const allBtn = getByTestId('all-button');
+    const allBtn = getByText('All');
     expect(allBtn).toBeInTheDocument();
     expect(allBtn.textContent).toBe('All');
     fireEvent.click(allBtn);
