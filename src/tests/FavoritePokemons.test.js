@@ -41,7 +41,7 @@ describe('Verifica requisito 3', () => {
     },
     ];
 
-     renderWithRouter(
+    renderWithRouter(
       <FavoritePokemons
         pokemons={ FAVORITO }
       />,
