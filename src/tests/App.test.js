@@ -18,9 +18,9 @@ describe('Testes relativos ao arquivo App.js', () => {
 
   // Para conseguir testar a ordem dos links busquei ajuda neste fórum: https://stackoverflow.com/questions/61148880/how-to-check-elements-are-rendered-with-a-specific-sorting-with-react-testing-li
   it('Testa se a aplicação contém um conjunto fixo de links de navegação', () => {
-    const { getByText, getByTestId } = renderWithRouter(<App />);
+    const { getByText, container } = renderWithRouter(<App />);
 
-    const navLinks = getByTestId('nav-links').children;
+    const navLinks = container.querySelector('nav').children;
     const firstLink = getByText('Home');
     const secondLink = getByText('About');
     const thirdLink = getByText('Favorite Pokémons');
