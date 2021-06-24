@@ -12,7 +12,7 @@ class FavoritePokemons extends React.Component {
   static notFound() {
     return (
       <div>
-        <p>{`No favorite ` + `pokemon found`}</p>
+        <p>{`No favorite pokemon found`}</p>
       </div>
     );
   }
@@ -42,7 +42,7 @@ class FavoritePokemons extends React.Component {
     const isEmpty = pokemons.length === ZERO;
 
     return (
-      <div>
+      <div data-testid="div-favorite">
         <h2> Favorite pokémons </h2>
         {isEmpty ? notFound() : this.renderFavoritePokemons()}
       </div>
