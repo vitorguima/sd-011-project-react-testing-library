@@ -1,0 +1,1013 @@
+14:32:15 (13877) DEBUG ConfigReader Loading config ./App.conf.json
+14:32:15 (13877) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:32:15 (13877) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:32:15 (13877) WARN InputFileResolver Globbing expression "src/App.js" did not result in any files.
+14:32:15 (13877) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:32:15 (13877) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:32:15 (13877) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:32:15 (13877) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:32:15 (13877) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:32:15 (13877) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:32:15 (13877) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:32:15 (13877) DEBUG InputFileResolver Files to mutate: []
+14:32:15 (13877) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:32:15 (13877) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:32:15 (13877) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:32:15 (13877) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+14:32:15 (13877) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:32:15 (13877) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox4086458
+14:32:15 (13877) DEBUG Sandbox Creating test runner 0
+14:32:15 (13877) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:32:15 (13877) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ ERR! 
+code ENOENT
+
+npm 
+ERR! syscall
+ open
+npm
+ ERR! 
+path /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox4086458/package.json
+
+npm ERR!
+ errno -2
+
+npm ERR! enoent ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox4086458/package.json'
+
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/renatobispo/.npm/_logs/2021-06-24T17_32_15_607Z-debug.log
+
+14:32:15 (13877) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
+14:33:46 (14307) DEBUG ConfigReader Loading config ./App.conf.json
+14:33:46 (14307) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:33:46 (14307) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "./src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:33:46 (14307) WARN InputFileResolver Globbing expression "./src/App.js" did not result in any files.
+14:33:46 (14307) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:33:46 (14307) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:33:46 (14307) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:33:46 (14307) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:33:46 (14307) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:33:46 (14307) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:33:46 (14307) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:33:46 (14307) DEBUG InputFileResolver Files to mutate: []
+14:33:46 (14307) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:33:46 (14307) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:33:46 (14307) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:33:46 (14307) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+14:33:46 (14307) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:33:46 (14307) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox4597929
+14:33:46 (14307) DEBUG Sandbox Creating test runner 0
+14:33:46 (14307) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:33:46 (14307) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ 
+ERR! code ENOENT
+
+npm 
+ERR! syscall open
+npm
+ ERR! path /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox4597929/package.json
+
+npm ERR!
+ errno -2
+
+npm ERR!
+ enoent ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox4597929/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/renatobispo/.npm/_logs/2021-06-24T17_33_46_771Z-debug.log
+
+14:33:46 (14307) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
+14:37:13 (15064) DEBUG ConfigReader Loading config ./App.conf.json
+14:37:13 (15064) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:37:13 (15064) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:37:13 (15064) WARN InputFileResolver Globbing expression "src/App.js" did not result in any files.
+14:37:13 (15064) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:37:13 (15064) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:37:13 (15064) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:37:13 (15064) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:37:13 (15064) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:37:13 (15064) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:37:13 (15064) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:37:13 (15064) DEBUG InputFileResolver Files to mutate: []
+14:37:13 (15064) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:37:13 (15064) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:37:13 (15064) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:37:13 (15064) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+14:37:13 (15064) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:37:13 (15064) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox6426361
+14:37:13 (15064) DEBUG Sandbox Creating test runner 0
+14:37:13 (15064) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:37:14 (15064) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ 
+ERR! code ENOENT
+
+npm
+ ERR! syscall
+ open
+npm
+ ERR! path
+ /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox6426361/package.json
+
+npm ERR!
+ errno -2
+
+npm 
+ERR! enoent ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox6426361/package.json'
+npm ERR! enoent
+ This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+
+
+npm ERR!
+ A complete log of this run can be found in:
+npm ERR!
+     /home/renatobispo/.npm/_logs/2021-06-24T17_37_14_238Z-debug.log
+
+14:37:14 (15064) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
+14:38:28 (15579) DEBUG ConfigReader Loading config ./App.conf.json
+14:38:28 (15579) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:38:28 (15579) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:38:28 (15579) WARN InputFileResolver Globbing expression "src/App.js" did not result in any files.
+14:38:28 (15579) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:38:28 (15579) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:38:28 (15579) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:38:28 (15579) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:38:28 (15579) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:38:28 (15579) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:38:28 (15579) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:38:28 (15579) DEBUG InputFileResolver Files to mutate: []
+14:38:28 (15579) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:38:28 (15579) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:38:28 (15579) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:38:28 (15579) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+14:38:28 (15579) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:38:28 (15579) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox6376179
+14:38:28 (15579) DEBUG Sandbox Creating test runner 0
+14:38:28 (15579) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:38:29 (15579) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ 
+ERR! code ENOENT
+
+npm 
+ERR! syscall open
+
+npm ERR! path
+ /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox6376179/package.json
+
+npm 
+ERR! errno -2
+
+npm ERR! enoent
+ ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox6376179/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm
+ ERR! enoent 
+
+
+
+npm ERR! A complete log of this run can be found in:
+
+npm ERR!     /home/renatobispo/.npm/_logs/2021-06-24T17_38_29_145Z-debug.log
+
+14:38:29 (15579) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
+14:45:13 (16955) DEBUG ConfigReader Loading config ./App.conf.json
+14:45:13 (16955) ERROR OptionsValidator Config option "coverageAnalysis" should be one of the allowed values ("off", "all", "perTest"), but was "on".
+14:45:13 (16955) ERROR StrykerCli Please correct this configuration error and try again.
+14:45:31 (17163) DEBUG ConfigReader Loading config ./App.conf.json
+14:45:31 (17163) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:45:31 (17163) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "all",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:45:31 (17163) WARN InputFileResolver Globbing expression "src/App.js" did not result in any files.
+14:45:31 (17163) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:45:31 (17163) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:45:31 (17163) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:45:31 (17163) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:45:31 (17163) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:45:31 (17163) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:45:31 (17163) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:45:31 (17163) DEBUG InputFileResolver Files to mutate: []
+14:45:31 (17163) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:45:31 (17163) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:45:31 (17163) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:45:31 (17163) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "all", not hooking into the test framework to achieve performance benefits.
+14:45:31 (17163) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:45:31 (17163) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox1504432
+14:45:31 (17163) DEBUG Sandbox Creating test runner 0
+14:45:31 (17163) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:45:31 (17163) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ ERR! 
+code ENOENT
+
+npm
+ ERR! syscall
+ open
+npm
+ ERR! path
+ /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox1504432/package.json
+
+npm ERR!
+ errno -2
+
+npm ERR! enoent ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox1504432/package.json'
+
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+
+
+npm ERR! A complete log of this run can be found in:
+npm 
+ERR!     /home/renatobispo/.npm/_logs/2021-06-24T17_45_31_912Z-debug.log
+
+14:45:31 (17163) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
+14:48:22 (18024) DEBUG ConfigReader Loading config ./App.conf.json
+14:48:23 (18024) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:48:22 (18024) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:48:23 (18024) WARN InputFileResolver Globbing expression "src/App.js" did not result in any files.
+14:48:22 (18024) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:48:22 (18024) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:48:22 (18024) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:48:23 (18024) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:48:22 (18024) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:48:23 (18024) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:48:23 (18024) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:48:23 (18024) DEBUG InputFileResolver Files to mutate: []
+14:48:23 (18024) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:48:23 (18024) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:48:23 (18024) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:48:23 (18024) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+14:48:23 (18024) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:48:23 (18024) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox8536077
+14:48:23 (18024) DEBUG Sandbox Creating test runner 0
+14:48:23 (18024) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:48:23 (18024) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ 
+ERR! code ENOENT
+
+npm
+ ERR! syscall
+ open
+npm
+ ERR! path
+ /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox8536077/package.json
+
+npm 
+ERR! errno
+ -2
+
+npm 
+ERR! enoent ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox8536077/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR!
+ enoent 
+
+
+
+npm
+ ERR! A complete log of this run can be found in:
+npm
+ ERR!     /home/renatobispo/.npm/_logs/2021-06-24T17_48_23_522Z-debug.log
+
+14:48:23 (18024) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
+14:53:02 (19221) DEBUG ConfigReader Loading config ./App.conf.json
+14:53:03 (19221) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:53:02 (19221) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:53:03 (19221) WARN InputFileResolver Globbing expression "src/App.js" did not result in any files.
+14:53:02 (19221) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:53:02 (19221) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:53:02 (19221) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:53:03 (19221) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:53:02 (19221) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:53:03 (19221) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:53:03 (19221) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:53:03 (19221) DEBUG InputFileResolver Files to mutate: []
+14:53:03 (19221) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:53:03 (19221) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:53:03 (19221) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:53:03 (19221) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+14:53:03 (19221) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:53:03 (19221) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox3580573
+14:53:03 (19221) DEBUG Sandbox Creating test runner 0
+14:53:03 (19221) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:53:03 (19221) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ 
+ERR! code ENOENT
+
+npm 
+ERR!
+ syscall
+ open
+
+npm ERR! 
+path /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox3580573/package.json
+
+npm ERR!
+ errno -2
+
+npm ERR! enoent
+ ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox3580573/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm ERR! enoent 
+
+
+
+npm 
+ERR! A complete log of this run can be found in:
+npm ERR!     /home/renatobispo/.npm/_logs/2021-06-24T17_53_03_493Z-debug.log
+
+14:53:03 (19221) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
+14:56:25 (19876) DEBUG ConfigReader Loading config ./App.conf.json
+14:56:25 (19876) DEBUG BroadcastReporter Broadcasting to reporters ["progress","clear-text","html"]
+14:56:25 (19876) DEBUG ConfigReader Loaded config: {
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "mutate": [
+    "src/App.js"
+  ],
+  "mutator": {
+    "name": "javascript",
+    "excludedMutations": [
+      "ArithmeticOperator",
+      "ArrayDeclaration",
+      "ArrowFunction",
+      "BlockStatement",
+      "BooleanLiteral",
+      "ConditionalExpression",
+      "EqualityOperator",
+      "LogicalOperator",
+      "ObjectLiteral",
+      "UnaryOperator",
+      "UpdateOperator"
+    ]
+  },
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/App.test.js'"
+  },
+  "timeoutMS": 20000,
+  "reporters": [
+    "progress",
+    "clear-text",
+    "html"
+  ],
+  "coverageAnalysis": "off",
+  "jest": {
+    "projectType": "create-react-app"
+  },
+  "warnings": false,
+  "allowConsoleColors": true,
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "transpilers": [],
+  "configFile": "./App.conf.json"
+}
+14:56:25 (19876) WARN InputFileResolver Globbing expression "src/App.js" did not result in any files.
+14:56:25 (19876) DEBUG PluginLoader Loading @stryker-mutator/* from /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator
+14:56:25 (19876) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+14:56:25 (19876) DEBUG PluginLoader Loading plugin "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+14:56:25 (19876) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+14:56:25 (19876) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+14:56:25 (19876) DEBUG InputFileResolver All input files: [
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/stryker.log",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/About.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/App.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+14:56:25 (19876) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+14:56:25 (19876) DEBUG InputFileResolver Files to mutate: []
+14:56:25 (19876) DEBUG PluginLoader Loading plugins /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+14:56:25 (19876) DEBUG TemporaryDirectory Using temp directory "/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp"
+14:56:25 (19876) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+14:56:25 (19876) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+14:56:25 (19876) INFO InitialTestExecutor Starting initial test run. This may take a while.
+14:56:25 (19876) DEBUG Sandbox Creating a sandbox for files in /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox3373708
+14:56:25 (19876) DEBUG Sandbox Creating test runner 0
+14:56:25 (19876) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+14:56:25 (19876) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ ERR!
+ code ENOENT
+
+npm 
+ERR! syscall open
+npm
+ ERR! path /home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox3373708/package.json
+
+npm
+ ERR! errno -2
+
+npm ERR! enoent
+ ENOENT: no such file or directory, open '/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/stryker/.stryker-tmp/sandbox3373708/package.json'
+npm ERR! enoent This is related to npm not being able to find a file.
+npm
+ ERR! enoent 
+
+
+
+npm 
+ERR! A complete log of this run can be found in:
+npm ERR!
+     /home/renatobispo/.npm/_logs/2021-06-24T17_56_25_888Z-debug.log
+
+14:56:25 (19876) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Stryker.runMutationTest (/home/renatobispo/trybe/projects/sd-011-project-react-testing-library/node_modules/@stryker-mutator/core/src/Stryker.js:53:38)
