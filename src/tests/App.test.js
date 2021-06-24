@@ -14,17 +14,22 @@ describe('App component tests', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it('should display navigation links', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+  it(
+    'should display navigation links Home, About and Favorite Pokémons in that order',
+    () => {
+      render(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>,
+      );
 
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('About')).toBeInTheDocument();
-    expect(screen.getByText('Favorite Pokémons')).toBeInTheDocument();
-  });
+      const links = screen.getAllByRole('link');
+
+      expect(links[0].innerHTML).toBe('Home');
+      expect(links[1].innerHTML).toBe('About');
+      expect(links[2].innerHTML).toBe('Favorite Pokémons');
+    },
+  );
 
   it('should redirect to "/" if Home link is clicked', () => {
     render(
