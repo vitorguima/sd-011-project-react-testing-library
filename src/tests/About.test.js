@@ -5,10 +5,8 @@ import renderWithHistory from './helpers/renderWithHistory';
 import About from '../components/About';
 
 describe('A página About:', () => {
-  let getByText;
   let getAllByText;
   let getByRole;
-  let getAllByRole;
 
   beforeEach(() => {
     ({ getByText, getAllByText, getByRole, getAllByRole } = renderWithHistory(<About />));
