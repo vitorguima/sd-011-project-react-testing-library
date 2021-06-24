@@ -22,5 +22,4 @@ describe('Testa o componente FavoritePokemons', () => {
     const notFoundFavorite = getByText(/No favorite pokemon found/i);
     expect(notFoundFavorite).toBeInTheDocument();
   });
-
 });
