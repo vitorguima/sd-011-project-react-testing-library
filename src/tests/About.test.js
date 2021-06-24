@@ -9,7 +9,7 @@ describe('A página About:', () => {
   let getByRole;
 
   beforeEach(() => {
-    ({ getByText, getAllByText, getByRole, getAllByRole } = renderWithHistory(<About />));
+    ({ getAllByText, getByRole } = renderWithHistory(<About />));
   });
 
   it('possui um h2 com o texto "About Pokédex"', () => {
