@@ -5,6 +5,7 @@ import Data from '../data';
 import renderWithRouter from '../renderWithRouter';
 
 const namePokemons = Data.map(({ name }) => name);
+const typePokemons = Data.map(({ type }) => type);
 
 test('Testando componente Pokedex.js', () => {
   const { container, getByText } = renderWithRouter(<App />);
@@ -20,4 +21,12 @@ test('Testando componente Pokedex.js', () => {
   });
 
   expect(getByText('Pikachu')).toBeInTheDocument();
+});
+
+it('Verificando button ', () => {
+  const { getAllByTestId } = renderWithRouter(<App />);
+  const but = getAllByTestId('pokemon-type-button');
+  const mapButton = but.map((b) => b.textContent);
+  const verify = typePokemons.every((type) => mapButton.includes(type));
+  expect(verify).toBeTruthy();
 });
