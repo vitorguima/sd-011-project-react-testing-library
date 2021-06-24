@@ -3,6 +3,12 @@ import { render } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Testa informações no /About', () => {
+  test('Testa heading', () => {
+    const { getByRole } = render(<About />);
+    const head = getByRole('heading');
+    expect(head).toBeInTheDocument();
+    expect(head.textContent).toBe('About Pokédex');
+  });
   test('Testa o header', () => {
     const { getByText } = render(<About />);
     const Header = getByText(/about pokédex/i);
