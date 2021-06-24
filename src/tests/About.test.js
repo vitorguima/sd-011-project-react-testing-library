@@ -13,7 +13,7 @@ describe('Testa informações no /About', () => {
     const ParagraphArray = getAllByRole('paragraph');
     expect(ParagraphArray.length).toBe(2);
   });
-  test('Testa a imagem pokédex', () => {
+  test('Testa a imagem pokédex ', () => {
     const { getByAltText, container } = render(<About />);
     const PokeImg = getByAltText('Pokédex');
     const ImgPoke = container.querySelector('img').src;
