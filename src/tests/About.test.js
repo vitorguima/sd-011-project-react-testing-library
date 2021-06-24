@@ -2,8 +2,8 @@ import React from 'react';
 import About from '../components/About';
 import renderWithRouter from '../renderWithRouter';
 
-describe('2 - Teste o componente <About.js />', () => {
-  it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
+describe('2 - Testa o componente <About.js />', () => {
+  it('Testa se a página contém um heading h2 com o texto About Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
     const title = getByRole('heading', {
       level: 2,
@@ -12,7 +12,7 @@ describe('2 - Teste o componente <About.js />', () => {
     expect(title).toBeInTheDocument();
   });
 
-  it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
+  it('Testa se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
     const { getByText } = renderWithRouter(<About />);
     const firstParagraph = getByText(
       /This application simulates a Pokédex/, // regex utilizada para dar match com apenas parte do texto por conta do numero de linhas do linter.
