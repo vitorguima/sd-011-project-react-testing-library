@@ -11,7 +11,7 @@ describe('Teste o componente <Pokemon.js />', () => {
   it('Teste se é renderizado um card com as informações de determinado pokémon.', () => {
     const { value, measurementUnit } = caterpie.averageWeight;
     const { getByText, container } = renderWithRouter(
-      <Pokemon pokemon={caterpie} isFavorite={false} />,
+      <Pokemon pokemon={ caterpie } isFavorite={ false } />,
     );
     const imagePokemon = container.querySelector('img');
     expect(imagePokemon.src).toBe(caterpie.image);
@@ -23,7 +23,7 @@ describe('Teste o componente <Pokemon.js />', () => {
 
   it('Teste se o card do Pokémon indicado na Pokédex contém um link de nav.', () => {
     const { container } = renderWithRouter(
-      <Pokemon pokemon={caterpie} isFavorite={false} />,
+      <Pokemon pokemon={ caterpie } isFavorite={ false } />,
     );
     const linkPokemon = container.querySelector('a');
     expect(linkPokemon.href).toBe(`http://localhost/pokemons/${caterpie.id}`);
@@ -31,7 +31,7 @@ describe('Teste o componente <Pokemon.js />', () => {
 
   it('Ao clicar no link de navegação do Pokémon, redireciona para os detalhes.', () => {
     const { container, history } = renderWithRouter(
-      <Pokemon pokemon={caterpie} isFavorite={false} />,
+      <Pokemon pokemon={ caterpie } isFavorite={ false } />,
     );
     const linkPokemon = container.querySelector('a');
     fireEvent.click(linkPokemon);
