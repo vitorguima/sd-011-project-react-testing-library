@@ -15,13 +15,8 @@ describe('Testa o componente <FavoritePokemons.js />', () => {
     const { getByText } = renderWithRouter(<App />);
     fireEvent.click(getByText('More details'));
     fireEvent.click(getByText('Pokémon favoritado?'));
-    fireEvent.click(getByText('Home'));
-    fireEvent.click(getByText('Próximo pokémon'));
-    fireEvent.click(getByText('More details'));
-    fireEvent.click(getByText('Pokémon favoritado?'));
     fireEvent.click(getByText('Favorite Pokémons'));
 
     expect(getByText('Pikachu')).toBeInTheDocument();
-    expect(getByText('Charmander')).toBeInTheDocument();
   });
 });
