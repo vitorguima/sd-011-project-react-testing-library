@@ -1,7 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
 
