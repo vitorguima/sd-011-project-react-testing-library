@@ -3,14 +3,14 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('teste da aplicação toda', () => {
+describe('Testes do componente App', () => {
   it('Verifica se a página principal é renderizada na URL /', () => {
     const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
 
-  test('Verifica se a página contém um conjunto fixo de links de navegação', () => {
+  it('Verifica se a página contém um conjunto fixo de links de navegação', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
