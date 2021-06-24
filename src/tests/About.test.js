@@ -1,5 +1,4 @@
 import React from 'react';
-// import { getByText, getByRole, getAllByRole, fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
@@ -16,6 +15,7 @@ describe('Teste componente <About.js />', () => {
     expect(heading).toBeInTheDocument();
   });
 
+  // https://testing-library.com/docs/queries/about/
   it('Contém dois parágrafos com texto sobre a Pokédex', () => {
     const { container } = renderWithRouter(<About />);
     const paragraphs = container.querySelectorAll('p');
