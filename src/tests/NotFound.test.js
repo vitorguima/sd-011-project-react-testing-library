@@ -25,7 +25,8 @@ describe('NotFound component tests', () => {
 
     const imageLink = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     const images = screen.getAllByRole('img');
-    const notFoundImage = images.find((image) => image.classList.contains('not-found-image'));
+    const notFoundImage = images
+      .find((image) => image.classList.contains('not-found-image'));
     expect(notFoundImage).not.toBeNull();
     expect(notFoundImage.src).toBe(imageLink);
   });
