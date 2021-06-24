@@ -1,50 +1,40 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
-
-test('O primeiro link deve possuir o texto Home', () => {
-  const { getByRole } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const textHome = getByRole('link', {
-    name: /Home/i,
+describe('Testa o componente App.js', () => {
+  test('renders a reading with the text `Pokédex`', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const heading = getByText(/Pokédex/i);
+    expect(heading).toBeInTheDocument();
   });
-  expect(textHome).toBeInTheDocument();
-});
 
-test('O primeiro link deve possuir o texto About', () => {
-  const { getByRole } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const textAbout = getByRole('link', {
-    name: /About/i,
+  test('O primeiro link deve possuir o texto Home', () => {
+    render(<App />);
+    const textHome = screen.getByRole('link', {
+      name: /Home/i,
+    });
+    expect(textHome).toBeInTheDocument();
   });
-  expect(textAbout).toBeInTheDocument();
-});
 
-test('O primeiro link deve possuir o texto Favorite Pokémons', () => {
-  const { getByRole } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const textFavoritePokemons = getByRole('link', {
-    name: /Favorites/i,
+  test('O primeiro link deve possuir o texto About', () => {
+    render(<App />);
+    const textAbout = screen.getByRole('link', {
+      name: /About/i,
+    });
+    expect(textAbout).toBeInTheDocument();
   });
-  expect(textFavoritePokemons).toBeInTheDocument();
+
+  test('O primeiro link deve possuir o texto Favorite Pokémons', () => {
+    render(<App />);
+    const textFavoritePokemons = screen.getByRole('link', {
+      name: /Favorite Pokémons/i,
+    });
+    expect(textFavoritePokemons).toBeInTheDocument();
+  });
 });
