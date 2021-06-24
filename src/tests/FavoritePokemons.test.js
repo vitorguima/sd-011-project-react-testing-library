@@ -1,9 +1,9 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-test('Teste se é exibido na tela a mensagem No favorite pokemon found, se a pessoa não tiver pokémons favoritos.', () => {
+test('Teste se é exibido na tela a mensagem No favorite pokemon found', () => {
   const { getByText } = renderWithRouter(<App />);
   const favorite = getByText(/Favorite Pokémons/i);
   fireEvent.click(favorite);
