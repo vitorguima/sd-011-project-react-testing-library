@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
-import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
+import App from '../App';
 
 describe('teste componente FavoritePokemons', () => {
   test('renderiza No favorite pokemon found se não tiver favoritos', () => {
@@ -20,6 +20,7 @@ describe('teste componente FavoritePokemons', () => {
     fireEvent.click(favoriteCheck);
     const favoriteLink = getByText(/Favorite Pokémons/i);
     fireEvent.click(favoriteLink);
+    renderWithRouter(<FavoritePokemons />);
     const favoriteIcon = getByTestId('favorite-star');
     expect(favoriteIcon).toBeInTheDocument();
   });
