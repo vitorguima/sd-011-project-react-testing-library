@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Redirect } from 'react-router-dom';
+
 import { isPokemonFavoriteByIdType, pokemonType } from '../types';
 import Pokemon from './Pokemon';
 
@@ -73,6 +75,11 @@ class PokemonDetails extends React.Component {
     } = this.props;
 
     const pokemon = this.findPokemon(parseInt(id, 10));
+
+    if (!pokemon) {
+      return <Redirect to="/404" />
+    }
+
     const isFavorite = isPokemonFavoriteById[id];
 
     return (
