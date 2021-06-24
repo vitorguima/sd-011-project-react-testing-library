@@ -11,11 +11,13 @@ describe('Testando o componente <PokemonDetails.js />', () => {
     const { name } = caterpie;
     const { getByText } = renderWithRouter(<App />);
 
+    const details = 'More details';
+
     fireEvent.click(getByText('Bug'));
-    fireEvent.click(getByText('More details'));
+    fireEvent.click(getByText(details));
     expect(getByText(`${name} Details`)).toBeInTheDocument();
 
-    expect(screen.queryByText('More details')).toBeNull();
+    expect(screen.queryByText(details)).toBeNull();
     const summary = getByText('Summary');
 
     expect(summary).toBeInTheDocument();
@@ -32,7 +34,7 @@ describe('Testando o componente <PokemonDetails.js />', () => {
     const { getByText, getAllByRole } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('Bug'));
-    fireEvent.click(getByText('More details'));
+    fireEvent.click(getByText(details));
 
     const headingH2 = getByText(`Game Locations of ${name}`);
     expect(headingH2).toBeInTheDocument();
