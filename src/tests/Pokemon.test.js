@@ -23,15 +23,15 @@ describe('Check the behavior of the Pokemon component', () => {
     const pokemonImage = getByAltText(`${pokemon.name} sprite`);
 
     expect(pokemonName).toBeInTheDocument();
-    expect(pokemonName.innerHTML).toBe(pokemon.name);
+    expect(pokemonName).toHaveTextContent(pokemon.name);
     expect(pokemonType).toBeInTheDocument();
-    expect(pokemonType.innerHTML).toBe(pokemon.type);
+    expect(pokemonType).toHaveTextContent(pokemon.type);
     expect(pokemonAverageWeight).toBeInTheDocument();
 
     const { averageWeight: { value, measurementUnit } } = pokemon;
 
-    expect(pokemonAverageWeight.innerHTML)
-      .toBe(`Average weight: ${value} ${measurementUnit}`);
+    expect(pokemonAverageWeight)
+      .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
 
     const { image } = pokemon;
 
