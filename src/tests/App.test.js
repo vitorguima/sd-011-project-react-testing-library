@@ -5,9 +5,11 @@ import App from '../App';
 
 describe('Testes do componente App', () => {
   it('Verifica se a página principal é renderizada na URL /', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText, queryByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
+    const title = queryByText(/Encountered pokémons/i);
+    expect(title).toBeInTheDocument();
   });
 
   it('Verifica se a página contém um conjunto fixo de links de navegação', () => {
@@ -18,7 +20,10 @@ describe('Testes do componente App', () => {
   });
 
   it('Verifica se redireciona para a URL / ao clicar no link Home', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/Home/i));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
     const home = getByText(/Encountered pokémons/i);
     expect(home).toBeInTheDocument();
   });
