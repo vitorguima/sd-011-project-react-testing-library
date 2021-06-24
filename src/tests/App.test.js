@@ -3,7 +3,7 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-describe('renders a reading with the text `Pokédex`', () => {
+describe('Testando componente App', () => {
   it('Verifica se a página inicialmente carregada é "/"', () => {
     const { history } = renderWithRouter(<App />);
     const { pathname } = history.location;
@@ -39,5 +39,13 @@ describe('renders a reading with the text `Pokédex`', () => {
     fireEvent.click(favoritePokemonsLink);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
+  });
+
+  it('Componente notFound é renderizado ao entrar em uma URL desconhecida', () => {
+    const { history, getByText } = renderWithRouter(<App />);
+    history.push('/xablau');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/xablau');
+    expect(getByText('Page requested not found')).toBeInTheDocument();
   });
 });
