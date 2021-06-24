@@ -9,8 +9,8 @@ describe('Check the behavior of the FavoritePokemons page', () => {
     const title = getByText(/Favorite pokémons/);
     const notPokemonsFound = getByText(/No favorite pokemon found/);
 
-    expect(title.innerHTML).toBe(' Favorite pokémons ');
-    expect(notPokemonsFound.innerHTML).toBe('No favorite pokemon found');
+    expect(title).toHaveTextContent('Favorite pokémons');
+    expect(notPokemonsFound).toHaveTextContent('No favorite pokemon found');
   });
 
   it('Check if it renders the favorite pokemon', () => {
@@ -48,11 +48,12 @@ describe('Check the behavior of the FavoritePokemons page', () => {
       const pokemonWeight = getByText(`Average weight: ${value} ${measurementUnit}`);
 
       expect(pokemonName).toBeInTheDocument();
-      expect(pokemonName.innerHTML).toBe(name);
+      expect(pokemonName).toHaveTextContent(name);
       expect(pokemonType).toBeInTheDocument();
-      expect(pokemonType.innerHTML).toBe(type);
+      expect(pokemonType).toHaveTextContent(type);
       expect(pokemonWeight).toBeInTheDocument();
-      expect(pokemonWeight.innerHTML).toBe(`Average weight: ${value} ${measurementUnit}`);
+      expect(pokemonWeight)
+        .toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
     });
   });
 });
