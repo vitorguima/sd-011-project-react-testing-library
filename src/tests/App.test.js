@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 
 import renderWithRouter from '../renderWithRouter';
@@ -49,7 +49,7 @@ describe('Verifica o roteamento das páginas', () => {
     expect(actualLocation).toMatch('/about');
   });
 
-  it('Favorite Pokémons',() => {
+  it('Favorite Pokémons', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const favoriteLink = getByText(/Favorite Pokémons/i);
     fireEvent.click(favoriteLink);
