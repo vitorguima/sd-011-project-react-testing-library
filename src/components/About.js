@@ -2,14 +2,14 @@ import React from 'react';
 import './about.css';
 
 const About = () => (
-  <section data-testid="infoPokedex">
+  <section>
     <h2>{ `About ` + `Pokédex` }</h2>
     <section>
-      <p data-testid="paragraphOne">
+      <p>
         This application simulates a Pokédex, a
         digital encyclopedia containing all Pokémons
       </p>
-      <p data-testid="paragraphTwo">One can filter Pokémons by type, and see more details for each one of them</p>
+      <p>One can filter Pokémons by type, and see more details for each one of them</p>
       <img
         className="pokedex-image"
         src={ `https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png` }

@@ -1,23 +1,22 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-// import renderWithRouter from '../renderWithRouter';
 import { About } from '../components';
 
 describe('Testa o componente <About.js /.', () => {
-  it('se a página contém as informações sobre a Pokédex.', () => {
-    const { getByTestId } = render(<About />);
-    const infoPokedex = getByTestId('infoPokedex');
-    expect(infoPokedex).toBeInTheDocument();
-  });
+  const paragraph = {
+    one: 'This application simulates a Pokédex, '
+    + 'a digital encyclopedia containing all Pokémons',
+    two: 'One can filter Pokémons by type, and see more details for each one of them',
+  };
   it('se a página contém um heading h2 com o texto About Pokédex.', () => {
     const { getByText } = render(<About />);
     const home = getByText(/About Pokédex/);
     expect(home).toBeInTheDocument();
   });
   it('se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getByTestId } = render(<About />);
-    const firstParagraph = getByTestId('paragraphOne');
-    const secondParagraph = getByTestId('paragraphTwo');
+    const { getByText } = render(<About />);
+    const firstParagraph = getByText(paragraph.one);
+    const secondParagraph = getByText(paragraph.two);
     expect(firstParagraph).toBeInTheDocument();
     expect(secondParagraph).toBeInTheDocument();
   });
