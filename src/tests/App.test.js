@@ -7,7 +7,7 @@ describe('Testa o componente <App.js />', () => {
   it('se a página principal é renderizada ao carregar a aplicação no caminho /.', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/');
-    const heading = getByText(/Pokédex/i);
+    const heading = getByText('Pokédex');
     expect(heading).toBeInTheDocument();
   });
 });
@@ -15,21 +15,21 @@ describe('Testa o componente <App.js />', () => {
 describe('Testa se o topo contém um conjunto fixo de links de navegação.', () => {
   it('O primeiro link deve possuir o texto Home.', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/Home/i));
+    fireEvent.click(getByText('Home'));
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
 
   it('O segundo link deve possuir o texto About.', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/About/i));
+    fireEvent.click(getByText('About'));
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
   it('O terceiro link deve possuir o texto Favorite Pokémons.', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    fireEvent.click(getByText(/Favorite Pokémons/i));
+    fireEvent.click(getByText('Favorite Pokémons'));
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
@@ -39,7 +39,7 @@ describe('Teste se a aplicação é redirecionada para a página Not Found', () 
   it('deve testar um caminho não existente e a renderização do Not Found', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pagina/que-nao-existe/');
-    const noMatch = getByText(/Not Found/i);
+    const noMatch = getByText('😭');
     expect(noMatch).toBeInTheDocument();
   });
 });
