@@ -1,7 +1,7 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
-import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -30,36 +30,31 @@ test('Testa se o topo do APP contém links de navegacão', () => {
   expect(linkTestFavoritePokemons).toBeInTheDocument();
 });
 
-test('Testa se o App é redirecionada para a página inicial, na URL / ao clicar no botão', () => {
+test('Testa se o App é redirecionada para URL / ao clicar no botão', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Home/));
   const { pathname } = history.location;
   expect(pathname).toBe('/');
 });
 
-test('Testa se o App é redirecionada para a página inicial, na URL /about ao clicar no botão', () => {
+test('Testa se o App é redirecionada para URL /about ao clicar no botão', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/About/));
   const { pathname } = history.location;
   expect(pathname).toBe('/about');
 });
 
-test('Testa se o App é redirecionada para a página inicial, na URL /Favorite Pokémons ao clicar no botão', () => {
+test('Testa se o App é redir. para URL /Favorite Pokémons ao clicar no botão', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText(/Favorite Pokémons/));
   const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
 });
 
-test('Testa se o App é redirecionada para a página inicial, na URL /not found ao clicar no botão', () => {
+test('Testa se o App é redirecionada para na URL /not found ao clicar no botão', () => {
   const { getByText, history } = renderWithRouter(<App />);
   const notFound = '/not';
   history.push(notFound);
-  const erroPage = getByText(/Page requested not found/)
+  const erroPage = getByText(/Page requested not found/);
   expect(erroPage).toBeInTheDocument();
 });
-
-
-
-
-
