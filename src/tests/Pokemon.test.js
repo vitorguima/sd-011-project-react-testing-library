@@ -45,7 +45,3 @@ describe('Teste o componente <Pokemon.js />', () => {
     expect(pathname).toBe(`/pokemons/${pokemon.id}`);
   });
 });
-
-// expect(wrapper.find(Link).props().to).toBe('/mission');
-
-// Teste se o card do Pokémon indicado na Pokédex contém um link de navegação para exibir detalhes deste Pokémon. O link deve possuir a URL /pokemons/<id>, onde <id> é o id do Pokémon exibido;
