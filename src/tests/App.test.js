@@ -2,7 +2,7 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from '../Renderwtihrouter';
+import renderWithRouter from '../Renderwithrouter';
 
 describe('Teste do app.js', () => {
   it('renders a reading with the text `Pokédex`', () => {

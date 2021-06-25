@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import renderWithRouter from '../Renderwtihrouter';
+import renderWithRouter from '../Renderwithrouter';
 import About from '../components/About';
 import App from '../App';
 
@@ -17,16 +17,15 @@ describe('Teste do about.js', () => {
   });
 
   it('Verifica se a página contém h2 com About Pokédex', () => {
-    const { getByRole, getByText } = renderWithRouter(<About />);
+    const { getByRole } = renderWithRouter(<About />);
     const heading = getByRole('heading', { level: 2 });
 
-    expect(heading).toBeInTheDocument();
-    expect(getByText(/About Pokédex/i)).toBeInTheDocument();
+    expect(heading.innerHTML).toBe('About Pokédex');
   });
 
   it('Verifica se existem dois parágrafos na página About', () => {
-    const { getAllByText } = renderWithRouter(<About />);
-    const paragraphs = getAllByText(/Pokémons/i);
+    const { container } = renderWithRouter(<About />);
+    const paragraphs = container.querySelectorAll('p');
 
     expect(paragraphs.length).toEqual(2);
   });
