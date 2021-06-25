@@ -5,7 +5,7 @@ import About from '../components/About';
 describe('Testing Requirement 02 - Component About.js', () => {
   it('Test if about page contains h2 with text <About Pokédex>', () => {
     const { getByText, container } = render(<About />);
-    expect(getByText('About Pokédex'));
+    expect(getByText('About Pokédex')).toBeInTheDocument();
     expect(container.getElementsByTagName('p')).toHaveLength(2);
   });
 
