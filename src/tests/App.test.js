@@ -67,7 +67,10 @@ describe('Testes requisito 1', () => {
     expect(favoritesPath).toBe('/favorites');
   });
 
-  // it('test if theres no URL matching, return Not Found page', () => {
-  //   { getByText, history} = renderWithRouter(<Appzz)
-  // })
+  it('test if theres no URL matching, return Not Found page', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/anything');
+
+    expect(getByText(/Page requested not found/i)).toBeInTheDocument();
+  });
 });
