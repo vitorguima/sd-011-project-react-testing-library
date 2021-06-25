@@ -1,17 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
-import pokemons from '../data';
 import { renderWithRouter } from '../helpers';
-
-const favoritePokemons = [
-  pokemons[0],
-  pokemons[1],
-  pokemons[2],
-];
-const nonFavoritePokemons = pokemons
-  .filter(({ name: pokemonName }) => favoritePokemons
-    .every(({ name: favoritePokemonName }) => favoritePokemonName !== pokemonName));
+import { favoritePokemons, nonFavoritePokemons } from '../mockedFavoritePokemons';
 
 describe('FavoritePokemons.js:', () => {
   it('There should be a message in the page if there are no favorite pokemons', () => {
