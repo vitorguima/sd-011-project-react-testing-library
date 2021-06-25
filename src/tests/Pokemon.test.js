@@ -1,6 +1,6 @@
 import React from 'react';
-import App from '../App';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
@@ -22,15 +22,16 @@ describe('Testing the Pokemon component', () => {
       },
     ],
     summary:
-      'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.',
+      'It can freely detach its jaw to swallow large prey whole.'
+      + ' It can become too heavy to move, however.',
   };
 
-  const { averageWeight, id, image, name, type } = example;
-  const { measurementUnit, value } = averageWeight;
+  const { id } = example;
+  const details = 'More details';
 
   it('Test if the card component is rendered', () => {
     const { getByTestId, getByAltText, getByText } = renderWithRouter(
-      <Pokemon pokemon={example} isFavorite={true} />
+      <Pokemon pokemon={ example } isFavorite />,
     );
     const name = getByTestId('pokemon-name');
     const type = getByTestId('pokemon-type');
@@ -40,11 +41,11 @@ describe('Testing the Pokemon component', () => {
     const weight = getByTestId('pokemon-weight');
     const imgPokemon = getByAltText('Ekans sprite');
     const imgFavorite = getByAltText('Ekans is marked as favorite');
-    const moreDetails = getByText('More details');
+    const moreDetails = getByText(details);
     expect(moreDetails.href).toBe(`http://localhost/pokemons/${id}`);
-    expect(weight.textContent).toBe(`Average weight: 6.9 kg`);
+    expect(weight.textContent).toBe('Average weight: 6.9 kg');
     expect(imgPokemon.src).toBe(
-      'https://cdn2.bulbagarden.net/upload/1/18/Spr_5b_023.png'
+      'https://cdn2.bulbagarden.net/upload/1/18/Spr_5b_023.png',
     );
 
     expect(imgFavorite.src).toBe('http://localhost/star-icon.svg');
@@ -52,9 +53,9 @@ describe('Testing the Pokemon component', () => {
 
   it('Test if the user is redirected to the detail page', () => {
     const { getByText, history } = renderWithRouter(
-      <Pokemon pokemon={example} isFavorite={true} />
+      <Pokemon pokemon={ example } isFavorite />,
     );
-    const moreDetails = getByText('More details');
+    const moreDetails = getByText(details);
     userEvent.click(moreDetails);
     const {
       location: { pathname },
@@ -64,13 +65,12 @@ describe('Testing the Pokemon component', () => {
 
   it('Test if, once redirected, the user is in the detailed page', () => {
     const { getByText } = renderWithRouter(<App />);
-    const moreDetails = getByText('More details');
+    const moreDetails = getByText(details);
     const type = getByText('Poison');
     userEvent.click(type);
     userEvent.click(moreDetails);
-    const paragraph = getByText(
-      'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.'
-    );
+    const detailsText = /It can freely detach its jaw to swallow large prey whole/i;
+    const paragraph = getByText(detailsText);
     expect(paragraph).toBeInTheDocument();
   });
 });

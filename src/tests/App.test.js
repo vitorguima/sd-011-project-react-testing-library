@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import App from '../App';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testing the App component', () => {
@@ -10,7 +10,7 @@ describe('Testing the App component', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     const heading = getByText(/Encountered pokémons/i);
@@ -21,7 +21,7 @@ describe('Testing the App component', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const home = getByText(/Home/i);
     const about = getByText(/About/i);
@@ -35,7 +35,7 @@ describe('Testing the App component', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const About = getByText(/About/i);
     userEvent.click(About);
@@ -47,7 +47,7 @@ describe('Testing the App component', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const home = getByText(/Home/i);
     userEvent.click(home);
@@ -59,7 +59,7 @@ describe('Testing the App component', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const favorites = getByText(/Favorite Pokémons/i);
     userEvent.click(favorites);

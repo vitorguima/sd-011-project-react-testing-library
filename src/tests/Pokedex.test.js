@@ -1,9 +1,10 @@
 import React from 'react';
-import App from '../App';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testing the Pokedex component', () => {
+  const testId = 'pokemon-type';
   let getAllByRole;
 
   beforeAll(() => {
@@ -30,7 +31,7 @@ describe('Testing the Pokedex component', () => {
       'Pikachu',
     ];
 
-    allPokedex.forEach((el, index) => {
+    allPokedex.forEach((el) => {
       const button = getByText(/Próximo pokémon/i);
       userEvent.click(button);
       const newPokemon = getByText(el);
@@ -39,13 +40,13 @@ describe('Testing the Pokedex component', () => {
   });
 
   it('Test if only one component is shown', () => {
-    const { getByText } = renderWithRouter(<App />);
+    ({ getAllByRole } = renderWithRouter(<App />));
     const img = getAllByRole('img');
     expect(img.length).toBe(1);
   });
 
   it('Test if there are filter buttons', () => {
-    const { getByText, getByRole, getByTestId } = renderWithRouter(<App />);
+    const { getByRole, getByTestId } = renderWithRouter(<App />);
     const img = getAllByRole('img');
     expect(img.length).toBe(1);
 
@@ -62,7 +63,8 @@ describe('Testing the Pokedex component', () => {
     filterTypes.forEach((el) => {
       const button = getByRole('button', { name: el });
       userEvent.click(button);
-      const pokemonType = getByTestId('pokemon-type').textContent;
+
+      const pokemonType = getByTestId(testId).textContent;
       expect(pokemonType).toBe(el);
     });
   });
@@ -73,17 +75,17 @@ describe('Testing the Pokedex component', () => {
     let type = 'Dragon';
     const dragonButton = getByRole('button', { name: type });
     userEvent.click(dragonButton);
-    let pokemonType = getByTestId('pokemon-type').textContent;
+    let pokemonType = getByTestId(testId).textContent;
     expect(pokemonType).toBe(type);
     userEvent.click(ResetButton);
     type = 'Electric';
-    pokemonType = getByTestId('pokemon-type').textContent;
+    pokemonType = getByTestId(testId).textContent;
     expect(pokemonType).toBe(type);
   });
 
   it('Test if next pokemon button can be disabled', () => {
     const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
-    let type = 'Dragon';
+    const type = 'Dragon';
     const AllButtons = getAllByTestId('pokemon-type-button');
     const dragonButton = AllButtons.find((el) => el.textContent === type);
     userEvent.click(dragonButton);

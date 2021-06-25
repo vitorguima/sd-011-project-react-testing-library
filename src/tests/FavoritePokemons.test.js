@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import App from '../App';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testing the Favorite component', () => {
@@ -10,7 +10,7 @@ describe('Testing the Favorite component', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
     const favorites = getByText(/Favorite Pokémons/i);
     userEvent.click(favorites);
