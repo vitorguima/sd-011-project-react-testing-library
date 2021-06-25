@@ -81,9 +81,9 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('A pokédex tem botões de filtro dinâmicos?', () => {
-    const { getByTestId } = renderWithRouter(<App />);
-    const idButton = getByTestId('');
-    expect(idButton).toBeInTheDocument();
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const filterButtons = getAllByTestId(/pokemon-type-button/i);
+    expect(filterButtons.length).toBe(Number('7'));
   });
 
   it('A partir de um filtro a pokédex circula somente pelos pokes daquele tipo?', () => {
