@@ -2,7 +2,6 @@ import { fireEvent } from '@testing-library/dom';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import Pokedex from '../components/Pokedex';
 
 describe('Testa o componente Pokedex', () => {
   it('A page contém o título "Encountered pokémons"? ', () => {
