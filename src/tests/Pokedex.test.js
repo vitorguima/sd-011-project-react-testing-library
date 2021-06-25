@@ -20,7 +20,7 @@ describe('Tests of pokedex component', () => {
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent('Próximo pokémon');
   });
-  test('test if by clicking proximo pokemon button it goes to the next', () =>{
+  test('test if by clicking proximo pokemon button it goes to the next', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const poke = getByTestId(pokeName);
     const nextPoke = getByText(nextButton);
