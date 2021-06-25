@@ -13,7 +13,8 @@ describe('Testa o componente <About />', () => {
     expect(getByText(/One can filter Pokémons/)).toBeInTheDocument();
   });
   it('Testa se a página contém uma imagem de uma Pokédex.', () => {
-    const { getByAltText } = renderWithRouter(<About />);
-    expect(getByAltText('Pokédex')).toBeInTheDocument();
+    const { getByRole } = renderWithRouter(<About />);
+    const imageSrc = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    expect(getByRole('img')).toHaveAttribute('src', imageSrc);
   });
 });
