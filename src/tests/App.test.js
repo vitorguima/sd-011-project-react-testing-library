@@ -13,4 +13,5 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(getByText('Encountered pokemóns')).toBeInTheDocument();
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
+  
 });
