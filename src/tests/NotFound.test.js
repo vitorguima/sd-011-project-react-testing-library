@@ -20,5 +20,6 @@ describe('Testando o componente <NotFound.js />', () => {
     const notFoundImage = container.querySelector('.not-found-image');
     const urlImage = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(notFoundImage).toHaveAttribute('src', urlImage);
+    expect(notFoundImage).toBeInTheDocument();
   });
 });

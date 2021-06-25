@@ -32,5 +32,6 @@ describe('Teste o componente About', () => {
     const { container } = renderWithRouter(<About />);
     const img = container.querySelector('img');
     expect(img).toHaveAttribute('src', url);
+    expect(img).toBeInTheDocument();
   });
 });
