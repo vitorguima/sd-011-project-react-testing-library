@@ -3,6 +3,10 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
+const aboutLinkClick = () => {
+  fireEvent.click(screen.getByRole('link', { name: 'About' }));
+};
+
 describe('About component tests', () => {
   it('should render a heading with "About Pokédex" text', () => {
     render(
@@ -11,7 +15,7 @@ describe('About component tests', () => {
       </MemoryRouter>,
     );
 
-    fireEvent.click(screen.getByText(/about/i));
+    aboutLinkClick();
 
     expect(screen.getByText(/about pokédex/i)).toBeInTheDocument();
   });
@@ -23,7 +27,7 @@ describe('About component tests', () => {
       </MemoryRouter>,
     );
 
-    fireEvent.click(screen.getByText(/about/i));
+    aboutLinkClick();
 
     expect(screen.getByText(/this application simulates a pokédex/i)).toBeInTheDocument();
     expect(screen.getByText(/One can filter Pokémons by type/i)).toBeInTheDocument();
@@ -36,10 +40,9 @@ describe('About component tests', () => {
       </MemoryRouter>,
     );
 
-    fireEvent.click(screen.getByText(/about/i));
+    aboutLinkClick();
 
     const pokedexImage = screen.getByRole('img');
-    expect(pokedexImage).toBeInTheDocument();
     const imageSrc = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(pokedexImage.src).toBe(imageSrc);
   });
