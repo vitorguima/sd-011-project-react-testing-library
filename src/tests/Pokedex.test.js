@@ -120,9 +120,6 @@ describe('Requirement number 5', () => {
         allTypes.push(Data[i].type);
       }
     }
-    // console.log(todosTypesPokemons);
-    // screen.logTestingPlaygroundURL()
-    // screen.logTestingPlaygroundURL(screen.getByText('test'))
 
     for (let i = 0; i < allTypes.length; i += 1) {
       const button = getByText(allTypes[i], { selector: 'button' });
