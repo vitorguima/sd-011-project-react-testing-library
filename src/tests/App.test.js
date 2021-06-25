@@ -61,7 +61,6 @@ describe('Requisito 1 - App.js', () => {
 
   it('Ao entrar com URL desconhecida, redireciona para página Not Found', () => {
     const { getByText } = render(<NotFound />);
-    // const linkNotfound = getByText(/NotFound/i);
     expect(getByText(/Page requested not found/i)).toBeInTheDocument();
   });
 });
