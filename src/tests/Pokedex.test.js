@@ -68,6 +68,21 @@ describe('Testa o componente Pokedex', () => {
     userEvent.click(botaoProximo);
     const verificaVoltaPrimeiro = getByText('Pikachu');
     expect(verificaVoltaPrimeiro).toBeInTheDocument();
+    // const botaoFiltroElectric = getByText('Electric');
+    userEvent.click(botoes[1]);
+    userEvent.click(botoes[0]);
+    userEvent.click(botaoProximo);
+    const charmanderPoke = getByText('Charmander');
+    expect(charmanderPoke).toBeInTheDocument();
+    userEvent.click(botaoProximo);
+    userEvent.click(botaoProximo);
+    userEvent.click(botaoProximo);
+    userEvent.click(botaoProximo);
+    userEvent.click(botaoProximo);
+    userEvent.click(botaoProximo);
+    userEvent.click(botaoProximo);
+    userEvent.click(botaoProximo);
+    expect(verificaVoltaPrimeiro).toBeInTheDocument();
   });
 
   test('Botao proximo desabilita quando so tiver 1', () => {
