@@ -1,6 +1,6 @@
 import React from 'react';
-import About from '../components/About';
 import { render } from '@testing-library/react';
+import About from '../components/About';
 
 describe('Testando o componente <About.js />', () => {
   it('Teste se a página contém as informações sobre a Pokédex.', () => {
@@ -8,10 +8,10 @@ describe('Testando o componente <About.js />', () => {
     const { getByText } = render(<About />);
 
     // Interact the elements if necessary.
-    const aboutPoke = getByText(/About Pokédex/i);
+    const Poke = getByText(/About Pokédex/i);
 
     // Check if match.
-    expect(aboutPoke).toHaveTextContent('About Pokédex');
+    expect(Poke).toHaveTextContent('About Pokédex');
   });
 
   it('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
@@ -49,5 +49,4 @@ describe('Testando o componente <About.js />', () => {
     // Check if match.
     expect(pokedexImg.src).toBe(`https://cdn2.bulbagarden.net/upload/${thumb}`);
   });
-
 });
