@@ -27,12 +27,6 @@ test('Pokedex heading exists and reads "Encountered pokémons"', () => {
   expect(heading).toHaveTextContent('Encountered pokémons');
 });
 
-// describe('Pokemon cards', () => {
-//   it('are shown one by one', () => {
-
-//   });
-// });
-
 function cycleThroughList(pokemonArray, nextButton, getByTestId, escapeCondition) {
   const TEST_ID = testIds.NAME_FIELD;
 
