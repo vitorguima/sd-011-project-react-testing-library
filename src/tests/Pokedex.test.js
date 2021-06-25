@@ -56,9 +56,9 @@ test('shows filter buttons', () => {
 });
 
 test('show a button to reset filter', () => {
-  const { getByText, getByTestId } = renderWithRouter(<App />);
+  const { getByText } = renderWithRouter(<App />);
   const allButton = getByText(/All/);
-  const nextButton = getByTestId('next-pokemon');
+  const nextButton = getByText(/Próximo pokémon/);
   const pikaText = getByText(/Pikachu/);
   expect(pikaText).toBeInTheDocument();
   fireEvent.click(nextButton);
@@ -75,7 +75,7 @@ test('show a button to reset filter', () => {
 });
 
 test('shows all filter buttons', () => {
-  const { getAllByTestId} = renderWithRouter(<App />);
+  const { getAllByTestId } = renderWithRouter(<App />);
   const filterButtons = getAllByTestId('pokemon-type-button');
   const reuiredLenght = 7;
   expect(filterButtons.length).toBe(reuiredLenght);
