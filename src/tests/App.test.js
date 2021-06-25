@@ -14,7 +14,7 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('renders the navigation menu links', () => {
+test('Verifica a navegação de links', () => {
   renderWithRouter(<App />, ['/']);
 
   const nav = screen.getByTestId('main-navigation');
