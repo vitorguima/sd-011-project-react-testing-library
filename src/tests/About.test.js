@@ -4,7 +4,9 @@ import About from '../components/About';
 
 describe('Teste o componente <About.js />', () => {
   it('Teste se a página contém as informações sobre a Pokédex', () => {
-    // TODO Perguntar o que sao essas informações ??????
+    const { getByText } = render(<About />);
+    expect(getByText(/This application simulates a Pokédex/)).toBeInTheDocument();
+    // Se colocar o começo da frase já reconhece o resto...
   });
 
   it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
@@ -15,18 +17,15 @@ describe('Teste o componente <About.js />', () => {
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
-    const { getByText } = render(<About />);
-    // TODO encontrar dois parágrafos, nao funciona getByRole.
-    expect(getByText(/This application simulates a Pokédex, a digital encyclopedia containing all Pokémons/)).toBeInTheDocument();
-    expect(getByText(/One can filter Pokémons by type, and see more details for each one of them/)).toBeInTheDocument();
-    // TODO arrumar strings muito grandes.
+    const { getAllByText } = render(<About />);
+    expect(getAllByText(/Pokémons/).length).toEqual(2);
+    // Usei getAllByText pois espero mais de um elemento com a palavra Pokémons.
+    // No caso 2 elementos.
   });
 
   it('Teste se a página contém a seguinte imagem de uma Pokédex', () => {
-    const { getByRole, getByText } = render(<About />);
-    expect(getByRole('img')).toBeInTheDocument();
-    const imageSrc = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    expect(getByText(imageSrc)).toBeInTheDocument();
-    // TODO Verificar pq nao encontra o src da imagem.
+    const { getByRole } = render(<About />);
+    const image = getByRole('img');
+    expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
