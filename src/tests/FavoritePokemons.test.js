@@ -40,4 +40,9 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
     expect(image.src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(imageFavorite.src).toContain('/star-icon.svg');
   });
+  it('se nenhum card de pokémon é exibido, se ele não estiver favoritado', () => {
+    const { container } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
+    const card = container.getElementsByClassName('pokemon');
+    expect(card.length).toBe(0);
+  });
 });
