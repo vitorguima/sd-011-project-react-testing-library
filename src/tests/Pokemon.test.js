@@ -34,7 +34,7 @@ describe('Pokemon.js component', () => {
 
     expect(name).toHaveTextContent('Pikachu');
     expect(type).toHaveTextContent('Electric');
-    expect(weight).toHaveTextContent('6.0 kg');
+    expect(weight).toHaveTextContent('Average weight: 6.0 kg');
     expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
