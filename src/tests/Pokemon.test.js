@@ -5,7 +5,7 @@ import App from '../App';
 import { Pokemon } from '../components';
 import pokemons from '../data';
 
-describe('requirement 5 - test the Pokedex.js component', () => {
+describe('requirement 6 - test the Pokemon.js component', () => {
   it('rendered a card with the information of a certain Pokemon', () => {
     const { getByAltText, getByTestId } = renderWithRouter(<App />);
     const namePokemon = getByTestId('pokemon-name');
