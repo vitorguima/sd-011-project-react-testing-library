@@ -38,4 +38,11 @@ describe('Testes do componente App', () => {
     const favorite = getByText(/Favorite Pokémons/);
     fireEvent.click(favorite);
   });
+
+  it('Verifica se um caminho não existente é renderezado para pagina Not Found', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/pagina/que-nao-existe/');
+    const pageNotFound = getByText(/Page requested/i);
+    expect(pageNotFound).toBeInTheDocument();
+  });
 });
