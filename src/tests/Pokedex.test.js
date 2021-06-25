@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { renderWithRouter } from '../components';
 import Pokedex from '../components/Pokedex';
-import pokemons from '../data'
+import pokemons from '../data';
 
 describe('testing Pokedex component', () => {
   it('verify if contain a heading h2 \'Encountered pokémons\'', () => {
@@ -42,13 +42,13 @@ describe('testing Pokedex component', () => {
     expect(nextPokemon).toBeInTheDocument();
   });
 
-  it('test if ', () => {
-    const { getByText } = renderWithRouter(
-      <Pokedex
-        pokemons={ pokemons }
-        isPokemonFavoriteById={ {} }
-        isFavorite={ [] }
-      />,
-    );
-  });
+  // it('test if ', () => {
+  //   const { getByText } = renderWithRouter(
+  //     <Pokedex
+  //       pokemons={ pokemons }
+  //       isPokemonFavoriteById={ {} }
+  //       isFavorite={ [] }
+  //     />,
+  //   );
+  // });
 });
