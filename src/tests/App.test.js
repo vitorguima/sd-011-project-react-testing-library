@@ -6,14 +6,14 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testing the App component', () => {
-  it('Teste se a página principal da Pokédex é renderizada ao carregar a aplicação no caminho de URL /', () => {
+  it('Test if the home page is rendered correctly', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    const heading = getByText(/Pokédex/i);
+    const heading = getByText(/Encountered pokémons/i);
     expect(heading).toBeInTheDocument();
   });
 
