@@ -39,13 +39,13 @@ describe('Requirement number 2', () => {
         + 'them tender enough to eat.',
     },
     ];
-    const { getByTestId } = renderWithRouter(
+    const { container } = renderWithRouter(
       <FavoritePokemons
         pokemons={ FAVORITE_POKEMONS }
       />,
     );
 
-    const div = getByTestId('div-favorite');
+    const div = container.querySelector('.favorite-pokemons');
     expect(div).toBeInTheDocument();
     expect(div).toHaveTextContent(/Pikachu/i);
   });
