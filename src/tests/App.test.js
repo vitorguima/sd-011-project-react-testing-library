@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-describe('Tetstsa o componente App', () => {
+describe('Testa o componente App', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
@@ -26,8 +26,7 @@ describe('Tetstsa o componente App', () => {
   });
 
   it('verifica se o primeiro link é `Home`', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    history.push('/Home/');
+    const { getByText } = renderWithRouter(<App />);
     const firstLink = getByText(/Home/i);
     expect(firstLink).toBeInTheDocument();
   });
