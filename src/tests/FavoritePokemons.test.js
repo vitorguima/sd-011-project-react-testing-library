@@ -1,7 +1,8 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { Pokemon, renderWithRouter } from '../components';
+import { renderWithRouter } from '../components';
 import FavoritePokemon from '../components/FavoritePokemons';
+import App from '../App';
 
 const favoritePokemons = [
   {
@@ -59,18 +60,45 @@ const favoritePokemons = [
   },
 ];
 
-describe('testing the FavoritePokemons components', () => {
-
-  it(
-    'if renders \'No Favorite pokemon found\' if does not have any favorite pokemon',
-    () => {
-      const { getByText } = renderWithRouter(<FavoritePokemon />);
-      const noFavoriteFoundMsg = getByText('No favorite pokemon found');
-      expect(noFavoriteFoundMsg).toBeInTheDocument();
-    },
-  );
+describe('testing the FavoritePokemons component', () => {
+  // eslint-disable-next-line max-len
+  it('if renders \'No Favorite pokemon found\' if does not have any favorite pokemon', () => {
+    const { getByText } = renderWithRouter(<FavoritePokemon />);
+    const noFavoriteFoundMsg = getByText('No favorite pokemon found');
+    expect(noFavoriteFoundMsg).toBeInTheDocument();
+  });
 
   it('testing if renders all favorite pokemons', () => {
-    <Pokemon pokemon={ favoritePokemons } isFavorite />;
+    const { getByText, history } = renderWithRouter(<App />);
+    let moreDetailsBtn = getByText('More details');
+    fireEvent.click(moreDetailsBtn);
+    let favoriteBtn = getByText('Pokémon favoritado?');
+    fireEvent.click(favoriteBtn);
+    let favoriteCheckbox = document.querySelector('#favorite');
+    expect(favoriteCheckbox).toBeChecked();
+
+    const homeBtn = getByText('Home');
+    fireEvent.click(homeBtn);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
+
+    const nextPokemonBtn = getByText(/Próximo pokémon/i);
+    fireEvent.click(nextPokemonBtn);
+    let charmander = getByText('Charmander');
+    expect(charmander).toBeInTheDocument();
+
+    moreDetailsBtn = getByText('More details');
+    fireEvent.click(moreDetailsBtn);
+    favoriteCheckbox = document.querySelector('#favorite');
+    favoriteBtn = getByText('Pokémon favoritado?');
+    fireEvent.click(favoriteBtn);
+    expect(favoriteCheckbox).toBeChecked();
+
+    const favoritePokemonsBtn = getByText('Favorite Pokémons');
+    fireEvent.click(favoritePokemonsBtn);
+    const pikachu = getByText(/pikachu/i);
+    charmander = getByText(/charmander/i);
+    expect(pikachu).toBeInTheDocument();
+    expect(charmander).toBeInTheDocument();
   });
 });
