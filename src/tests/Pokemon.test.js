@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-describe('testes do componente About.js', () => {
+describe('testes do componente Pokemon.js', () => {
   test('Testa se é renderizado um card com as informações do pokémon.', () => {
     const { getByTestId, getByText, getByAltText } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
