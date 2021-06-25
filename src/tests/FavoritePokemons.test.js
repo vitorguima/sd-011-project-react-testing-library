@@ -1,104 +1,81 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { renderWithRouter } from '../components';
-import FavoritePokemon from '../components/FavoritePokemons';
 import App from '../App';
 
-const favoritePokemons = [
-  {
-    id: 25,
-    name: 'Pikachu',
-    type: 'Electric',
-    averageWeight: {
-      value: '6.0',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Kanto Viridian Forest',
-        map: 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
-      },
-      {
-        location: 'Kanto Power Plant',
-        map: 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png',
-      },
-    ],
-    summary:
-      'This intelligent Pokémon ...',
-  },
-  {
-    id: 4,
-    name: 'Charmander',
-    type: 'Fire',
-    averageWeight: {
-      value: '8.5',
-      measurementUnit: 'kg',
-    },
-    image: 'https://cdn2.bulbagarden.net/upload/0/0a/Spr_5b_004.png',
-    moreInfo: 'https://bulbapedia.bulbagarden.net/wiki/Charmander_(Pok%C3%A9mon)',
-    foundAt: [
-      {
-        location: 'Alola Route 3',
-        map: 'https://cdn2.bulbagarden.net/upload/9/93/Alola_Route_3_Map.png',
-      },
-      {
-        location: 'Kanto Route 3',
-        map: 'https://cdn2.bulbagarden.net/upload/4/4a/Kanto_Route_3_Map.png',
-      },
-      {
-        location: 'Kanto Route 4',
-        map: 'https://cdn2.bulbagarden.net/upload/2/24/Kanto_Route_4_Map.png',
-      },
-      {
-        location: 'Kanto Rock Tunnel',
-        map: 'https://cdn2.bulbagarden.net/upload/6/6f/Kanto_Rock_Tunnel_Map.png',
-      },
-    ],
-    summary: 'The flame on its tail shows ...',
-  },
-];
-
-describe('testing the FavoritePokemons component', () => {
+test('testing the FavoritePokemons component', () => {
   // eslint-disable-next-line max-len
-  it('if renders \'No Favorite pokemon found\' if does not have any favorite pokemon', () => {
-    const { getByText } = renderWithRouter(<FavoritePokemon />);
-    const noFavoriteFoundMsg = getByText('No favorite pokemon found');
-    expect(noFavoriteFoundMsg).toBeInTheDocument();
-  });
 
-  it('testing if renders all favorite pokemons', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    let moreDetailsBtn = getByText('More details');
-    fireEvent.click(moreDetailsBtn);
-    let favoriteBtn = getByText('Pokémon favoritado?');
-    fireEvent.click(favoriteBtn);
-    let favoriteCheckbox = document.querySelector('#favorite');
-    expect(favoriteCheckbox).toBeChecked();
+  // Renderiza <App /> clica no botão favoritos e verifica se aparece agum pokemon
+  const { getAllByText, getByText, history } = renderWithRouter(<App />);
+  const favoritePokNav = getByText('Favorite Pokémons');
+  fireEvent.click(favoritePokNav);
+  let noFavoriteFoundMsg = getByText('No favorite pokemon found');
+  expect(noFavoriteFoundMsg).toBeInTheDocument();
 
-    const homeBtn = getByText('Home');
-    fireEvent.click(homeBtn);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/');
+  // Volta para a página Home
+  let homeBtn = getByText('Home');
+  fireEvent.click(homeBtn);
 
-    const nextPokemonBtn = getByText(/Próximo pokémon/i);
-    fireEvent.click(nextPokemonBtn);
-    let charmander = getByText('Charmander');
-    expect(charmander).toBeInTheDocument();
+  // Adiciona pikachu como favorito
+  let moreDetailsBtn = getByText(/more details/i);
+  fireEvent.click(moreDetailsBtn);
+  let favoriteBtn = getByText('Pokémon favoritado?');
+  fireEvent.click(favoriteBtn);
+  let favoriteCheckbox = document.querySelector('#favorite');
+  expect(favoriteCheckbox).toBeChecked();
 
-    moreDetailsBtn = getByText('More details');
-    fireEvent.click(moreDetailsBtn);
-    favoriteCheckbox = document.querySelector('#favorite');
-    favoriteBtn = getByText('Pokémon favoritado?');
-    fireEvent.click(favoriteBtn);
-    expect(favoriteCheckbox).toBeChecked();
+  // Renderiza a home novamente
+  homeBtn = getByText('Home');
+  fireEvent.click(homeBtn);
+  const { pathname } = history.location;
+  expect(pathname).toBe('/');
 
-    const favoritePokemonsBtn = getByText('Favorite Pokémons');
-    fireEvent.click(favoritePokemonsBtn);
-    const pikachu = getByText(/pikachu/i);
-    charmander = getByText(/charmander/i);
-    expect(pikachu).toBeInTheDocument();
-    expect(charmander).toBeInTheDocument();
-  });
+  // Pula para a aba do Charmander
+  const nextPokemonBtn = getByText(/Próximo pokémon/i);
+  fireEvent.click(nextPokemonBtn);
+  let charmander = getByText('Charmander');
+  expect(charmander).toBeInTheDocument();
+
+  // Adiciona charmander como favorito
+  moreDetailsBtn = getByText(/More details/i);
+  fireEvent.click(moreDetailsBtn);
+  favoriteCheckbox = document.querySelector('#favorite');
+  favoriteBtn = getByText('Pokémon favoritado?');
+  fireEvent.click(favoriteBtn);
+  expect(favoriteCheckbox).toBeChecked();
+
+  // Verifica se Pikachu e Charmander aparecem na aba favoritos
+  let favoritePokemonsBtn = getByText(/favorite pokémons/i);
+  fireEvent.click(favoritePokemonsBtn);
+  const pikachu = getByText(/pikachu/i);
+  expect(pikachu).toBeInTheDocument();
+  charmander = getByText(/charmander/i);
+  expect(charmander).toBeInTheDocument();
+
+  // Remove Pikachu e Charmander do favorito
+  moreDetailsBtn = getAllByText('More details');
+  fireEvent.click(moreDetailsBtn[0]);
+  let gameLocationsOf = getByText('Game Locations of Pikachu');
+  expect(gameLocationsOf).toBeInTheDocument();
+
+  favoritePokemonsBtn = getByText(/pokémon favoritado/i);
+  fireEvent.click(favoritePokemonsBtn);
+  favoriteCheckbox = document.querySelector('#favorite');
+  expect(favoriteCheckbox).not.toBeChecked();
+
+  fireEvent.click(favoritePokNav);
+  moreDetailsBtn = getByText('More details');
+  fireEvent.click(moreDetailsBtn);
+  gameLocationsOf = getByText('Game Locations of Charmander');
+  expect(gameLocationsOf).toBeInTheDocument();
+
+  favoritePokemonsBtn = getByText(/pokémon favoritado/i);
+  fireEvent.click(favoritePokemonsBtn);
+  favoriteCheckbox = document.querySelector('#favorite');
+  expect(favoriteCheckbox).not.toBeChecked();
+
+  // Verifica se os pokemons não são renderizados novamente
+  fireEvent.click(favoritePokNav);
+  noFavoriteFoundMsg = getByText('No favorite pokemon found');
 });
