@@ -1,7 +1,7 @@
 import React from 'react';
-import { fireEvent, render, within } from '@testing-library/react';
+import { fireEvent, within } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';
+import { renderWithRouter, waitFor } from '../helpers';
 
 const expectedHomePageTitle = 'Encountered pokémons';
 const expectedAboutPageTitle = 'About Pokédex';
@@ -17,7 +17,7 @@ describe('App.js:', () => {
     expect(homeTitle.textContent).toBe(expectedHomePageTitle);
   });
 
-  it('There should be navigation links in the of the page.', () => {
+  it('There should be navigation links in the top of the page.', () => {
     const { getByRole } = renderWithRouter(<App />);
     const actualNavigationLinks = Array.from(getByRole('navigation').children);
     const expectedNavigationLinks = ['Home', 'About', 'Favorite Pokémons'];
@@ -28,14 +28,15 @@ describe('App.js:', () => {
     });
   });
 
-  it('User should be redirected to Home page when the \'Home\' link is clicked.', () => {
+  it('User should be redirected to Home page when the \'Home\''
+    + 'link is clicked.', async () => {
     const { getByRole, getByText, history } = renderWithRouter(<App />);
     const navBar = getByRole('navigation');
     const homeNavLink = within(navBar).getByText('Home');
 
     fireEvent.click(homeNavLink);
 
-    const homeTitle = getByText(expectedHomePageTitle);
+    const homeTitle = await waitFor(() => getByText(expectedHomePageTitle));
 
     expect(history.location.pathname).toBe('/');
     expect(homeTitle).toBeInTheDocument();
@@ -58,7 +59,7 @@ describe('App.js:', () => {
     });
 
   it('User should be redirected to Favorite Pokémons page when '
-      + 'the \'Favorite Pokémons\' link is clicked.',
+    + 'the \'Favorite Pokémons\' link is clicked.',
   () => {
     const { getByRole, getByText, history } = renderWithRouter(<App />);
     const navBar = getByRole('navigation');
