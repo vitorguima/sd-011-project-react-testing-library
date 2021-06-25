@@ -17,8 +17,8 @@ describe('Requisito 2 - About.js', () => {
 
   it('Teste se a página contém a seguinte imagem de uma Pokédex:', () => {
     const { getByRole } = render(<About />);
-    const imgageUrl = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const imageUrl = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const image = getByRole('img');
-    expect(image.src).toBe(imgageUrl);
+    expect(image.src).toBe(imageUrl);
   });
 });
