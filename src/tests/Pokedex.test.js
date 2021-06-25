@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import { Pokedex } from '../components';
 
+const pokemonNameTestId = 'pokemon-name';
 const nextPokemonTestId = 'next-pokemon';
 const pokemonTypeTestId = 'pokemon-type';
 
@@ -37,6 +38,7 @@ const mockedPokemons = [
   },
 ];
 const mockedFavorites = { 25: false, 4: false };
+const types = mockedPokemons.map(({ type }) => type);
 
 describe('Pokedex component tests', () => {
   it('should have a heading with text "Encountered pokémons"', () => {
@@ -50,24 +52,24 @@ describe('Pokedex component tests', () => {
       .toHaveTextContent(/encountered pokémons/i);
   });
 
-  it('should show next pokémon when "next" button is clicked', () => {
+  it('should have a next pokémon button and show next pokémon when clicked', () => {
     render(
       <MemoryRouter>
         <Pokedex pokemons={ mockedPokemons } isPokemonFavoriteById={ mockedFavorites } />
       </MemoryRouter>,
     );
 
-    const encounteredHeading = screen.getByRole('heading', { level: 2 });
-    const pikachu = encounteredHeading.nextElementSibling.lastChild.src;
+    const firstPokemonName = screen.getByTestId(pokemonNameTestId).textContent;
     const nextButton = screen.getByTestId(nextPokemonTestId);
     expect(nextButton).toHaveTextContent(/próximo pokémon/i);
     fireEvent.click(nextButton);
-    let newPokemon = encounteredHeading.nextElementSibling.lastChild.src;
-    expect(newPokemon).not.toEqual(pikachu);
+
+    let nextPokemonName = screen.getByTestId(pokemonNameTestId).textContent;
+    expect(nextPokemonName).not.toEqual(firstPokemonName);
 
     fireEvent.click(nextButton);
-    newPokemon = encounteredHeading.nextElementSibling.lastChild.src;
-    expect(newPokemon).toEqual(pikachu);
+    nextPokemonName = screen.getByTestId(pokemonNameTestId).textContent;
+    expect(nextPokemonName).toEqual(firstPokemonName);
   });
 
   it('should only render one pokémon at a time', () => {
@@ -77,9 +79,9 @@ describe('Pokedex component tests', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getAllByRole('link', { name: 'More details' })).toHaveLength(1);
+    expect(screen.getAllByTestId(pokemonNameTestId)).toHaveLength(1);
     fireEvent.click(screen.getByTestId(nextPokemonTestId));
-    expect(screen.getAllByRole('link', { name: 'More details' })).toHaveLength(1);
+    expect(screen.getAllByTestId(pokemonNameTestId)).toHaveLength(1);
   });
 
   it('should have filter buttons that filter pokémons by type', () => {
@@ -100,26 +102,23 @@ describe('Pokedex component tests', () => {
   it('should have a type filter reset button', () => {
     render(
       <MemoryRouter>
-        <App />
+        <Pokedex pokemons={ mockedPokemons } isPokemonFavoriteById={ mockedFavorites } />
       </MemoryRouter>,
     );
 
-    const resetButton = screen.getByRole('button', { name: 'All' });
-    expect(resetButton).toBeInTheDocument();
-
     let pokemonType = screen.getByTestId(pokemonTypeTestId).textContent;
-    expect(pokemonType).toBe('Electric');
+    expect(pokemonType).toBe(types[0]);
     fireEvent.click(screen.getByTestId(nextPokemonTestId));
     pokemonType = screen.getByTestId(pokemonTypeTestId).textContent;
-    expect(pokemonType).toBe('Fire');
+    expect(pokemonType).toBe(types[1]);
 
-    fireEvent.click(resetButton);
+    fireEvent.click(screen.getByRole('button', { name: 'All' }));
 
     pokemonType = screen.getByTestId(pokemonTypeTestId).textContent;
-    expect(pokemonType).toBe('Electric');
+    expect(pokemonType).toBe(types[0]);
     fireEvent.click(screen.getByTestId(nextPokemonTestId));
     pokemonType = screen.getByTestId(pokemonTypeTestId).textContent;
-    expect(pokemonType).toBe('Fire');
+    expect(pokemonType).toBe(types[1]);
   });
 
   it('should dinamically create type filter buttons and have a reset button', () => {
@@ -129,22 +128,23 @@ describe('Pokedex component tests', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.getAllByTestId('pokemon-type-button')).toHaveLength(2);
+    expect(screen.getAllByTestId('pokemon-type-button')).toHaveLength(types.length);
     expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Electric' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Fire' })).toBeInTheDocument();
+    types.forEach((type) => {
+      expect(screen.getByRole('button', { name: type })).toBeInTheDocument();
+    });
   });
 
   it('should disable next pokémon button when there is only one', () => {
     render(
       <MemoryRouter>
-        <App />
+        <Pokedex pokemons={ mockedPokemons } isPokemonFavoriteById={ mockedFavorites } />
       </MemoryRouter>,
     );
 
     expect(screen.getByTestId(nextPokemonTestId).disabled).toBe(false);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Bug' }));
+    fireEvent.click(screen.getByRole('button', { name: types[0] }));
 
     expect(screen.getByTestId(nextPokemonTestId).disabled).toBe(true);
   });
