@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import { renderWithRouter } from '../components';
+import renderWithRouter from './renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
@@ -26,29 +26,38 @@ describe('testing Pokedex component', () => {
       />,
     );
     pokemons.forEach((pokemon) => {
-      const actualPokemonName = pokemon.name;
+      const actualPokemonName = getByText(pokemon.name);
       expect(actualPokemonName).toBeInTheDocument();
 
       const nextBtn = getByText('Próximo pokémon');
       fireEvent.click(nextBtn);
+
+      if (pokemon.length - 1) {
+        const nextPokemon = getByText('Pikachu');
+        expect(nextPokemon).toBeInTheDocument();
+      }
     });
-    const nextBtn = getByText('Próximo pokémon');
-    fireEvent.click(nextBtn);
-
-    const actualPokemonName = pokemons[0].name;
-    expect(actualPokemonName).toBeInTheDocument();
-
-    const nextPokemon = getByText('Charmander');
-    expect(nextPokemon).toBeInTheDocument();
   });
 
-  // it('test if ', () => {
-  //   const { getByText } = renderWithRouter(
-  //     <Pokedex
-  //       pokemons={ pokemons }
-  //       isPokemonFavoriteById={ {} }
-  //       isFavorite={ [] }
-  //     />,
-  //   );
-  // });
+  it('tests if render only one pokemon at time', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ {} }
+        isFavorite={ [] }
+      />,
+    );
+    const pokeArray = [];
+
+    pokemons.forEach(({ name }) => {
+      const pokemonName = getByText(name);
+      expect(pokemonName).toBeInTheDocument();
+      pokeArray.push(name);
+
+      const nextBtn = getByText('Próximo pokémon');
+      fireEvent.click(nextBtn);
+    });
+    const filteredNamesDisplayed = pokeArray.filter((name) => getByText(name));
+    expect(filteredNamesDisplayed.length).toHaveLength(1);
+  });
 });

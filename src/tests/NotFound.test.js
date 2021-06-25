@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderWithRouter } from '../components';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('testing \'NotFound\' component', () => {
