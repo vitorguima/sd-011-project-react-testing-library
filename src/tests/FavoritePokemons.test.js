@@ -16,7 +16,7 @@ describe('testes do componente FavoritePokemons.js', () => {
     fireEvent.click(getByText(/More details/i));
     fireEvent.click(getByText(/Pokémon favoritado?/i));
     fireEvent.click(getByText(/Home/i));
-    fireEvent.click(getByText(/Normal/i));
+    fireEvent.click(getByText(/Dragon/i));
     fireEvent.click(getByText(/More details/i));
     fireEvent.click(getByText(/Pokémon favoritado?/i));
     fireEvent.click(getByText(/Home/i));
@@ -39,7 +39,6 @@ describe('testes do componente FavoritePokemons.js', () => {
     fireEvent.click(getByText(/More details/i));
     fireEvent.click(getByText(/Pokémon favoritado?/i));
     fireEvent.click(getByText(/Favorite Pokémons/i));
-    expect(queryByText('Rapidash')).not.toBeInTheDocument();
     expect(queryByText('Caterpie')).not.toBeInTheDocument();
     expect(queryByText('Ekans')).not.toBeInTheDocument();
   });
