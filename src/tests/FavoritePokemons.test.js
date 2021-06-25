@@ -1,12 +1,8 @@
 import { fireEvent } from '@testing-library/react';
 import React from 'react';
 import FavoritePokemons from '../components/FavoritePokemons';
-import PokemonDetails from '../components/PokemonDetails';
+// import PokemonDetails from '../components/PokemonDetails';
 import renderWithRouter from './renderWithRouter';
-import {
-  readFavoritePokemonIds,
-  updateFavoritePokemons,
-} from './services/pokedexService';
 // import { readFavoritePokemonIds } from '../services/pokedexService';
 
 describe('Testa o componente <FavoritePokemons.js />', () => {
@@ -18,20 +14,21 @@ describe('Testa o componente <FavoritePokemons.js />', () => {
   });
 
   it('Testa se é exibido todos os cards de pokémons favoritados.', () => {
-    const { getByText } = renderWithRouter(<PokemonDetails />);
+    const { getByText } = renderWithRouter(<FavoritePokemons />);
     fireEvent.call(localStorage.removeItem('favoritePokemonIds'));
     // const detailButton = getByText('More details');
     // fireEvent.click(detailButton);
 
     const favoriteCheckBox = getByText('Pokémon favoritado?');
     fireEvent.click(favoriteCheckBox);
-    expect(favoriteCheckBox).toEqual(true);
+    expect(favoriteCheckBox.value).toEqual(true);
 
     const favoriteNavButton = getByText('Favorite Pokémons');
     fireEvent.click(favoriteNavButton);
+
     expect(getByText(/No favorite pokemon found/)).not.toBeInTheDocument();
   });
-  it('Testa se nenhum card de pokémon é exibido, se ele não estiver favoritado.', () => {
 
+  it('Testa se nenhum card de pokémon é exibido, se ele não estiver favoritado.', () => {
   });
 });
