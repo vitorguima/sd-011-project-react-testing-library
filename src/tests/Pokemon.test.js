@@ -28,10 +28,6 @@ describe('Testing the Pokemon component', () => {
   const { averageWeight, id, image, name, type } = example;
   const { measurementUnit, value } = averageWeight;
 
-  // it('Test if the card component is rendered', () => {
-  //   const { getByTestId } = renderWithRouter(<Pokemon />);
-  // });
-
   it('Test if the card component is rendered', () => {
     const { getByTestId, getByAltText, getByText } = renderWithRouter(
       <Pokemon pokemon={example} isFavorite={true} />
@@ -52,5 +48,29 @@ describe('Testing the Pokemon component', () => {
     );
 
     expect(imgFavorite.src).toBe('http://localhost/star-icon.svg');
+  });
+
+  it('Test if the user is redirected to the detail page', () => {
+    const { getByText, history } = renderWithRouter(
+      <Pokemon pokemon={example} isFavorite={true} />
+    );
+    const moreDetails = getByText('More details');
+    userEvent.click(moreDetails);
+    const {
+      location: { pathname },
+    } = history;
+    expect(pathname).toBe('/pokemons/23');
+  });
+
+  it('Test if, once redirected, the user is in the detailed page', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const moreDetails = getByText('More details');
+    const type = getByText('Poison');
+    userEvent.click(type);
+    userEvent.click(moreDetails);
+    const paragraph = getByText(
+      'It can freely detach its jaw to swallow large prey whole. It can become too heavy to move, however.'
+    );
+    expect(paragraph).toBeInTheDocument();
   });
 });
