@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 import { renderWithRouter } from '../helpers';
