@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
 describe('NotFound component tests', () => {
-  it('should render a heading with a message', () => {
+  it('should render a heading with a not found message', () => {
     render(
       <MemoryRouter initialEntries={ ['/xablau'] }>
         <App />
@@ -16,7 +16,7 @@ describe('NotFound component tests', () => {
     expect(notFoundHeading.lastChild).toHaveTextContent('😭');
   });
 
-  it('should display an image', () => {
+  it('should display an not found image', () => {
     render(
       <MemoryRouter initialEntries={ ['/xablau'] }>
         <App />
