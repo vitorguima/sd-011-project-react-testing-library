@@ -52,8 +52,8 @@ describe('Testa o componente Pokedex', () => {
     expect(botoes[6]).toHaveTextContent('Dragon');
   });
 
-  test('Tem botao para resetar o filtro', () => { // temos problema aqui
-    const { getByText } = renderWithRouter(<App />); // ATENÇÃO
+  test('Tem botao para resetar o filtro', () => {
+    const { getByText } = renderWithRouter(<App />);
     const botoes = document.querySelectorAll('.filter-button');
     expect(botoes[0]).toHaveTextContent('All');
     const botaoProximo = getByText(/róximo pokémon/);
@@ -68,7 +68,6 @@ describe('Testa o componente Pokedex', () => {
     userEvent.click(botaoProximo);
     const verificaVoltaPrimeiro = getByText('Pikachu');
     expect(verificaVoltaPrimeiro).toBeInTheDocument();
-    // const botaoFiltroElectric = getByText('Electric');
     userEvent.click(botoes[1]);
     userEvent.click(botoes[0]);
     userEvent.click(botaoProximo);
