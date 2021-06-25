@@ -5,6 +5,11 @@ import sleep from './helpers/sleep';
 import App from '../App';
 
 const NAVIGATE_DELAY = 100;
+const linksLabels = {
+  '/': 'Home',
+  '/about': 'About',
+  '/favorites': 'Favorite Pokémons',
+};
 
 describe('When the app loads:', () => {
   it('it is in the home page', () => {
@@ -33,35 +38,22 @@ describe('When the app loads:', () => {
 
     describe('the links are, in order:', () => {
       it('Home', () => {
-        expect(links[0].innerHTML).toBe('Home');
+        expect(links[0].innerHTML).toBe(linksLabels['/']);
       });
       it('About', () => {
-        expect(links[1].innerHTML).toBe('About');
+        expect(links[1].innerHTML).toBe(linksLabels['/about']);
       });
       it('Favorite Pokémons', () => {
-        expect(links[2].innerHTML).toBe('Favorite Pokémons');
+        expect(links[2].innerHTML).toBe(linksLabels['/favorites']);
       });
     });
   });
 });
 
 describe('The links on the nav bar redirect correctly', () => {
-  let getByText;
-
-  beforeEach(() => {
-    let getByRole;
-    ({ getByText, getByRole } = renderWithHistory(<App />));
-
-    const nav = getByRole('navigation');
-
-    while (nav.lastChild) {
-      links.unshift(nav.lastChild);
-      nav.lastChild.remove();
-    }
-  });
-
   it('to the /home page', async () => {
-    fireEvent.click(links[0]);
+    const { getByText } = renderWithHistory(<App />);
+    fireEvent.click(getByText(linksLabels['/']));
 
     await sleep(NAVIGATE_DELAY);
 
@@ -69,7 +61,8 @@ describe('The links on the nav bar redirect correctly', () => {
   });
 
   it('to the /about page', async () => {
-    fireEvent.click(links[1]);
+    const { getByText } = renderWithHistory(<App />);
+    fireEvent.click(getByText(linksLabels['/about']));
 
     await sleep(NAVIGATE_DELAY);
 
@@ -77,7 +70,8 @@ describe('The links on the nav bar redirect correctly', () => {
   });
 
   it('to the /favorites page', async () => {
-    fireEvent.click(links[2]);
+    const { getByText } = renderWithHistory(<App />);
+    fireEvent.click(getByText(linksLabels['/favorites']));
 
     await sleep(NAVIGATE_DELAY);
 
