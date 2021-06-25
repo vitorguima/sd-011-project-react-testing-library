@@ -9,7 +9,6 @@ import './pokemon.css';
 const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
   const { averageWeight, id, image, name, type } = pokemon;
   const { measurementUnit, value } = averageWeight;
-
   return (
     <div className="pokemon">
       <div className="pokemon-overview">
