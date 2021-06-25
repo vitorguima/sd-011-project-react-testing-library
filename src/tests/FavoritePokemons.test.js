@@ -20,6 +20,8 @@ describe('Teste o componente FavoritePokemons.js', () => {
     fireEvent.click(getByText(/Pokémon favoritado/));
     fireEvent.click(getByText(/Favorite Pokémons/));
     const getFavorite = getAllByTestId('pokemon-name');
-    expect(getFavorite.length).toBe(2);
+    const qtFavorite = 2;
+    expect(getFavorite.length).toBe(qtFavorite);
   });
+  // Falta quesito 3
 });
