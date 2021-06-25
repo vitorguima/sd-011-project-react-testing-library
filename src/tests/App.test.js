@@ -53,7 +53,7 @@ describe('Testa o componente <App.js />', () => {
     expect(urlFavorites).toBe('/favorites');
   });
 
-  it('Verifica se redireciona para URL Not Found ao entrar em uma URL desconhecida', () => {
+  it('Verifica se redireciona para Not Found ao entrar em uma URL desconhecida', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pagina/que-nao-existe');
     const noMatch = getByText(/Page requested not found/i);
