@@ -10,7 +10,7 @@ describe('Teste o componente <App.js />', () => {
     const heading = getByText('Pokédex');
     expect(heading).toBeInTheDocument();
   });
-
+  // a
   it('Se o topo da aplicação contém um conjunto fixo de links de navegação.', () => {
     const { getByText } = renderWithRouter(<App />);
 
