@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import data from '../data';
+import Data from '../data';
 
 describe('Testes do componente <Pokedex.js />', () => {
   const nextPokemonButtonId = 'next-pokemon';
@@ -30,13 +30,13 @@ describe('Testes do componente <Pokedex.js />', () => {
       const { getByText, getByTestId } = renderWithRouter(<App />);
       const nextPokemonButton = getByTestId(nextPokemonButtonId);
 
-      data.forEach((pokemon) => {
+      Data.forEach((pokemon) => {
         expect(getByText(pokemon.name)).toBeInTheDocument();
         userEvent.click(nextPokemonButton);
       });
 
       // Testa se o primeiro pokemon da lista é mostrado quando acaba o forEach do data
-      const firstPokemon = getByText(data[0].name);
+      const firstPokemon = getByText(Data[0].name);
       expect(firstPokemon).toBeInTheDocument();
     });
 
@@ -44,7 +44,7 @@ describe('Testes do componente <Pokedex.js />', () => {
       const { getByText, getByTestId, container } = renderWithRouter(<App />);
       const nextPokemonButton = getByTestId(nextPokemonButtonId);
 
-      data.forEach((pokemon) => {
+      Data.forEach((pokemon) => {
         const pokemons = container.querySelectorAll('.pokemon');
         expect(pokemons.length).toBe(1);
         expect(getByText(pokemon.name)).toBeInTheDocument();
@@ -115,7 +115,7 @@ describe('Testes do componente <Pokedex.js />', () => {
 
       userEvent.click(buttonAll);
 
-      data.forEach((pokemon) => {
+      Data.forEach((pokemon) => {
         expect(getByText(pokemon.name)).toBeInTheDocument();
         userEvent.click(nextPokemonButton);
       });
