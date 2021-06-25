@@ -40,24 +40,23 @@ describe('testing Pokedex component', () => {
   });
 
   it('tests if render only one pokemon at time', () => {
-    const { getByText } = renderWithRouter(
+    const { getByText, queryByText } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ {} }
         isFavorite={ [] }
       />,
     );
-    const pokeArray = [];
 
     pokemons.forEach(({ name }) => {
       const pokemonName = getByText(name);
       expect(pokemonName).toBeInTheDocument();
-      pokeArray.push(name);
 
       const nextBtn = getByText('Próximo pokémon');
       fireEvent.click(nextBtn);
+
+      const pokemonsDisplayed = pokemons.filter((pokemon) => queryByText(pokemon.name));
+      expect(pokemonsDisplayed).toHaveLength(1);
     });
-    const filteredNamesDisplayed = pokeArray.filter((name) => getByText(name));
-    expect(filteredNamesDisplayed.length).toHaveLength(1);
   });
 });
