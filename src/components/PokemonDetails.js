@@ -46,6 +46,7 @@ class PokemonDetails extends React.Component {
 
   renderFavoriteInput(pokemonId, isFavorite) {
     const { onUpdateFavoritePokemons } = this.props;
+    // console.log('aqui')
 
     return (
       <form className="favorite-form">
