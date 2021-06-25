@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
-describe('Verifies the About component', () => {
+describe('Verifies if the About component', () => {
   it('renders a h2 with the text `Page requested not found 😭`', () => {
     const { getByText } = render(
       <MemoryRouter>

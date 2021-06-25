@@ -56,7 +56,7 @@ const favPokemon = [
   },
 ];
 
-describe('Verifies the About component', () => {
+describe('Verifies if the About component', () => {
   it('if there`s no favorite pokémons, renders a p saying so', () => {
     const { getByText } = render(
       <MemoryRouter>

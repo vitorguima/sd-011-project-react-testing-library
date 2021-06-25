@@ -62,7 +62,7 @@ const favPokemon = {
 
 const filterId = 'pokemon-type-button';
 
-describe('Verifies the About component', () => {
+describe('Verifies if the About component', () => {
   it('renders a h2 with the text `Encountered pokémons`', () => {
     const { getByText } = render(
       <MemoryRouter>
