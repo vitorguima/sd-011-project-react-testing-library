@@ -1,70 +1,76 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
-describe('Test the "Pokedex" requirements', () => {
-  test('Test if the page contains a text "Encountered pokemons"', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+describe('Testing the "Pokedex" component', () => {
+  it('Tests if page contains "Encountered pokemons" text', () => {
+    renderWithRouter(<App />);
 
-    expect(screen.getByText(/Encountered pokémons/i)).toBeInTheDocument();
+    const textInPage = screen.getByRole('heading', {
+      level: 2,
+      name: /Encountered pokémons/i,
+    });
+
+    expect(textInPage).toBeInTheDocument();
   });
 
-  test('Test if when the "Next Pokemon" button is clicked it shows next pokemon', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-
-    const pokemon = getByTestId(pokeNameTestId);
-    const nextPokemon = getByText(nextPokeTestId);
-    namePokes.forEach((e) => {
-      const poke = getByTestId(pokeNameTestId);
-      expect(poke.textContent).toBe(e);
-      fireEvent.click(nextPokemon);
-    });
-    expect(pokemon.textContent).toBe('Pikachu');
+  it('Tests if clicking the "Next Pokemon" button shows the next Pokemon', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const contentText = getByText(/Próximo pokémon/i);
+    expect(contentText).toBeInTheDocument();
   });
 
-  it('pokemons by type', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-
-    const typeButtons = getAllByTestId('pokemon-type-button');
-    const nextPokemon = getByText(nextPokeTestId);
-    typeButtons.forEach((e) => {
-      fireEvent.click(e);
-      console.log(e.textContent);
-      for (let index = 0; index < namePokes.length; index += 1) {
-        expect(getByTestId('pokemon-type').textContent).toBe(e.textContent);
-        fireEvent.click(nextPokemon);
-      }
-    });
+  it('Tests if the "Pokédex" contains a button to "reset the filter"', () => {
+    const { getByText } = renderWithRouter(<App />);
+    fireEvent.click(getByText(/All/i));
   });
 
-  it('starts rendering all and it renders all pokemons', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+  it('Test if the "Pokédex" has the filter buttons', () => {
+    const { getAllByTestId, getAllByRole, getByRole } = renderWithRouter(<App />);
+    const typesPokemon = 7;
+    const button = getAllByTestId('pokemon-type-button');
+    expect(button).toHaveLength(typesPokemon);
 
-    const nextPokemon = getByText(nextPokeTestId);
-    const allPokemon = getByText('All');
-    expect(allPokemon).toBeInTheDocument();
-    fireEvent.click(allPokemon);
-
-    namePokes.forEach((e) => {
-      expect(getByTestId(pokeNameTestId).textContent).toBe(e);
-      fireEvent.click(nextPokemon);
+    const electric = getAllByRole('button', {
+      name: /electric/i,
     });
+
+    const fire = getAllByRole('button', {
+      name: /fire/i,
+    });
+
+    const bug = getAllByRole('button', {
+      name: /bug/i,
+    });
+
+    const poison = getAllByRole('button', {
+      name: /poison/i,
+    });
+
+    const psychic = getAllByRole('button', {
+      name: /psychic/i,
+    });
+
+    const normal = getAllByRole('button', {
+      name: /normal/i,
+    });
+
+    const dragon = getAllByRole('button', {
+      name: /dragon/i,
+    });
+
+    expect(electric).toHaveLength(1);
+    expect(fire).toHaveLength(1);
+    expect(bug).toHaveLength(1);
+    expect(poison).toHaveLength(1);
+    expect(psychic).toHaveLength(1);
+    expect(normal).toHaveLength(1);
+    expect(dragon).toHaveLength(1);
+
+    const buttonAll = getByRole('button', {
+      name: /all/i,
+    });
+    expect(buttonAll).toBeInTheDocument();
   });
 });
