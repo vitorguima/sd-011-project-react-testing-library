@@ -15,7 +15,7 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('Verifica a navegação de links', () => {
-  renderWithRouter(<App />, ['/']);
+  renderWithRouter(<App />);
 
   const nav = screen.getByTestId('main-navigation');
   const links = nav.querySelectorAll('a');
