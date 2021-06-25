@@ -1,9 +1,7 @@
 import React from 'react';
-// import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithMemory from '../renderWithMemory';
-// import renderWithRouter from '../renderWithRouter';
 
+import renderWithMemory from '../renderWithMemory';
 import App from '../App';
 
 const matches = ['/', 'about', 'favorites'];
