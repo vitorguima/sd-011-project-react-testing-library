@@ -18,3 +18,11 @@ test('Verifica se tem o Game Locations of<Name> renderizado', () => {
   const getAbout = container.querySelectorAll('h2')[2];
   expect(getAbout.textContent).toBe('Game Locations of Pikachu');
 });
+
+test('Verifica se tem o Pikachu Details renderizado', () => {
+  const { getByText, container } = renderWithRouter(<App />);
+  const details = getByText('More details');
+  fireEvent.click(details);
+  const getAbout = container.querySelectorAll('h2')[0];
+  expect(getAbout.textContent).toBe('Pikachu Details');
+});
