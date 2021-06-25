@@ -9,10 +9,9 @@ it('Teste se é renderizado um card com as informações de determinado pokémon
   const caterpie = Data[2];
   const { value, measurementUnit } = caterpie.averageWeight;
   const { getByText, container } = renderWithRouter(
-    <Pokemon pokemon={ caterpie } />,
+    <Pokemon pokemon={ caterpie } isFavorite={ false } />,
   );
   const caterpieImage = container.querySelector('img');
-  console.log(caterpieImage.scr);
   expect(getByText(caterpie.name)).toBeInTheDocument();
   expect(getByText(caterpie.type)).toBeInTheDocument();
   expect(getByText(`Average weight: ${value} ${measurementUnit}`)).toBeInTheDocument();
