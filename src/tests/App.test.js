@@ -2,16 +2,17 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../helpers/renderWithRouter';
 
 describe('App component tests', () => {
-  it('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = render(
+  it('should render the homepage', () => {
+    render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
-    const heading = getByText(/Pokédex/i);
-    expect(heading).toBeInTheDocument();
+    const heading = screen.getByRole('heading', { level: 1 });
+    expect(heading).toHaveTextContent(/pokédex/i);
   });
 
   it(
@@ -32,42 +33,27 @@ describe('App component tests', () => {
   );
 
   it('should redirect to "/" if Home link is clicked', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { history } = renderWithRouter(<App />);
 
-    const homeLink = screen.getByText(/home/i);
-    expect(homeLink.classList.contains('link')).toBe(true);
-    fireEvent.click(homeLink);
-    expect(screen.getByText(/encountered pokémons/i));
+    fireEvent.click(screen.getByRole('link', { name: 'Home' }));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
 
   it('should redirect to "/about" if About link is clicked', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { history } = renderWithRouter(<App />);
 
-    const aboutLink = screen.getByText(/about/i);
-    expect(aboutLink.classList.contains('link')).toBe(true);
-    fireEvent.click(aboutLink);
-    expect(screen.getByText(/about pokédex/i));
+    fireEvent.click(screen.getByRole('link', { name: 'About' }));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
   });
 
   it('should redirect to "/favorites" if Favorite Pokémons link is clicked', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { history } = renderWithRouter(<App />);
 
-    const favoriteLink = screen.getByText(/favorite pokémons/i);
-    expect(favoriteLink.classList.contains('link')).toBe(true);
-    fireEvent.click(favoriteLink);
-    expect(screen.getByText('Favorite pokémons'));
+    fireEvent.click(screen.getByRole('link', { name: 'Favorite Pokémons' }));
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
   });
 
   it('should render Not Found if URL path does not exist', () => {
