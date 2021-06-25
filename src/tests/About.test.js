@@ -1,10 +1,35 @@
-// import { render } from 'react-dom';
-// import { fireEvent, screen } from '@testing-library/react';
-// import { About } from '../components';
-// import renderWithRouter from './renderWithRouter';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { About } from '../components';
+import renderWithRouter from './renderWithRouter';
 
-// test('Verifica se a página tem infos sobre a PokéDex', () => {
-//   renderWithRouter(<About />);
-//   const text = screen.getAllByText('This application simulates a Pokédex, a digital encyclopedia containing all Pokémons');
-//   expect(text).toBeInTheDocument();
-// });
+test('Verifica se a página tem título com o texto "About PokéDex"', () => {
+  renderWithRouter(<About />);
+
+  const title = screen.getByText(/About Pokédex/i);
+  expect(title).toBeInTheDocument();
+});
+
+test('Verifica se há um h2 na página', () => {
+  const { container } = renderWithRouter(<About />);
+
+  const title = container.querySelector('h2');
+  expect(title).toBeInTheDocument();
+});
+
+test('Verifica se a página contém dois parágrafos', () => {
+  const { container } = renderWithRouter(<About />);
+
+  const paragraph = container.querySelectorAll('p');
+  const expectedParagraphsLength = 2;
+  expect(paragraph.length).toBe(expectedParagraphsLength);
+  expect(paragraph[0].value).toBe();
+  expect(paragraph[1].value).toBe();
+});
+
+test('Verifica se a página contém uma imagem específica', () => {
+  renderWithRouter(<About />);
+
+  const img = screen.getByAltText('Pokédex');
+  expect(img.src).toContain('ttps://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+});
