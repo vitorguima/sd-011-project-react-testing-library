@@ -58,10 +58,10 @@ describe('Testa o requisito 01: ', () => {
     const unknownUrl = '/xablau';
     history.push(unknownUrl);
 
-    // também poderia ser um expect(container.innerHTML).toMatch(/Page requested not found/)
+    // OUTRO MÉTODO - Feito na aula ao vivo
+    // expect(container.innerHTML).toMatch(/Page requested not found/)
+    // importando assim o container na linha 57
     const error404 = getByText(/Page requested not found/);
     expect(error404).toBeInTheDocument();
   });
 });
-
-// Modelo para um novo test:  test('', () => {});
