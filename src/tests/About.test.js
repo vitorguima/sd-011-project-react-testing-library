@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import About from '../components/About';
 
-describe('Requisito 02 - Testa o componente <About />', () => {
+describe('Requisito 02: Testa o componente <About />', () => {
   it('Testa se a página contém um heading h2 com o texto About Pokédex.', () => {
     const { getByText } = render(<About />);
     const aboutTitle = getByText(/About Pokédex/);
@@ -10,12 +10,15 @@ describe('Requisito 02 - Testa o componente <About />', () => {
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByText } = render(<About />);
-    const paragraphs = getAllByText(/Pokémons/i);
-    expect(paragraphs).toContainHTML('p');
+    const { getAllByTestId } = render(<About />);
+    const paragraphs = getAllByTestId('tag-p');
+    expect(paragraphs.length).toBe(2);
   });
 
   it('Teste se a página contém a imagem de uma Pokédex, através de um link.', () => {
-
+    // const { container } = render(<About { ...props } />, {
+    //   container: document.querySelector('.pokedex-image'),
+    // });
+    // expect(container.img.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
