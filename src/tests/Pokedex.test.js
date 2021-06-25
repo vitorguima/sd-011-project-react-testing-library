@@ -9,9 +9,21 @@ const textHeading = 'Encountered pokémons';
 const msgBtn = 'Próximo pokémon';
 const btnNextId = 'next-pokemon';
 const pokemonNameId = 'pokemon-name';
+const typeButtonId = 'pokemon-type-button';
 
-const pokemonsArr = [pokemons[0], pokemons[1]];
-const objPokemons = { 25: false, 4: false };
+const pokemonsArr = [...pokemons];
+const shortPokemonsArr = [pokemons[0], pokemons[1]];
+const objPokemons = {
+  25: false,
+  4: false,
+  10: false,
+  23: false,
+  65: false,
+  151: false,
+  78: false,
+  143: false,
+  148: false,
+};
 
 const pokemonsByTypes = pokemonsArr.reduce((acc, crr) => {
   const { type } = crr;
@@ -93,7 +105,7 @@ describe('Teste o componente <Pokedex.js />', () => {
       } = renderWithRouter(
         <Pokedex pokemons={ pokemonsArr } isPokemonFavoriteById={ objPokemons } />,
       );
-      const buttons = getAllByTestId('pokemon-type-button');
+      const buttons = getAllByTestId(typeButtonId);
       buttons.forEach((button) => {
         fireEvent.click(button);
         pokemonsByTypes[button.innerHTML].forEach((poke) => {
@@ -112,7 +124,7 @@ describe('Teste o componente <Pokedex.js />', () => {
       const types = Object.keys(pokemonsByTypes);
       types.shift();
       types.forEach((type) => {
-        const buttons = getAllByTestId('pokemon-type-button');
+        const buttons = getAllByTestId(typeButtonId);
         expect(buttons.some((element) => element.innerHTML === type))
           .toBe(true);
       });
@@ -139,7 +151,7 @@ describe('Teste o componente <Pokedex.js />', () => {
       const buttonAll = getByText('All');
       fireEvent.click(buttonAll);
       const buttonNext = getByTestId(btnNextId);
-      pokemonsByTypes['All'].forEach((poke) => {
+      pokemonsByTypes.All.forEach((poke) => {
         expect(getByTestId(pokemonNameId).innerHTML).toBe(poke.name);
         fireEvent.click(buttonNext);
       });
@@ -151,7 +163,7 @@ describe('Teste o componente <Pokedex.js />', () => {
         <Pokedex pokemons={ pokemonsArr } isPokemonFavoriteById={ objPokemons } />,
       );
       const buttonNext = getByTestId(btnNextId);
-      pokemonsByTypes['All'].forEach((poke) => {
+      pokemonsByTypes.All.forEach((poke) => {
         expect(getByTestId(pokemonNameId).innerHTML).toBe(poke.name);
         fireEvent.click(buttonNext);
       });
@@ -160,7 +172,64 @@ describe('Teste o componente <Pokedex.js />', () => {
   describe('Teste se é criado, dinamicamente,'
     + ' um botão de filtro para cada tipo de Pokémon.', () => {
     it('Os botões de filtragem devem ser dinâmicos', () => {
-      
+      let {
+        getAllByTestId,
+      } = renderWithRouter(
+        <Pokedex pokemons={ shortPokemonsArr } isPokemonFavoriteById={ objPokemons } />,
+      );
+      let buttonsTypes = getAllByTestId(typeButtonId);
+      expect(buttonsTypes.length).toBe(2);
+      getAllByTestId = renderWithRouter(
+        <Pokedex pokemons={ pokemonsArr } isPokemonFavoriteById={ objPokemons } />,
+      ).getAllByTestId;
+      buttonsTypes = getAllByTestId(typeButtonId);
+      expect(buttonsTypes.length).toBe(Object.keys(pokemonsArr).length);
+    });
+    it('Deve existir um botão de filtragem para cada tipo de Pokémon disponível nos dados'
+      + ', sem repetição. Ou seja, a sua Pokédex deve possuir pokémons do tipo'
+      + ' Fire, Psychic, Electric, Bug, Poison, Dragon e Normal', () => {
+      const {
+        getAllByTestId,
+      } = renderWithRouter(
+        <Pokedex pokemons={ pokemonsArr } isPokemonFavoriteById={ objPokemons } />,
+      );
+      const buttonTypes = getAllByTestId(typeButtonId);
+      const types = [...Object.keys(pokemonsByTypes)];
+      types.shift();
+      buttonTypes.forEach((btn, index) => {
+        expect(btn.innerHTML).toBe(types[index]);
+      });
+    });
+    it('Deve ser mostrado como opção de filtro,'
+      + ' um botão para cada um dos tipos.'
+      + ' Além disso, o botão All precisa estar sempre visível.', () => {
+      const {
+        container,
+        getAllByTestId,
+      } = renderWithRouter(
+        <Pokedex pokemons={ pokemonsArr } isPokemonFavoriteById={ objPokemons } />,
+      );
+      const buttonTypes = getAllByTestId(typeButtonId);
+      buttonTypes.forEach((btn, index, arr) => {
+        const buttonAll = container.querySelector('.filter-button');
+        expect(buttonAll).toBeInTheDocument();
+        if (index < arr.length - 1) fireEvent.click(buttonTypes[index + 1]);
+      });
+    });
+  });
+  it(`O botão de ${msgBtn} deve ser desabilitado quando a lista\
+   filtrada de Pokémons tiver um só pokémon.`, () => {
+    const {
+      getAllByTestId,
+      getByTestId,
+    } = renderWithRouter(
+      <Pokedex pokemons={ shortPokemonsArr } isPokemonFavoriteById={ objPokemons } />,
+    );
+    const buttonTypes = getAllByTestId(typeButtonId);
+    buttonTypes.forEach((btn) => {
+      fireEvent.click(btn);
+      const nextBtn = getByTestId(btnNextId);
+      expect(nextBtn.disabled).toBe(true);
     });
   });
 });
