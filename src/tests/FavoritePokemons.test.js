@@ -17,8 +17,8 @@ describe('Testa o componente Favorite Pokemons', () => {
     fireEvent.click(btnDetails);
     const checkBox = getByRole('checkbox');
     fireEvent.click(checkBox);
-    const favButton = getByText(/favorite pokémons/i);
-    fireEvent.click(favButton);
+    const favBtn = getByText(/favorite pokémons/i);
+    fireEvent.click(favBtn);
     const pokemon = container.getElementsByClassName('pokemon');
     expect(pokemon.length).toBe(1);
   });
