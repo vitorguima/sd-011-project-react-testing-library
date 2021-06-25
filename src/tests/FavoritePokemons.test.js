@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, container } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../RenderWithRouter';
 import { FavoritePokemons } from '../components';
 
@@ -40,12 +40,12 @@ describe('Verifica requisito 3', () => {
       'This intelligent Pokémon roasts hard berries',
     },
     ];
-
-    renderWithRouter(
+    const { container } = renderWithRouter(
       <FavoritePokemons
         pokemons={ FAVORITO }
       />,
     );
+
     const render = container.querySelector('.favorite-pokemons');
     expect(render).toBeInTheDocument();
     expect(render).toHaveTextContent(/Pikachu/i);
