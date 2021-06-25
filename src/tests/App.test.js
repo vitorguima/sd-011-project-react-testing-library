@@ -1,16 +1,11 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Testa o componente App.js', () => {
   test('renders a reading with the text `Pokédex`', () => {
-    const { getByText } = renderWithRouter(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
@@ -19,9 +14,8 @@ describe('Testa o componente App.js', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
     const { pathname } = history.location;
-    expect(pathname).toBe('/home');
-    const home = getByText(/Home/);
-    expect(home).toBeInTheDocument();
+    expect(pathname).toBe('/');
+    const home = getByText(/Home/i);
     expect(home).toBeInTheDocument();
   });
 
@@ -30,7 +24,7 @@ describe('Testa o componente App.js', () => {
     fireEvent.click(getByText(/About/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
-    const about = getByText(/About/);
+    const about = getByText(/About/i);
     expect(about).toBeInTheDocument();
   });
 
@@ -38,16 +32,15 @@ describe('Testa o componente App.js', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
     const { pathname } = history.location;
-    expect(pathname).toBe('/about');
-    const aboutAll = getByText(/About/);
-    expect(aboutAll).toBeInTheDocument();
-    expect(textFavoritePokemons).toBeInTheDocument();
+    expect(pathname).toBe('/favorites');
+    const favorites = getByText(/Favorite Pokémons/i);
+    expect(favorites).toBeInTheDocument();
   });
 
   test('deve testar um caminho não existente e a renderização do Not Found', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/Not Found/');
-    const noMatch = getByText(/Página não encontrada/i);
+    const noMatch = getByText(/Page requested not found/i);
     expect(noMatch).toBeInTheDocument();
   });
 });
