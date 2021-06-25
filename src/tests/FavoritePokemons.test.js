@@ -7,27 +7,19 @@ const homeLinkName = 'Home';
 const detailsLinkName = 'More details';
 const favoriteLinkName = 'Favorite Pokémons';
 
-class LocalStorageMock {
-  constructor() {
-    this.store = {};
-  }
-
-  clear() {
-    this.store = {};
-  }
-
-  getItem(key) {
-    return this.store[key] || null;
-  }
-
-  setItem(key, value) {
-    this.store[key] = String(value);
-  }
-
-  removeItem(key) {
-    delete this.store[key];
-  }
-}
+const resetFavorites = () => {
+  let detailsButtons = screen.getAllByRole('link', { name: detailsLinkName });
+  do {
+    fireEvent.click(detailsButtons[0]);
+    fireEvent.click(screen.getByRole('checkbox'));
+    fireEvent.click(screen.getByRole('link', { name: favoriteLinkName }));
+    if (detailsButtons.length > 1) {
+      detailsButtons = screen.getAllByRole('link', { name: detailsLinkName });
+    } else {
+      detailsButtons.pop();
+    }
+  } while (detailsButtons.length > 0);
+};
 
 afterEach(cleanup);
 
@@ -43,9 +35,9 @@ describe('FavoritePokemons component tests', () => {
 
       fireEvent.click(screen.getByRole('link', { name: favoriteLinkName }));
 
-      const favoriteHeading = screen.getByText(/no favorite pokemon found/i);
-      expect(favoriteHeading).toBeInTheDocument();
-      expect(favoriteHeading.nextElementSibling).toBeNull();
+      const favoriteHeading = screen.getByRole('heading', { level: 2 });
+      expect(favoriteHeading.nextElementSibling.firstChild)
+        .toHaveTextContent(/no favorite pokemon found/i);
     },
   );
 
@@ -56,24 +48,19 @@ describe('FavoritePokemons component tests', () => {
       </MemoryRouter>,
     );
 
-    global.localStorage = new LocalStorageMock();
-
     fireEvent.click(screen.getByRole('link', { name: detailsLinkName }));
     fireEvent.click(screen.getByRole('checkbox'));
     fireEvent.click(screen.getByRole('link', { name: favoriteLinkName }));
 
     let favoriteHeading = screen.getByRole('heading', { level: 2 });
-    expect(favoriteHeading).toBeInTheDocument();
-    expect(favoriteHeading.innerHTML).toMatch(/favorite pokémons/i);
-    expect(
-      favoriteHeading.nextElementSibling.classList.contains('favorite-pokemons'),
-    ).toBe(true);
-    expect(favoriteHeading.nextElementSibling.children.length).toBe(1);
+    expect(favoriteHeading).toHaveTextContent(/favorite pokémons/i);
+    let favoritePokemonsElement = favoriteHeading.nextElementSibling;
+    expect(favoritePokemonsElement.classList).toContain('favorite-pokemons');
+    expect(favoritePokemonsElement.children).toHaveLength(1);
 
     fireEvent.click(screen.getByRole('link', { name: homeLinkName }));
 
-    const buttons = screen.getAllByRole('button');
-    fireEvent.click(buttons[5]);
+    fireEvent.click(screen.getByRole('button', { name: 'Psychic' }));
     fireEvent.click(screen.getByRole('link', { name: detailsLinkName }));
     fireEvent.click(screen.getByRole('checkbox'));
     fireEvent.click(screen.getByRole('link', { name: favoriteLinkName }));
@@ -81,23 +68,11 @@ describe('FavoritePokemons component tests', () => {
     favoriteHeading = screen.getByRole('heading', { level: 2 });
     expect(favoriteHeading).toBeInTheDocument();
     expect(favoriteHeading.innerHTML).toMatch(/favorite pokémons/i);
-    expect(
-      favoriteHeading.nextElementSibling.classList.contains('favorite-pokemons'),
-    ).toBe(true);
-    expect(favoriteHeading.nextElementSibling.children.length).toBe(2);
+    favoritePokemonsElement = favoriteHeading.nextElementSibling;
+    expect(favoritePokemonsElement.classList).toContain('favorite-pokemons');
+    expect(favoritePokemonsElement.children).toHaveLength(2);
 
-    let detailsButtons = screen.getAllByRole('link', { name: detailsLinkName });
-    do {
-      fireEvent.click(detailsButtons[0]);
-      fireEvent.click(screen.getByRole('checkbox'));
-      fireEvent.click(screen.getByRole('link', { name: favoriteLinkName }));
-      favoriteHeading = screen.getByRole('heading', { level: 2 });
-      if (detailsButtons.length > 1) {
-        detailsButtons = screen.getAllByRole('link', { name: detailsLinkName });
-      } else {
-        detailsButtons.pop();
-      }
-    } while (detailsButtons.length > 0);
+    resetFavorites();
 
     favoriteHeading = screen.getByRole('heading', { level: 2 });
     expect(favoriteHeading.nextElementSibling)
