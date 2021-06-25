@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-// import { About } from '../components';
 import { NotFound } from '../components';
 
 test('Teste se página contém um h2 com o texto Page requested not found', () => {
