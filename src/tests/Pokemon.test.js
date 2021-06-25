@@ -17,7 +17,7 @@ describe('Testes do componente Pokemon.js', () => {
     expect(pokemonType).toBeInTheDocument();
     expect(pokemonType).toHaveTextContent('Electric');
     expect(pokemonWeight).toBeInTheDocument();
-    expect(pokemonWeight).toHaveTextContent('6.0 kg');
+    expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
     expect(pokemonImage[0].src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(pokemonImage[0].alt).toBe('Pikachu sprite');
   });
