@@ -6,7 +6,7 @@ import data from '../data';
 
 describe('7 - Testa o componente <PokemonDetails.js />', () => {
   const pikachu = data[0];
-  const { id, name, summary, foundAt } = pikachu;
+  const { name, summary, foundAt } = pikachu;
   it('Testa se as informações detalhadas do Pokémon selecionado são mostradas na tela.',
     () => {
       const { getByText, queryByRole } = renderWithRouter(<App />);
