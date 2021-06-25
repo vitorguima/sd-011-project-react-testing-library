@@ -12,7 +12,7 @@ describe('Testa o componente Pokedex, requisito 5', () => {
   });
 
   it('Teste se é exibido o próximo Pokémon da lista quando o botão é clicado', () => {
-    const {  queryByText } = renderWithRouter(<App />);
+    const { queryByText } = renderWithRouter(<App />);
     const btn = queryByText('Próximo pokémon'); // buscando o botao
 
     expect(btn.innerHTML).toBe('Próximo pokémon'); // define o que espera se do texto do botao
@@ -33,7 +33,7 @@ describe('Testa o componente Pokedex, requisito 5', () => {
   });
 
   it('Testa se a pokedex tem os botões de filtro', () => {
-    const { getAllByTestId, getAllByRole, getByRole } = renderWithRouter(<App />);
+    const { getAllByTestId } = renderWithRouter(<App />);
     const btnList = getAllByTestId('pokemon-type-button');
     const pokeTypes = 7;
     expect(btnList.length).toBe(pokeTypes); //
@@ -48,7 +48,7 @@ describe('Testa o componente Pokedex, requisito 5', () => {
   });
 
   it('Testa os botões de filtro', () => {
-    const { getAllByTestId, getAllByRole, getByRole } = renderWithRouter(<App />);
+    const { getAllByRole } = renderWithRouter(<App />);
     const electric = getAllByRole('button', {
       name: /electric/i,
     });
