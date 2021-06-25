@@ -14,7 +14,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-describe('Testando componente App - R1', () => {
+describe('Testando componente App', () => {
   it('Verifica o endereço da URL "/" ', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/');
