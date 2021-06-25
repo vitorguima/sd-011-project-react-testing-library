@@ -56,27 +56,3 @@ test('have a star on favourite pokemons', () => {
   expect(src).toContain('/star-icon.svg');
   expect(alt).toMatch('Pikachu is marked as favorite');
 });
-
-// test('renders the correct path and pokemon details', () => {
-//   const { getByText,
-//     getByTestId, getAllByText, getByAltText, history } = renderWithRouter(<App />);
-//   const linkDetails = getByText(/More details/);
-//   fireEvent.click(linkDetails);
-//   const url = history.location.pathname;
-//   expect(url).toBe('/pokemons/25');
-// const pikachuName = getByTestId('pokemon-name');
-// expect(pikachuName).toBeInTheDocument();
-// const pikachuType = getByTestId('pokemon-type');
-// expect(pikachuType).toBeInTheDocument();
-// const pikachuWeight = getByTestId('pokemon-weight');
-// expect(pikachuWeight).toBeInTheDocument();
-// const length = 2;
-// const type = getAllByText(/Electric/);
-// expect(type.length).toBe(length);
-// const avgWeight = getByText(/Average weight: 6.0 kg/);
-// expect(avgWeight).toBeInTheDocument();
-// const img = getByAltText(/Pikachu sprite/);
-// const { src, alt } = img;
-// expect(src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-// expect(alt).toMatch('Pikachu sprite');
-// });

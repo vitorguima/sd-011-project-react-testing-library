@@ -1,61 +1,56 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-test('renders a card with pokemon information', () => {
-  const { getByTestId, getAllByText, getByText, getByAltText, getByRole } = render(
-    <MemoryRouter initialEntries={ ['/pokemons/25'] }>
+const entrie = '/pokemons/25';
+test('renders a card with selected pokemon information', () => {
+  const { getByText } = render(
+    <MemoryRouter initialEntries={ [entrie] }>
       <App />
     </MemoryRouter>,
   );
-  const pikachuName = getByTestId('pokemon-name');
-  expect(pikachuName).toBeInTheDocument();
-  // const pikachuType = getByTestId('pokemon-type');
-  // expect(pikachuType).toBeInTheDocument();
-  // const pikachuWeight = getByTestId('pokemon-weight');
-  // expect(pikachuWeight).toBeInTheDocument();
-  // const pikachuNameTimes = getAllByText(/Pikachu/i);
-  // const length = 3;
-  // expect(pikachuNameTimes.length).toBe(length);
-  // const type = getByText(/Electric/);
-  // expect(type).toBeInTheDocument();
-  // const avgWeight = getByText(/Average weight: 6.0 kg/);
-  // expect(avgWeight).toBeInTheDocument();
-  // const img = getByAltText(/Pikachu sprite/);
-  // const { src, alt } = img;
-  // expect(src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-  // expect(alt).toMatch('Pikachu sprite');
-  // const h2 = getByRole('heading', { level: 2 });
-  // expect(h2).toBeInTheDocument();
-  // const summary = getByText(/This intelligent Pokémon roasts hard berries with/,
-  //   / electricity to make them tender enough to eat./);
-  // expect(summary).toBeInTheDocument();
+  const pikachuNameDetails = getByText(/Pikachu Details/);
+  expect(pikachuNameDetails).toBeInTheDocument();
+  const allLinks = document.querySelectorAll('.link');
+  const expectedLenght = 3;
+  expect(allLinks.length).toBe(expectedLenght);
+  const summaryH2 = getByText(/Summary/);
+  expect(summaryH2.innerHTML).toBe('Summary');
+  const detailsText = getByText(/This intelligent Pokémon roasts hard/,
+    /berries with electricity to make them tender enough to eat./);
+  expect(detailsText).toBeInTheDocument();
 });
 
-// test('renders the correct path and pokemon details', () => {
-//   const { getByText,
-//     getByTestId, getAllByText, getByAltText, history } = renderWithRouter(<App />);
-//   const linkDetails = getByText(/More details/);
-//   fireEvent.click(linkDetails);
-//   const url = history.location.pathname;
-//   expect(url).toBe('/pokemons/25');
-//   const pikachuName = getByTestId('pokemon-name');
-//   expect(pikachuName).toBeInTheDocument();
-//   const pikachuType = getByTestId('pokemon-type');
-//   expect(pikachuType).toBeInTheDocument();
-//   const pikachuWeight = getByTestId('pokemon-weight');
-//   expect(pikachuWeight).toBeInTheDocument();
-//   const pikachuNameTimes = getAllByText(/Pikachu/i);
-//   const length = 3;
-//   expect(pikachuNameTimes.length).toBe(length);
-//   const type = getByText(/Electric/);
-//   expect(type).toBeInTheDocument();
-//   const avgWeight = getByText(/Average weight: 6.0 kg/);
-//   expect(avgWeight).toBeInTheDocument();
-//   const img = getByAltText(/Pikachu sprite/);
-//   const { src, alt } = img;
-//   expect(src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-//   expect(alt).toMatch('Pikachu sprite');
-// });
+test('renders a section with pokemon location maps', () => {
+  const { getByText, getAllByAltText } = render(
+    <MemoryRouter initialEntries={ [entrie] }>
+      <App />
+    </MemoryRouter>,
+  );
+  const h2Maps = getByText(/Game Locations of Pikachu/);
+  expect(h2Maps.innerHTML).toBe('Game Locations of Pikachu');
+  const mapImages = getAllByAltText(/Pikachu location/);
+  expect(mapImages.length).toBe(2);
+  expect(mapImages[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+  expect(mapImages[1]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+  const location1 = getByText(/Kanto Viridian Forest/);
+  const location2 = getByText(/Kanto Power Plant/);
+  expect(location1).toBeInTheDocument();
+  expect(location2).toBeInTheDocument();
+});
+
+test('pokemon goes to favorites section', () => {
+  const { getByText, getByAltText } = render(
+    <MemoryRouter initialEntries={ [entrie] }>
+      <App />
+    </MemoryRouter>,
+  );
+  const checkBox = getByText(/Pokémon favoritado/);
+  fireEvent.click(checkBox);
+  const star = getByAltText(/Pikachu is marked as favorite/);
+  expect(star).toBeInTheDocument();
+  const { src, alt } = star;
+  expect(src).toContain('/star-icon.svg');
+  expect(alt).toMatch('Pikachu is marked as favorite');
+});
