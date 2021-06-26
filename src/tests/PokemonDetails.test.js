@@ -34,7 +34,10 @@ describe('Test if Pokemon component is being exhibited correctly', () => {
         isPokemonFavoriteById={ isPokemonFavoriteById }
       />,
     );
+    const pkSum = getByText('This intelligent Pokémon roasts' 
+    +' hard berries with electricity to make them tender enough to eat.')
     const pokemonName = getByText('Pikachu Details');
-    expect(pokemonName).toBeInTheDocument();
+    const sumText = getByText('Summary');
+    expect(pokemonName && sumText && pkSum).toBeInTheDocument();
   });
 });
