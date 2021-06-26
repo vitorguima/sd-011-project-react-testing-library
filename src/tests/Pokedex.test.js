@@ -7,6 +7,7 @@ import { isPokemonFavoriteById } from '../mockedFavoritePokemons';
 
 const testIDs = {
   pokemonName: 'pokemon-name',
+  typeFilterButton: 'pokemon-type-button',
 };
 
 const pokemonsByType = pokemons
@@ -136,5 +137,12 @@ describe('Pokedex.js:', () => {
 
       expect(nextPokemonButton).toBeDisabled();
     });
+  });
+
+  it('There must be one filter button for each pokemon type.', () => {
+    const typeFilterButtons = screen.getAllByTestId(testIDs.typeFilterButton);
+    const pokemonTypes = Object.keys(pokemonsByType);
+
+    expect(typeFilterButtons.length).toBe(pokemonTypes.length);
   });
 });
