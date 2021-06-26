@@ -25,7 +25,7 @@ const isPokemonFavoriteById = {
   151: false,
 };
 
-describe('Test if Pokemon component is being exhibited correctly', () => {
+describe('Test if Pokemon Details component is being exhibited correctly', () => {
   test('checks for pokemon info', () => {
     const { getByText } = renderWithRouter(
       <PokemonDetails
@@ -40,4 +40,16 @@ describe('Test if Pokemon component is being exhibited correctly', () => {
     const sumText = getByText('Summary');
     expect(pokemonName && sumText && pkSum).toBeInTheDocument();
   });
+
+  test(('checks for pokemon location info'), () => {
+    const { getByText } = renderWithRouter(
+      <PokemonDetails
+        { ...props }
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+    const gameLocation = getByText('Game Locations of Pikachu');
+    expect(gameLocation).toBeInTheDocument()  
+  })
 });
