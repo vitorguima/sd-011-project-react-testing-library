@@ -3,7 +3,7 @@ import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
 
-describe('test the component "<FavoritePokemons />"', () => {
+describe('test the component "FavoritePokemons"', () => {
   it('the text "No favorite pokemon found" is rendered whit is no favorite pokemon',
     () => {
       const favoritePokemons = [];
