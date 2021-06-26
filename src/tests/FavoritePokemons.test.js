@@ -12,17 +12,26 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
   });
 
   test('Teste se é exibido todos os cards de pokémons favoritados', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    const favorites = getByText('Favorite Pokémons');
-    fireEvent.click(favorites);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/favorites');
-  });
+    const { getByRole, history } = renderWithRouter(<App />);
+    const moreDetails = getByRole('link', {
+      name: /More Details/i,
+    });
+    fireEvent.click(moreDetails);
+    const url1 = history.location.pathname;
+    expect(url1).toBe('/pokemons/25');
 
-  // test('Deve exibir na tela a mensagem No favorite pokemon found', () => {
-  //   const { getByText, history } = renderWithRouter(<FavoritePokemons />);
-  //   history.push('/pagina/que-nao-existe/');
-  //   const noMatch = getByText(/not found/i);
-  //   expect(noMatch).toBeInTheDocument();
-  // });
+    const checkbox = getByRole('checkbox');
+    expect(checkbox).not.toBeChecked();
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+
+    const favorite = getByRole('link', {
+      name: /Favorite Pokémons/i,
+    });
+    fireEvent.click(favorite);
+    const url2 = history.location.pathname;
+    expect(url2).toBe('/favorites');
+    const peso = 'Average weight';
+    expect(peso).toBeInTheDocument();
+  });
 });
