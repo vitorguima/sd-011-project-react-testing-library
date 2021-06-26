@@ -2,12 +2,10 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import data from '../data';
-
-const locationPikachu = data.map(({ foundAt }) => foundAt)[0]
-  .map(({ location }) => location);
+import Data from '../data';
 
 const detail = 'More details';
+const getPar = Data.map((sum) => sum.summary)[0];
 
 test('Verifica se tem o Summary renderizado', () => {
   const { getByText, container } = renderWithRouter(<App />);
@@ -15,6 +13,24 @@ test('Verifica se tem o Summary renderizado', () => {
   fireEvent.click(details);
   const getAbout = container.querySelectorAll('h2')[1];
   expect(getAbout.textContent).toBe('Summary');
+});
+
+test('Verifica se tem o paragrafor é renderizado', () => {
+  const { getByText, container } = renderWithRouter(<App />);
+  const details = getByText(detail);
+  fireEvent.click(details);
+  const getP = container.querySelectorAll('p')[3];
+  expect(getP.textContent).toBe(getPar);
+});
+
+test('Verifica se tem "Pokemon favorito?" e renderizado', () => {
+  const { getByText, container } = renderWithRouter(<App />);
+  const details = getByText(detail);
+  fireEvent.click(details);
+  const getFavorite = container.querySelector('label');
+  // console.log(getAbout.textContent);
+
+  expect(getFavorite.textContent).toBe('Pokémon favoritado?');
 });
 
 test('Verifica se tem o Game Locations of<Name> renderizado', () => {
@@ -51,7 +67,7 @@ test('testando a locarização pokemon', () => {
   expect(imgPokemon[1].alt).toBe(altP);
   expect(imgPokemon[2].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   expect(imgPokemon[2].alt).toBe(altP);
-  console.log(locationPikachu[1]);
+  // console.log(locationPikachu[1]);
   const kanto = 'Kanto Viridian Forest';
   const power = 'Kanto Power Plant';
   expect(getByText(kanto)).toBeInTheDocument();
