@@ -6,7 +6,6 @@ import Pokemon from '../components/Pokemon';
 import App from '../App';
 
 describe('Requisito 06', () => {
-
   describe('renderizado um card com as informações de determinado pokémon.', () => {
     it('teste se é renderizado as informações no card Pokemon', () => {
       const pikachu = pokemons[0];
