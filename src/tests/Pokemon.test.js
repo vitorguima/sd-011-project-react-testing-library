@@ -70,8 +70,9 @@ describe('When render Pokemon', () => {
         isFavorite={ favorite }
       />,
     );
-    const pokemonImage = getAllByRole('img', { alt: 'Pikachu sprite' });
-    expect(pokemonImage[0]).toBeInTheDocument();
+    const pokemonImage = getAllByRole('img');
+    expect(pokemonImage[0].alt).toBe('Pikachu sprite');
+    expect(pokemonImage[0].src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
   it('show link with id to Details ', () => {
