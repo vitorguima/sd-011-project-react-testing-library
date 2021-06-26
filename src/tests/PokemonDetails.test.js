@@ -42,7 +42,7 @@ describe('Test if Pokemon Details component is being exhibited correctly', () =>
   });
 
   test(('checks for pokemon location info'), () => {
-    const { getByText } = renderWithRouter(
+    const { getByText, getAllByAltText } = renderWithRouter(
       <PokemonDetails
         { ...props }
         pokemons={ pokemons }
@@ -50,6 +50,8 @@ describe('Test if Pokemon Details component is being exhibited correctly', () =>
       />,
     );
     const gameLocation = getByText('Game Locations of Pikachu');
+    const locationMap = getAllByAltText('Pikachu location');
+    locationMap.forEach(map => expect(map).toHaveAttribute('src'))
     expect(gameLocation).toBeInTheDocument()  
   })
 });
