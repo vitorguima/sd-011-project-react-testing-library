@@ -5,6 +5,7 @@ import App from '../App';
 import data from '../data';
 
 const pokemonOverview = '.pokemon-overview';
+const nextButtonId = 'next-pokemon';
 
 describe('Teste o componente <Pokedex.js />', () => {
   test('Teste se página contém um heading h2 com o texto "Encountered pokémons."', () => {
@@ -21,7 +22,7 @@ describe('Teste o componente <Pokedex.js />', () => {
     const { getByText, container, getByTestId } = renderWithRouter(<App />);
 
     /** Captura o botão de 'próximo pokémon' e verifica seu conteúdo */
-    const nextPokemon = getByTestId('next-pokemon');
+    const nextPokemon = getByTestId(nextButtonId);
     expect(nextPokemon).toBeInTheDocument();
     expect(nextPokemon.textContent).toStrictEqual('Próximo pokémon');
 
@@ -87,7 +88,7 @@ describe('Teste o componente <Pokedex.js />', () => {
     fireEvent.click(getByText('All'));
 
     data.forEach((pokemon) => {
-      const nextPokemon = getByTestId('next-pokemon');
+      const nextPokemon = getByTestId(nextButtonId);
       const anyPokemon = container.getElementsByClassName('pokemon');
       expect(anyPokemon).toHaveLength(1);
 
@@ -98,6 +99,10 @@ describe('Teste o componente <Pokedex.js />', () => {
   });
 
   test('Teste se cria, dinamicamente, botão de filtro para cada tipo de Pokémon.', () => {
-
+    const { getByText, getByTestId } = renderWithRouter(<App />);
+    const nextPokemon = getByTestId(nextButtonId);
+    const bugButton = getByText('Bug');
+    fireEvent.click(bugButton);
+    expect(nextPokemon).toBeDisabled();
   });
 });
