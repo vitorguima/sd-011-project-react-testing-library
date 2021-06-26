@@ -51,6 +51,8 @@ describe('Test if Pokemon Details component is being exhibited correctly', () =>
     );
     const gameLocation = getByText('Game Locations of Pikachu');
     const locationMap = getAllByAltText('Pikachu location');
+    const mapUrl= 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
+    expect(locationMap[0].src).toContain(mapUrl)  
     locationMap.forEach(map => expect(map).toHaveAttribute('src'))
     expect(gameLocation).toBeInTheDocument()  
   })
