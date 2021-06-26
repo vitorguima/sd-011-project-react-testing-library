@@ -12,17 +12,18 @@ describe('Teste componente <About.js />', () => {
   });
 
   it('Exibe todos os cards de pokémons favoritados', () => {
-    const { container, getByText } = renderWithRouter(<App />);
-    const pikachuDetails = container.querySelector('[href="/pokemons/25"]');
-    fireEvent.click(pikachuDetails);
+    const { getByRole, getByLabelText, getByTestId } = renderWithRouter(<App />);
+    const pokemonDetails = getByRole('link', { name: 'More details' });
+    const pokemonHomeScreen = getByTestId('pokemon-name').innerHTML;
 
-    const pikachuFavorite = container.querySelector('[for="favorite"]');
-    fireEvent.click(pikachuFavorite);
+    fireEvent.click(pokemonDetails);
+    const inputFavorite = getByLabelText('Pokémon favoritado?');
 
-    const favoritePokemons = container.querySelector('[href="/favorites"]');
+    fireEvent.click(inputFavorite);
+    const favoritePokemons = getByRole('link', { name: 'Favorite Pokémons' });
+
     fireEvent.click(favoritePokemons);
-
-    const pikachu = getByText(/Pikachu/);
-    expect(pikachu).toBeInTheDocument();
+    const pokemonFavoriteScreen = getByTestId('pokemon-name').innerHTML;
+    expect(pokemonFavoriteScreen).toBe(pokemonHomeScreen);
   });
 });
