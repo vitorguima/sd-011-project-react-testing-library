@@ -6,6 +6,10 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
 jest.mock('../services/pokedexService');
+const a = 25;
+const b = 4;
+const c = 10;
+const length = 3;
 
 describe('Test component Favorite', () => {
   it('Test the message that appear when no favorite', () => {
@@ -15,13 +19,11 @@ describe('Test component Favorite', () => {
   });
 
   it('Test if all favorites appear', () => {
-    // eslint-disable-next-line no-magic-numbers
-    pokedexService.readFavoritePokemonIds.mockReturnValue([25, 4, 10]);
+    pokedexService.readFavoritePokemonIds.mockReturnValue([a, b, c]);
     const { getByText, getAllByTestId } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Favorite Pokémons/));
     const getPokemon = getAllByTestId('pokemon-name');
-    // eslint-disable-next-line no-magic-numbers
-    expect(getPokemon.length).toBe(3);
+    expect(getPokemon.length).toBe(length);
   });
 
   it('Test favorites not appear', () => {

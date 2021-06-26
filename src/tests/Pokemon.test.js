@@ -18,12 +18,7 @@
 //     const isFavorite = false;
 //     const showDetailsLink = true;
 //     // acessar os elementos da tela
-    
+
 //     const { getByTestId } = renderWithRouter(<Pokemon />);
-    
 //   });
 // });
-
-// // acessar os elementos da tela
-// // interagir com eles ( se houver necessidade )
-// // fazer seu teste

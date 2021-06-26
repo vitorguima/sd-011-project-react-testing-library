@@ -19,6 +19,8 @@ const pokemonFavorite = {
 const nextText = 'next-pokemon';
 const pokemonName = 'pokemon-name';
 const pokemonType = 'pokemon-type';
+const expectLength = 8;
+const buttonLength = 7;
 
 describe('Test pokedex component', () => {
   it('Verify heading', () => {
@@ -77,8 +79,7 @@ describe('Test pokedex component', () => {
     const nextPokemon = getByTestId(nextText);
     // interagir com eles ( se houver necessidade )
     let count = 0;
-    // eslint-disable-next-line no-magic-numbers
-    while (count !== 8) {
+    while (count !== expectLength) {
       fireEvent.click(nextPokemon);
       count += 1;
     }
@@ -110,8 +111,7 @@ describe('Test pokedex component', () => {
     );
     const type = pokemonType;
     const buttons = getAllByTestId('pokemon-type-button');
-    // eslint-disable-next-line no-magic-numbers
-    expect(buttons.length).toBe(7);
+    expect(buttons.length).toBe(buttonLength);
     const fireButton = getByText('Fire');
     fireEvent.click(fireButton);
     const checkType = getByTestId(type);
@@ -169,8 +169,7 @@ describe('Continue testing', () => {
     const actualType = getByTestId(pokemonType);
     const allButton = getByText('All');
     const getButtons = getAllByTestId('pokemon-type-button');
-    // eslint-disable-next-line no-magic-numbers
-    expect(getButtons.length).toBe(7);
+    expect(getButtons.length).toBe(buttonLength);
     fireEvent.click(getButtons[0]);
     expect(actualType).toHaveTextContent('Electric');
     expect(allButton).toBeInTheDocument();
