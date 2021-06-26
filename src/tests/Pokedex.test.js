@@ -38,7 +38,7 @@ describe('Test component Pokedex', () => {
       expect(button).toBeInTheDocument();
     });
 
-  it('Teste se os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar',
+  it('Test if the next Pokémons of the list must be appears, one by one, with a click',
     () => {
       const { getByText } = renderWithRouter(
         <Pokedex pokemons={ POKEMONS } isPokemonFavoriteById={ FAVORITES } />,
