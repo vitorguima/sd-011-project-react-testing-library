@@ -120,7 +120,7 @@ describe('Pokedex.js:', () => {
     + 'the list of a given type has only one pokemon.', () => {
     const singlePokemonTypesList = Object.entries(pokemonsByType)
       .reduce((acc, [type, pokemonsOfType]) => {
-        if(pokemonsOfType.length === 1) {
+        if (pokemonsOfType.length === 1) {
           acc = [...acc, type];
         }
 
