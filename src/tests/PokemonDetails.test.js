@@ -31,10 +31,11 @@ describe('Testa o componente PokemonDetails', () => {
   it('Posso favoritar um poke pela page?', () => {
     const { getByText, getByLabelText } = renderWithRouter(<App />);
     fireEvent.click(getByText(/More details/));
-    const clickFavorite = fireEvent.click(getByText('Pokémon favoritado?'));
+    const favoritePoke = 'Pokémon favoritado?';
+    const clickFavorite = fireEvent.click(getByText(favoritePoke));
     expect(clickFavorite).toEqual(true);
     const clickFavoriteTwo = fireEvent.click(getByText('Pokémon favoritado?'));
     expect(clickFavoriteTwo).toEqual(true);
-    expect(getByLabelText(clickFavorite)).toBeInTheDocument();
+    expect(getByLabelText(favoritePoke)).toBeInTheDocument();
   });
 });
