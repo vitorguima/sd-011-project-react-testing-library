@@ -8,13 +8,13 @@ import pokemons from '../data';
 
 describe('Test if Pokemon component is being exhibited correctly', () => {
   test('checks for pokemon info', () => {
-    const { getByText, queryAllByText, getByAltText } = render(
+    const { getByText, getByTestId, getByAltText } = render(
       <MemoryRouter>
         <App />
       </MemoryRouter>,
     );
     const pokemonName = getByText('Pikachu');
-    const pokemonType = queryAllByText('Electric')[0];
+    const pokemonType = getByTestId('pokemon-type').textContent;
     const pokemonWeight = getByText('Average weight: 6.0 kg')
     const imgAltText = 'Pikachu sprite'
     const imgPkmn = getByAltText(imgAltText);
@@ -24,7 +24,7 @@ describe('Test if Pokemon component is being exhibited correctly', () => {
       && pokemonWeight
       && imgPkmn).toBeInTheDocument()
     const imageSrc = getByAltText(imgAltText);
-    console.log(imageSrc)
+    expect(pokemonType).toBe('Electric')
     expect(imageSrc.src).toContain('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png')
   });
 
