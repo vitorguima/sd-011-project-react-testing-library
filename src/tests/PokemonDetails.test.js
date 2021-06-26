@@ -54,4 +54,16 @@ describe('Test if Pokemon Details component is being exhibited correctly', () =>
     locationMap.forEach(map => expect(map).toHaveAttribute('src'))
     expect(gameLocation).toBeInTheDocument()  
   })
+
+  test('checks if the Pokemon is makred as favorite', () => {
+    const { getByText, getAllByAltText } = renderWithRouter(
+      <PokemonDetails
+        { ...props }
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />,
+    );
+    const pkFavorite = getByText('Pokémon favoritado?')
+    expect(pkFavorite).toBeInTheDocument();
+  })
 });
