@@ -56,6 +56,7 @@ test('Verifica se details não é renderizado no pagina details', () => {
 });
 
 test('testando a locarização pokemon', () => {
+  // Rodolfo me ajudou nessa questão;
   const { getByText, container } = renderWithRouter(<App />);
   const details = getByText(detail);
   fireEvent.click(details);
