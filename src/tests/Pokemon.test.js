@@ -16,7 +16,7 @@ test('teste se é renderizado as informações no card Pokemon', () => {
   expect(getByText(`Average weight: ${value} ${measurementUnit}`)).toBeInTheDocument();
 
   const imgPokemon = container.querySelector('img');
-  // console.log(imgPokemon.src);
+
   expect(imgPokemon.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   expect(imgPokemon.alt).toBe('Pikachu sprite');
 });
@@ -39,7 +39,7 @@ test('test icon favorite', () => {
   const ButtonElectric = getAllByText('Electric')[1];
   fireEvent.click(ButtonElectric);
   const details = getByText(/More Details/i);
-  // console.log(details);
+
   fireEvent.click(details);
 
   const favorites = container.querySelector('#favorite');

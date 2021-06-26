@@ -28,7 +28,6 @@ test('Verifica se tem "Pokemon favorito?" e renderizado', () => {
   const details = getByText(detail);
   fireEvent.click(details);
   const getFavorite = container.querySelector('label');
-  // console.log(getAbout.textContent);
 
   expect(getFavorite.textContent).toBe('Pokémon favoritado?');
 });
@@ -61,13 +60,13 @@ test('testando a locarização pokemon', () => {
   const details = getByText(detail);
   fireEvent.click(details);
   const imgPokemon = container.querySelectorAll('img');
-  // console.log(imgPokemon[2]);
+
   const altP = 'Pikachu location';
   expect(imgPokemon[1].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
   expect(imgPokemon[1].alt).toBe(altP);
   expect(imgPokemon[2].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   expect(imgPokemon[2].alt).toBe(altP);
-  // console.log(locationPikachu[1]);
+
   const kanto = 'Kanto Viridian Forest';
   const power = 'Kanto Power Plant';
   expect(getByText(kanto)).toBeInTheDocument();
