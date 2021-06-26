@@ -23,7 +23,7 @@
   "commandRunner": {
     "command": "CI=true npm test 'src/tests/Pokedex.test.js'"
   },
-  "timeoutMS": 30000,
+  "timeoutMS": 20000,
   "reporters": [
     "progress",
     "clear-text",
