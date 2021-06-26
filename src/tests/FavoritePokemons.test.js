@@ -25,6 +25,9 @@ describe(' Teste o componente <FavoritePokemons.js />', () => {
 
       const linkFavoritePokemon = getByText(/Favorite Pokémons/);
       fireEvent.click(linkFavoritePokemon);
+      const url2 = history.location.pathname;
+      expect(url2).toBe('/favorites');
+
       const namePokemon = getByText('Pikachu');
       expect(namePokemon).toBeInTheDocument();
     });
