@@ -26,6 +26,8 @@ describe('Testa o componente PokemonDetails', () => {
     expect(getByText(/Kanto Power Plant/i)).toBeInTheDocument();
     const locations = getAllByAltText('Pikachu location');
     expect(locations.length).toBe(Number('2'));
+    expect(images[1]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(images[2]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
 
   it('Posso favoritar um poke pela page?', () => {
