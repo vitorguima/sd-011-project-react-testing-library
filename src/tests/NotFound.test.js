@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-
 import NotFound from '../components/NotFound';
 
 describe('Teste o componente <NotFound.js />', () => {
