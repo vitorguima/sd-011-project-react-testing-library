@@ -18,7 +18,6 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
     fireEvent.click(detailsPokemon);
 
     const favoriteInput = getByRole('checkbox');
-    // expect(favoriteInput).toBeInTheDocument();
 
     fireEvent.click(favoriteInput);
 
