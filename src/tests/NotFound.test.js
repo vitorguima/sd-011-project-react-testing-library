@@ -12,8 +12,8 @@ describe('Teste o componente <NotFound.js />', () => {
     expect(textH2).toBeInTheDocument();
   });
   test('Teste se página mostra a imagem do Pikachu', () => {
-    const { getByRole } = render(<NotFound />);
-    const img = getByRole('img');
+    const { container } = render(<NotFound />);
+    const img = container.querySelector('img');
     expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
