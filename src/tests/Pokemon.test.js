@@ -32,7 +32,7 @@ describe('Testa o funcionamento do componente <Pokemon />', () => {
     expect(link).toBe(`/pokemons/${charmander.id}`);
   });
 
-  it('Testa se tem ícone de estrelas', () => {
+  it('Testa se tem ícone de estrelas nos favoritos', () => {
     const { getByText, container, getByAltText } = renderWithRouter(<App />);
     const bugPokemon = getByText('Bug');
     fireEvent.click(bugPokemon);
