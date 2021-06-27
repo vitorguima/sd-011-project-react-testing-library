@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import About from '../components/About';
 
-describe('tests the About component', () => {
+describe('2 - Tests the About component', () => {
   it('should render details on the Pokedex', () => {
     const { getByText } = render(<About />);
     const details1stParagraph = getByText(/This application simulates/);

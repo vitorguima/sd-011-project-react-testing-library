@@ -3,7 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
 
-describe('1- Test the component <App.js />', () => {
+describe('1 - Tests the component <App.js />', () => {
   it('Should render a Pokedex text', () => {
     const { getByText } = renderWithRouter(<App />);
     const nav = getByText('Pokédex');
