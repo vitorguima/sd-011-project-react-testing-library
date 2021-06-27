@@ -10,9 +10,7 @@ describe('Checks NotFound component', () => {
     history.push('/page/not-found/');
     const notFoundOnScreen = screen.getByRole('heading',
       { level: 2 });
-    const text = screen.getByText(/Page requested not found/i);
-    expect(notFoundOnScreen).toBeInTheDocument();
-    expect(text).toBeInTheDocument();
+    expect(notFoundOnScreen).toHaveTextContent('Page requested not found');
   });
   it('Checks if the page has an image with an specific source;', () => {
     const { history } = renderWithRouter(<NotFound />);
@@ -23,6 +21,3 @@ describe('Checks NotFound component', () => {
     expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
-
-/*
-Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif. */
