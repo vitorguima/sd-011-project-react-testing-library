@@ -10,8 +10,8 @@ describe('Requisito 02: Testa o componente <About />', () => {
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const paragraphs = getAllByTestId('tag-p');
+    const { getAllByText } = renderWithRouter(<About />);
+    const paragraphs = getAllByText(/Pokémons/);
     expect(paragraphs.length).toBe(2);
   });
 
