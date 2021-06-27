@@ -17,7 +17,7 @@ describe('test the Pokemon component', () => {
   });
 
   // eslint-disable-next-line max-len
-  it('tests if the card rendered has a link to show details about the pokemon and when clicked, render the correct component ', () => {
+  it('testing with 90 characters', () => {
     const { getByText, history } = renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
     />);

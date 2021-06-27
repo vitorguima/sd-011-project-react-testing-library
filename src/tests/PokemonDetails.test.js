@@ -41,7 +41,8 @@ describe('test the component PokemonDetails', () => {
     );
 
     // eslint-disable-next-line max-len
-    expect(document.getElementsByTagName('h2')[2].innerHTML).toBe(`Game Locations of ${pokemons[0].name}`);
+    expect(document.getElementsByTagName('h2')[2].innerHTML)
+      .toBe(`Game Locations of ${pokemons[0].name}`);
     (pokemons[0].foundAt).forEach(({ location, map }, index) => {
       expect(getByText(location)).toBeInTheDocument();
       expect(getAllByAltText(`${pokemons[0].name} location`)[index].src).toBe(map);

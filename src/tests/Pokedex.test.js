@@ -61,7 +61,7 @@ describe('testing Pokedex component', () => {
   });
 
   // eslint-disable-next-line max-len
-  it('verify if each type of pokemons has a button to filter, and if when user clicks, only that type should appear', () => {
+  it('testing with 90 characters', () => {
     const { getAllByTestId, getByText } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
@@ -105,7 +105,7 @@ describe('testing Pokedex component', () => {
   });
 
   // eslint-disable-next-line max-len
-  it('verify if contains a button \'all\' to reset the filter type, if renders all pokemons when this button is selected', () => {
+  it('testing with 90 characters', () => {
     const { getByText } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
