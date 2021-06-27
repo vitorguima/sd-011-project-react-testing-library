@@ -1,12 +1,9 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-// import pokemon from '../data';
-
-// const pokemons = [pokemon[0], pokemon[1]];
 
 describe('Test FavoritePokemons component', () => {
   it('Checks if it shows No favorite pokemon found', () => {
@@ -15,13 +12,14 @@ describe('Test FavoritePokemons component', () => {
     expect(notFound).toBeInTheDocument();
   });
 
-  it('Teste se é exibido todos os cards de pokémons favoritados.', async () => {
-    const { getByText,
-      getByLabelText, getByAltText, history } = renderWithRouter(<App />);
+  it('Checks if it shows all checked cards', async () => {
+    const { getByAltText, history } = renderWithRouter(<App />);
 
     history.push('/pokemons/25'); // more details
-    fireEvent.click(getByLabelText('Pokémon favoritado?'));
-    fireEvent.click(getByText('Favorite Pokémons'));
+    // fireEvent.click(getByLabelText('Pokémon favoritado?'));
+    // fireEvent.click(getByText('Favorite Pokémons'));
+    userEvent.click(screen.getByText('Pokémon favoritado?'));
+    expect(screen.getByLabelText('Pokémon favoritado?')).toBeChecked();
     expect(getByAltText('Pikachu is marked as favorite')).toBeInTheDocument();
   });
 
