@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../components/renderWithRouter';
 
@@ -31,4 +31,38 @@ describe('if on the application contains a fixed set of navigation links', () =>
     const link = getByText('Favorite Pokémons').innerHTML;
     expect(link).toBe('Favorite Pokémons');
   });
+});
+
+test('is redirected to the home page (/)', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('Home'));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/');
+  const getInfo = getByText(/Encountered pokémons/);
+  expect(getInfo).toBeInTheDocument();
+});
+
+test('is redirected to the About page (/About)', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('About'));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/about');
+  const getInfo = getByText(/About Pokédex/);
+  expect(getInfo).toBeInTheDocument();
+});
+
+test('is redirected to the About page (/favorites)', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('Favorite Pokémons'));
+  const { pathname } = history.location;
+  expect(pathname).toBe('/favorites');
+  const getInfo = getByText(/Favorite pokémons/);
+  expect(getInfo).toBeInTheDocument();
+});
+
+test('is redirected to the Not Found page', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  history.push('/not Found page');
+  const getInfo = getByText(/not found/i);
+  expect(getInfo).toBeInTheDocument();
 });
