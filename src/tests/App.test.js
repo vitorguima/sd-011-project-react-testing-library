@@ -24,7 +24,7 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-describe('Teste o componente App', () => {
+describe('Testa o componente App', () => {
   it('verifica os 3 links fixos no topo da página', () => {
     const { getByText } = RenderWithRouter(
       <App />,
