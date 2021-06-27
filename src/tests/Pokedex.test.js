@@ -5,6 +5,9 @@ import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 import { readFavoritePokemonIds } from '../services/pokedexService';
 
+const pokemonNames = pokemons.map(({ name }) => name);
+const nextButton = /Próximo pokémon/i;
+
 describe('Testa o componente Pokedex', () => {
   let favorite;
   function setFavoritePokemonObject() {
@@ -29,24 +32,23 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se é exibido proximo pokemon ao clicar em proximo pokemon', () => {
-    const { getByTestId } = renderWithRouter(
+    const { getByText, getByTestId } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
     );
-    const firstPokemon = getByTestId('pokemon-name').innerText;
-    const nextBtn = getByTestId('next-pokemon');
-    pokemons.forEach(() => {
+    const nextBtn = getByText(nextButton);
+    pokemonNames.forEach(() => {
+      const pokemonName = getByTestId('pokemon-name').textContent;
+      expect(pokemonNames).toContain(pokemonName);
       fireEvent.click(nextBtn);
     });
-    const selectedPokemon = getByTestId('pokemon-name').innerText;
-    expect(firstPokemon).toBe(selectedPokemon);
   });
 
   it('Testa se é exibido somente um pokemon por vez`', () => {
-    const { getByTestId, container } = renderWithRouter(
+    const { getByText, container } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
     );
     let pokemon = container.getElementsByClassName('pokemon');
-    const nextBtn = getByTestId('next-pokemon');
+    const nextBtn = getByText(nextButton);
     expect(pokemon.length).toBe(1);
     fireEvent.click(nextBtn);
     pokemon = container.getElementsByClassName('pokemon');
@@ -54,33 +56,62 @@ describe('Testa o componente Pokedex', () => {
   });
 
   it('Testa se a Pokédex tem os botões de filtro', () => {
-    const { getAllByTestId, getByTestId } = renderWithRouter(
+    const { getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
     );
     const filterBtns = getAllByTestId('pokemon-type-button');
-    const expectedButtons = 7;
-    expect(filterBtns.length).toBe(expectedButtons);
-    const random = Math.floor(Math.random() * filterBtns.length);
-    fireEvent.click(filterBtns[random]);
-    const selectedPokemon = getByTestId('pokemon-type').innerText;
-    expect(selectedPokemon).toBe(filterBtns[random].innerText);
+    const pokemonTypes = pokemons.map(({ type }) => type);
+    filterBtns.forEach((btn) => {
+      expect(pokemonTypes).toContain(btn.textContent);
+    });
   });
 
   it('Testa se a Pokédex contém um botão para resetar o filtro `All`', () => {
     const { getByText } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
     );
-    const btn = getByText('All');
-    expect(btn).toBeInTheDocument();
+    const allBtn = getByText('All');
+    expect(allBtn).toBeInTheDocument();
+    const nextBtn = getByText(nextButton);
+    pokemonNames.forEach((pokemon) => {
+      const pokemonName = getByText(pokemon);
+      expect(pokemonName).toBeInTheDocument();
+      fireEvent.click(nextBtn);
+    });
   });
 
   it('Testa se é criado dinamicamente os botãos de filtro de pokémon', () => {
-    const { queryByTestId } = renderWithRouter(
+    const { getByText, getAllByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
     );
-    const list = [];
-    pokemons.forEach((el) => list.push(el.type));
-    const test = queryByTestId('test');
-    expect(test).not.toBeInTheDocument();
+    const filterBtns = getAllByRole('button');
+    fireEvent.click(filterBtns[3]);
+    const nextBtn = getByText(nextButton);
+    expect(nextBtn).toBeInTheDocument();
+    expect(nextBtn.disabled).toBeTruthy();
+  });
+
+  it('Testa se ao clicar em um filtro só circula por pokemons daquele tipo', () => {
+    const { getByText, getAllByRole } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorite } />,
+    );
+    const firePokemons = pokemons.filter((pokemon) => pokemon.type === 'Fire');
+    const firePokemonsName = firePokemons.map(({ name }) => name);
+    const nextBtn = getByText(nextButton);
+    const filterBtns = getAllByRole('button');
+    fireEvent.click(filterBtns[2]);
+    firePokemonsName.forEach((name) => {
+      const firePokemon = getByText(name);
+      expect(firePokemon).toBeInTheDocument();
+      fireEvent.click(nextBtn);
+    });
+    const allBtn = getByText('All');
+    fireEvent.click(allBtn);
+    pokemonNames.forEach((name) => {
+      const nameRegEx = new RegExp(name, 'ig');
+      const pokemon = getByText(nameRegEx);
+      expect(pokemon).toBeInTheDocument();
+      fireEvent.click(nextBtn);
+    });
   });
 });
