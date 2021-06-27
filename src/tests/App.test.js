@@ -28,8 +28,8 @@ describe('if on the application contains a fixed set of navigation links', () =>
 
   it('the third link must have the text Favorite Pokémons', () => {
     const { getByText } = renderWithRouter(<App />);
-    const link = getByText('Favorite Pokémons').innerHTML;
-    expect(link).toBe('Favorite Pokémons');
+    const link = getByText('FavoritePokémons').innerHTML;
+    expect(link).toBe('FavoritePokémons');
   });
 });
 
