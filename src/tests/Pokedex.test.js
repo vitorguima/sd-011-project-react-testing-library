@@ -31,4 +31,56 @@ describe('Testa o componente Pokedex', () => {
 
     expect(kg.length).toBe(1);
   });
+
+  it('Testa se o tipo de pokemon corresponde ao pokemon encontrado', () => {
+    const { getByText, getByRole } = renderWithRouter(<App />);
+    const typeFire = getByRole('button', { name: /Fire/i });
+    fireEvent.click(typeFire);
+    const nextPokFire = getByRole('button', { name: /Próximo pokémon/i });
+    fireEvent.click(nextPokFire);
+    const firePok = getByText(/Rapidash/i);
+
+    expect(firePok).toBeInTheDocument();
+
+    const typePsychic = getByRole('button', { name: /Psychic/i });
+    fireEvent.click(typePsychic);
+    const nextPokPsychic = getByRole('button', { name: /Próximo pokémon/i });
+    fireEvent.click(nextPokPsychic);
+    const psychicPok = getByText(/Mew/i);
+
+    expect(psychicPok).toBeInTheDocument();
+  });
+
+  it('Testa o filtro All', () => {
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const pika = getByText(/Pikachu/i);
+    expect(pika).toBeInTheDocument();
+
+    const all = getByRole('button', { name: /All/i });
+    fireEvent.click(all);
+    const nextPoke = getByRole('button', { name: /Próximo pokémon/i });
+    fireEvent.click(nextPoke);
+    const charmander = getByText(/Charmander/i);
+
+    expect(charmander).toBeInTheDocument();
+  });
+
+  it('Testa se existem todos botões de tipo', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const typebutton = getAllByTestId('pokemon-type-button');
+    const types = 7;
+
+    expect(typebutton.length).toBe(types);
+  });
+
+  it('Testa se o botão próximo pokemon é habilitado como deveria', () => {
+    const { getByText, getByRole } = renderWithRouter(<App />);
+    const normalType = getByRole('button', { name: /Normal/i });
+    fireEvent.click(normalType);
+    const snorlax = getByText(/Snorlax/i);
+    const nextBtn = getByRole('button', { name: /Próximo pokémon/i });
+    fireEvent.click(nextBtn);
+
+    expect(snorlax).toBeInTheDocument();
+  });
 });
