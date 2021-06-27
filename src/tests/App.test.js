@@ -21,9 +21,9 @@ describe('Testing the App component', () => {
       const home = getByText(/Home/i);
       fireEvent.click(home);
     });
-  
+
     it('Testing if About page is rendered on /about', () => {
-      const {getByText } = renderWithRouter(<App />);
+      const { getByText } = renderWithRouter(<App />);
       const about = getByText(/About/i);
       fireEvent.click(about);
     });
