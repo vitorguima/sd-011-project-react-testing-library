@@ -1,18 +1,7 @@
 import React from 'react';
-// import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
-
-// test('shows the Pokédex when the route is `/`', () => {
-//   const { getByText } = render(
-//     <MemoryRouter initialEntries={ ['/'] }>
-//       <App />
-//     </MemoryRouter>,
-//   );
-
-//   expect(getByText('Encountered pokémons')).toBeInTheDocument();
-// });
 
 describe('Requisito 01: Teste o componente <App.js />', () => {
   it('Renderiza a página principal ao carregar a aplicação no caminho de URL /', () => {
