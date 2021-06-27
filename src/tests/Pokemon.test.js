@@ -51,9 +51,9 @@ describe('Testes do componente <Pokemon.js >', () => {
     });
 
     it('Testa atributos da imagem do pokémon', () => {
-      const { getByTestId } = renderWithRouter(<App />);
+      const { container } = renderWithRouter(<App />);
 
-      const pokemonImage = getByTestId('pokemon-img');
+      const pokemonImage = container.querySelector('img');
       expect(pokemonImage).toBeInTheDocument();
 
       const pikachuImgSrc = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';

@@ -20,7 +20,7 @@ const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
         </p>
         {showDetailsLink && <Link to={ `pokemons/${id}` }>More details</Link>}
       </div>
-      <img data-testid="pokemon-img" src={ `${image}` } alt={ `${name} sprite` } />
+      <img src={ `${image}` } alt={ `${name} sprite` } />
       {isFavorite && (
         <img
           className="favorite-icon"
