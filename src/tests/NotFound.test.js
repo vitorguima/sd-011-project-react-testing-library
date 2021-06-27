@@ -7,7 +7,7 @@ describe('Testa o componente NotFound.js ', () => {
     const { getByRole } = RenderWithRouter(<NotFound />);
     const h2Text = getByRole('heading', {
       level: 2,
-      text: 'Page requested not found 😭',
+      name: /Page requested not found/i,
     });
     expect(h2Text).toBeInTheDocument();
   });
