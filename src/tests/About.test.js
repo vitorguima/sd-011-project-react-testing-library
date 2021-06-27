@@ -22,14 +22,15 @@ test('Verifica se a página contém dois parágrafos', () => {
 
   const paragraph = container.querySelectorAll('p');
   const expectedParagraphsLength = 2;
+
   expect(paragraph.length).toBe(expectedParagraphsLength);
-  expect(paragraph[0].value).toBe();
-  expect(paragraph[1].value).toBe();
+  expect(paragraph[0].textContent.length).toBeGreaterThan(0);
+  expect(paragraph[1].textContent.length).toBeGreaterThan(0);
 });
 
 test('Verifica se a página contém uma imagem específica', () => {
   renderWithRouter(<About />);
 
   const img = screen.getByAltText('Pokédex');
-  expect(img.src).toContain('ttps://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  expect(img.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
 });

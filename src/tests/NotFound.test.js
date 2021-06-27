@@ -20,6 +20,6 @@ test('Verifica se há um h2 na página', () => {
 test('Verifica se a página contém uma imagem específica', () => {
   const { container } = renderWithRouter(<NotFound />);
 
-  const img = container.querySelector('img');
-  expect(img.src).toContain('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+  const img = container.querySelector('.not-found-image');
+  expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
 });
