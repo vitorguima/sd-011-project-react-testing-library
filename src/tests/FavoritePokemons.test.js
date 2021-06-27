@@ -12,7 +12,7 @@ describe('Testes do componente <FavoritePokemons/>', () => {
     expect(getByText('No favorite pokemon found')).toBeInTheDocument();
   });
 
-  it('Teste se é exibido todos os cards de pokémons favoritados.', () => {
+  it('Testa se são exibidos todos os cards de pokémons favoritados.', () => {
     const { getByText } = renderWithRouter(<App />);
 
     userEvent.click(getByText('Normal'));
