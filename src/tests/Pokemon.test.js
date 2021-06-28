@@ -1,41 +1,96 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { pokemonType } from '../types';
+import { fireEvent, screen } from '@testing-library/dom';
+import pokemons from '../data';
+import renderWithHistory from './aux/renderWithHistory';
+import getEmptyFavoritesObject from './aux/getEmptyFavoritesObject';
+import sleep from './aux/sleep';
+import Pokemon from '../components/Pokemon';
+import App from '../App';
 
-const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
-  const { averageWeight, id, image, name, type } = pokemon;
-  const { measurementUnit, value } = averageWeight;
-  return (
-    <div className="pokemon">
-      <div className="pokemon-overview">
-        <p data-testid="pokemon-name">{`${name}`}</p>
-        <p data-testid="pokemon-type">{`${type}`}</p>
-        <p data-testid="pokemon-weight">
-          {`Average weight: ${value} ${measurementUnit}`}
-        </p>
-        {showDetailsLink && <Link to={ `pokemons/${id}` }>More details</Link>}
-      </div>
-      <img src={ `${image}` } alt={ `${name} sprite` } />
-      {isFavorite && (
-        <img
-          className="favorite-icon"
-          src="/star-icon.svg"
-          alt={ `${name} is marked as favorite` }
-        />
-      )}
-    </div>
-  );
-};
+const NAVIGATION_DELAY = 100;
 
-Pokemon.propTypes = {
-  isFavorite: PropTypes.bool.isRequired,
-  pokemon: pokemonType.isRequired,
-  showDetailsLink: PropTypes.bool,
-};
+describe('The pokemon card', () => {
+  describe('displays the correct information:', () => {
+    let getByAltText;
+    let getByTestId;
 
-Pokemon.defaultProps = {
-  showDetailsLink: true,
-};
+    const TEST_POKEMON = pokemons[0];
 
-export default Pokemon;
+    beforeEach(() => {
+      ({ getByAltText, getByTestId } = renderWithHistory(
+        <Pokemon
+          pokemon={ TEST_POKEMON }
+          isFavorite={ getEmptyFavoritesObject()[TEST_POKEMON.id] }
+        />,
+      ));
+    });
+
+    it('name', () => {
+      expect(getByTestId('pokemon-name')).toHaveTextContent(TEST_POKEMON.name);
+    });
+
+    it('type', () => {
+      expect(getByTestId('pokemon-type')).toHaveTextContent(TEST_POKEMON.type);
+    });
+
+    it('weight', () => {
+      const { value, measurementUnit } = TEST_POKEMON.averageWeight;
+      const weightString = `Average weight: ${value} ${measurementUnit}`;
+
+      expect(getByTestId('pokemon-weight')).toHaveTextContent(weightString);
+    });
+
+    it('image', () => {
+      const { image, name } = TEST_POKEMON;
+      const altText = `${name} sprite`;
+
+      expect(getByAltText(altText)).toHaveAttribute('src', image);
+    });
+  });
+
+  describe('has the correct link, which', () => {
+    const TEST_POKEMON = pokemons[0];
+
+    it('points to the right url', () => {
+      const { getByText } = renderWithHistory(
+        <Pokemon
+          pokemon={ TEST_POKEMON }
+          isFavorite={ getEmptyFavoritesObject()[TEST_POKEMON.id] }
+        />,
+      );
+
+      const link = getByText('More details');
+
+      expect(link.tagName).toBe('A');
+      expect(link).toHaveAttribute('href', `/pokemons/${TEST_POKEMON.id}`);
+    });
+
+    it('navigates to the right page', async () => {
+      const { history, getByText } = renderWithHistory(<App />);
+
+      const link = getByText('More details');
+
+      fireEvent.click(link);
+
+      await sleep(NAVIGATION_DELAY);
+
+      expect(screen.getByText(`${TEST_POKEMON.name} Details`)).toBeInTheDocument();
+      expect(history.location.pathname).toBe(`/pokemons/${TEST_POKEMON.id}`);
+    });
+  });
+
+  it('shows a star when the pokemon is a favorite', () => {
+    const TEST_POKEMON = pokemons[1];
+
+    const { getByAltText } = renderWithHistory(
+      <Pokemon
+        pokemon={ TEST_POKEMON }
+        isFavorite
+      />,
+    );
+
+    const altText = `${TEST_POKEMON.name} is marked as favorite`;
+
+    expect(getByAltText(altText)).toHaveAttribute('src', '/star-icon.svg');
+  });
+});
