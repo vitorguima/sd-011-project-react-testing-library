@@ -1,4 +1,3 @@
-
 import pokemons from '../../data';
 
 export default function getEmptyFavoritesObject() {
