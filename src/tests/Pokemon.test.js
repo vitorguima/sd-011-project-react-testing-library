@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
-import { renderWithRouter, waitFor } from '../helpers';
+import { renderWithRouter } from '../helpers';
 import pokemons from '../data';
 import { isPokemonFavoriteById } from '../mockedFavoritePokemons';
 
@@ -52,8 +52,7 @@ describe('Pokemon.js:', () => {
 
   it('The user must be redirected to the details page '
     + 'after clicking the details link.', async () => {
-    const { id, name } = pokemon;
-    const detailsPageHeadingFormat = new RegExp(`${name} details`, 'i');
+    const { id } = pokemon;
     const detailsLink = screen.getByRole('link', {
       name: /more details/i,
     });
