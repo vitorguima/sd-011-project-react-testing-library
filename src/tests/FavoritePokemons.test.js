@@ -13,8 +13,6 @@ describe('Requisito 03: Teste o componente <FavoritePokemons.js />', () => {
     const pokemonNotFound = screen.getByText(/No favorite pokemon found/i);
     expect(pokemonNotFound).toBeInTheDocument();
   });
-
-  it('', () => {
-
-  });
 });
+
+// Requisito feito com a ajuda do @Leo Funabashi
