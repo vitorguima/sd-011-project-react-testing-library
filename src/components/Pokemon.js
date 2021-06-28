@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { pokemonType } from '../types';
-
+import './pokemon.js'
 const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
   const { averageWeight, id, image, name, type } = pokemon;
   const { measurementUnit, value } = averageWeight;
