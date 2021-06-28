@@ -10,8 +10,8 @@ describe('Requisto 2 - componente About', () => {
   });
   test('Contém imagem com src específico', () => {
     // https://github.com/tryber/sd-011-project-react-testing-library/pull/85/files - ana clara  kyotoku
-    const { getByRole } = renderWithRouter(<About />);
-    const image = getByRole('img');
+    const { getByAltText } = renderWithRouter(<About />);
+    const image = getByAltText('Pokédex');
     const url = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(image.src).toContain(url);
   });
