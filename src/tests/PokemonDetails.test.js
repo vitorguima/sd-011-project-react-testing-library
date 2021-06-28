@@ -1,11 +1,11 @@
 import React from 'react';
-import { fireEvent, getByAltText, getByRole } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/dom';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 import data from '../data';
 
 describe('Teste o componente <PokemonDetails.js />', () => {
-  test('Teste se as informações detalhadas do Pokémon selecionado são mostradas na tela.', () => {
+  test('Teste informações detalhadas do Pokémon selecionado são mostradas.', () => {
     const { container, getByText } = renderWithRouter(<App />);
     const pokeCard = container.querySelector('.pokemon-overview');
     const moreDetails = getByText('More details');
@@ -29,18 +29,20 @@ describe('Teste o componente <PokemonDetails.js />', () => {
     expect(pokeCard.firstChild).toHaveTextContent(pokeReturned.name);
   });
 
-  test('Teste se existe na página uma seção com os mapas contendo as localizações do pokémon', () => {
+  test('Teste se existe uma seção com mapas contendo as localizações do pokémon', () => {
     const { container, getByText, getAllByAltText } = renderWithRouter(<App />);
     const pokeCard = container.querySelector('.pokemon-overview');
     const moreDetails = getByText('More details');
     fireEvent.click(moreDetails);
 
     /** A página deve conter um texto Game Locations of <name>, onde <name> é o nome do Pokémon; */
-    const PokemonDetailTitle = getByText(`Game Locations of ${pokeCard.firstChild.textContent}`);
+    const PokemonDetailTitle = getByText(`Game Locations of ${pokeCard
+      .firstChild.textContent}`);
     expect(PokemonDetailTitle).toBeInTheDocument();
 
     /** Verifica a localização do Pokemon */
-    const resultOfLocations = data.filter((pokemon) => pokemon.name === pokeCard.firstChild.textContent);
+    const resultOfLocations = data.filter((pokemon) => pokemon.name === pokeCard
+      .firstChild.textContent);
     expect(resultOfLocations[0].foundAt.length).toBeGreaterThan(0);
 
     // Todas as localizações do Pokémon devem ser mostradas na seção de detalhes;
@@ -53,13 +55,14 @@ describe('Teste o componente <PokemonDetails.js />', () => {
 
       expect(habitat[index]).toBeInTheDocument();
 
-      expect(habitat[index]).toHaveAttribute('alt', `${pokeCard.firstChild.textContent} location`);
+      expect(habitat[index]).toHaveAttribute('alt', `${pokeCard
+        .firstChild.textContent} location`);
       expect(habitat[index]).toHaveAttribute('src', findAt.map);
     });
   });
 
-  test('Teste se o usuário pode favoritar um pokémon através da página de detalhes.', () => {
-    const { container, getByText, getAllByAltText, getByRole, history } = renderWithRouter(<App />);
+  test('Teste pode-se favoritar um pokémon através da página de detalhes.', () => {
+    const { container, getByRole, history } = renderWithRouter(<App />);
     history.push('/pokemons/25');
 
     const checkbox = getByRole('checkbox');
