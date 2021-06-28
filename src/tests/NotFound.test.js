@@ -1,10 +1,8 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Testando o NotFound.js', () => {
-
   test('Testa se a aplicação é a redirecionada a not found', () => {
     const { getByRole, history } = renderWithRouter(<App />);
     history.push('/PáginaX');
