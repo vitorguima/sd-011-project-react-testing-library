@@ -9,8 +9,12 @@ test('show infos about pokedex', () => {
 
 test('show two p', () => {
   const { getByText } = render(<About />);
-  const firstP = getByText('This application simulates a Pokédex, a digital encyclopedia containing all Pokémons');
-  const secP = getByText('One can filter Pokémons by type, and see more details for each one of them');
+  const firstP = getByText(`This application simulates a Pokédex, 
+  a digital encyclopedia containing 
+  all Pokémons`);
+  const secP = getByText(`One can filter Pokémons 
+  by type, and see more details 
+  for each one of them`);
   expect(firstP).toBeInTheDocument();
   expect(secP).toBeInTheDocument();
 });
