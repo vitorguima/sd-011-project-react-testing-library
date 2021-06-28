@@ -1,6 +1,8 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
+import About from '../components/About';
+import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from './RenderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -38,16 +40,20 @@ it('Testa o redirecionamento na url "/" ao clicar em "Home"', () => {
 });
 
 it('Testa se redireciona para a página de "About", na URL "/about"', () => {
-  const { getByText, history } = renderWithRouter(<App />);
-  const linkAbout = getByText(/about/);
+  const { getByText, history } = renderWithRouter(<About />);
+  const linkAbout = getByText(/About/i);
   fireEvent.click(linkAbout);
-  const url = history.location.pathname;
-  expect(url).toBe('/about');
+
+  const urlAbout = history.location.pathname;
+  expect(urlAbout).toBe('/about');
+
+  const aboutPage = getByText(/About Pokédex/);
+  expect(aboutPage).toBeInTheDocument();
 });
 
-it('Teste se  redirecionaa página de `Pokémons Favoritados`, na URL `/favorites`', () => {
-  const { getByText, history } = renderWithRouter(<App />);
-  const linkFavorites = getByText(/favorites/);
+it('Teste se redireciona página de `Pokémons Favoritados`, na URL `/favorites`', () => {
+  const { getByText, history } = renderWithRouter(<FavoritePokemons />);
+  const linkFavorites = getByText(/Favorite pokémons/);
   fireEvent.click(linkFavorites);
   const url = history.location.pathname;
   expect(url).toBe('/favorites');
