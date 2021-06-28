@@ -8,8 +8,9 @@ test('show infos about pokedex', () => {
 });
 
 test('show two p', () => {
-  const { getAllByTestId } = render(<About />);
-  expect(getAllByTestId('dialog').length).toBe(2);
+  const { getByTestId } = render(<About />);
+  expect(getByTestId('first')).toBeInTheDocument();
+  expect(getByTestId('second')).toBeInTheDocument();
 });
 
 test('show img', () => {
