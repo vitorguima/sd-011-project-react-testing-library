@@ -1,8 +1,11 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/dom';
+
 import renderWithHistory from './aux/renderWithHistory';
 import sleep from './aux/sleep';
+
 import pokemons from '../data';
+
 import App from '../App';
 
 const NAVIGATION_DELAY = 100;

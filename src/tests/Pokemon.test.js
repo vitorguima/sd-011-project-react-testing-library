@@ -1,9 +1,11 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/dom';
+
 import pokemons from '../data';
 import renderWithHistory from './aux/renderWithHistory';
 import getEmptyFavoritesObject from './aux/getEmptyFavoritesObject';
 import sleep from './aux/sleep';
+
 import Pokemon from '../components/Pokemon';
 import App from '../App';
 

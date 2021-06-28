@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
 import { pokemonType } from '../types';
-import './pokemon.js'
+
+import './pokemon.css';
+
 const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
   const { averageWeight, id, image, name, type } = pokemon;
   const { measurementUnit, value } = averageWeight;
+  
   return (
     <div className="pokemon">
       <div className="pokemon-overview">
@@ -20,7 +24,7 @@ const Pokemon = ({ pokemon, showDetailsLink, isFavorite }) => {
       {isFavorite && (
         <img
           className="favorite-icon"
-          src="/star-icon.svg"
+          src={`/star-icon.svg`}
           alt={ `${name} is marked as favorite` }
         />
       )}
