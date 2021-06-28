@@ -8,8 +8,8 @@ test('show infos about pokedex', () => {
 });
 
 test('show two p', () => {
-  const { getAllByRole } = render(<About />);
-  expect(getAllByRole('dialog').length).toBe(2);
+  const { getAllByTestId } = render(<About />);
+  expect(getAllByTestId('dialog').length).toBe(2);
 });
 
 test('show img', () => {
