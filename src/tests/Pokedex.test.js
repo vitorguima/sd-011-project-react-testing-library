@@ -61,3 +61,7 @@ describe('Testa o componente Pokedex', () => {
     expect(btnNextType).toBeDefined();
   });
 });
+
+/* Repositórios consultados:
+https://github.com/tryber/sd-011-project-react-testing-library/pull/5/files
+https://github.com/tryber/sd-011-project-react-testing-library/pull/33/files */
