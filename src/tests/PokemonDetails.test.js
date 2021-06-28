@@ -19,16 +19,16 @@ describe('Testa o componente <Pokedex.js />', () => {
 
   it('Testa se existe uma seção contendo as localizações do pokémon.', () => {
     const { getByText, container } = renderWithRouter(<App />);
-    const detailsButton = getByText('More details');
-    fireEvent.click(detailsButton);
+    const moreDetailsButton = getByText('More details');
+    fireEvent.click(moreDetailsButton);
     expect(getByText(`Game Locations of ${name}`)).toBeInTheDocument();
     const pokemonLocations = container.querySelectorAll('img');
-    expect(pokemonLocations[0]).toBeInTheDocument();
     expect(pokemonLocations[1]).toBeInTheDocument();
-    expect(pokemonLocations[0].src).toContain(foundAt[0].map);
-    expect(pokemonLocations[1].src).toContain(foundAt[1].map);
-    expect(pokemonLocations[0].alt).toContain(foundAt[0].location);
-    expect(pokemonLocations[1].alt).toContain(foundAt[1].location);
+    expect(pokemonLocations[2]).toBeInTheDocument();
+    expect(pokemonLocations[1].src).toContain(foundAt[0].map);
+    expect(pokemonLocations[2].src).toContain(foundAt[1].map);
+    expect(pokemonLocations[1].alt).toContain(`${name} location`);
+    expect(pokemonLocations[2].alt).toContain(`${name} location`);
   });
 
   it('Testa se o usuário pode favoritar um pokémon na página de detalhes..', () => {
