@@ -3,6 +3,7 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import Pokemon from '../components/Pokemon';
 import App from '../App';
+import data from '../data';
 
 const pokemon = {
   id: 143,
@@ -44,12 +45,13 @@ describe('Teste componente <Pokemon.js />', () => {
     expect(link.href).toContain('/pokemons/25');
 
     fireEvent.click(link);
-    const gameLocations = getByText(/Game Locations of Pikachu/);
-    expect(gameLocations).toBeInTheDocument();
+    const gameLocations = `Game Locations of ${data[0].name}`;
+    const heading = getByText(gameLocations);
+    expect(heading).toBeInTheDocument();
     const btnFavorite = getByLabelText('Pokémon favoritado?', { selector: 'input ' });
 
     fireEvent.click(btnFavorite);
-    const star = getByRole('img', { name: 'Pikachu is marked as favorite' });
+    const star = getByRole('img', { name: `${data[0].name} is marked as favorite` });
     expect(star.src).toContain('/star-icon.svg');
     expect(star).toBeInTheDocument();
   });
