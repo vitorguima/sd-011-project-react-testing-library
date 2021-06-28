@@ -3,12 +3,12 @@ import { fireEvent } from '@testing-library/dom';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
-import App from '../App';
-import { getByTestId, getByText } from '@testing-library/react';
 
 describe('Test the Pokedex Component', () => {
   const fakePokemonFatoriteByIdObj = {};
   const pokemonList = pokemons;
+  const pokemonName = 'pokemon-name';
+  const pokemonType = 'pokemon-type';
 
   it('Test if the page contains a H2 with the text "Encountered pokémon"', () => {
     const { getByRole } = renderWithRouter(
@@ -56,7 +56,7 @@ describe('Test the Pokedex Component', () => {
       />,
     );
     pokemonList.forEach(() => {
-      expect(getAllByTestId('pokemon-name').length).toBe(1);
+      expect(getAllByTestId(pokemonName).length).toBe(1);
     });
   });
 
@@ -80,11 +80,11 @@ describe('Test the Pokedex Component', () => {
       />,
     );
     fireEvent.click(getByRole('button', { name: 'Fire' }));
-    expect(getByTestId('pokemon-type')).toHaveTextContent('Fire');
-    expect(getByTestId('pokemon-name')).toHaveTextContent('Charmander');
+    expect(getByTestId(pokemonType)).toHaveTextContent('Fire');
+    expect(getByTestId(pokemonName)).toHaveTextContent('Charmander');
     fireEvent.click(getByRole('button', { name: 'Próximo pokémon' }));
-    expect(getByTestId('pokemon-type')).toHaveTextContent('Fire');
-    expect(getByTestId('pokemon-name')).toHaveTextContent('Rapidash');
+    expect(getByTestId(pokemonType)).toHaveTextContent('Fire');
+    expect(getByTestId(pokemonName)).toHaveTextContent('Rapidash');
   });
 
   it('Test if Pokedex has a reset filter button', () => {
@@ -105,14 +105,24 @@ describe('Test the Pokedex Component', () => {
       />,
     );
     fireEvent.click(getByRole('button', { name: 'Fire' }));
-    expect(getByTestId('pokemon-type')).toHaveTextContent('Fire');
+    expect(getByTestId(pokemonType)).toHaveTextContent('Fire');
     // onde eu acesso a lista de pokemons de fogo
     fireEvent.click(getByRole('button', { name: 'All' }));
     // onde eu acesso a lista de todos os pokemons
-    expect(getByTestId('pokemon-type')).toHaveTextContent('Electric');
+    expect(getByTestId(pokemonType)).toHaveTextContent('Electric');
   });
 
-  it('', () => {
-    
+  it('Test if each button type is created dynamically', () => {
+    const { getAllByTestId } = renderWithRouter(
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ fakePokemonFatoriteByIdObj }
+      />,
+    );
+    const allPokemonTypes = pokemonList.map((pokemon) => pokemon.type);
+    const allButtonTypes = getAllByTestId('pokemon-type-button');
+    allButtonTypes.forEach((button) => {
+      allPokemonTypes.includes(button.textContent);
+    });
   });
 });
