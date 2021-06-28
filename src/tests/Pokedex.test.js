@@ -18,5 +18,7 @@ describe('Requisito 05: Teste o componente <Pokedex.js />', () => {
     expect(pokemonsOfTheSameType[0]).toBeInTheDocument();
     const all = screen.getByText(/All/i);
     expect(all).toBeInTheDocument();
+    const typePokemon = screen.getByText(/Psychic/i);
+    expect(typePokemon).toBeInTheDocument('Psychic');
   });
 });
