@@ -47,7 +47,7 @@ describe('', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const { click } = fireEvent;
 
-    const linkAboutPage = getByText(/About/i);
+    const linkAboutPage = getByText(/about/i);
     click(linkAboutPage);
 
     const aboutUrl = history.location.pathname;
@@ -60,7 +60,7 @@ describe('', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const { click } = fireEvent;
 
-    const linkFavorites = getByText(/Favorite Pokémons/i);
+    const linkFavorites = getByText(/favorite pokémons/i);
     click(linkFavorites);
 
     const favoritesUrl = history.location.pathname;

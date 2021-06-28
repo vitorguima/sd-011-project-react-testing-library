@@ -1,21 +1,14 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { About } from '../components';
 import renderWithRouter from './renderWithRouter';
 
 describe('Test battery for the About component', () => {
-  test('Verifica se a página contém um heading h2', () => {
-    const { container } = renderWithRouter(<About />);
+  test('Checks if the page contains a heading h2 with the text About Pokédex.', () => {
+    const { getByTestId } = renderWithRouter(<About />);
+    const { getByText } = within(getByTestId('tag-title-about-pokedex'));
 
-    const tagHeading = container.querySelector('h2');
-    expect(tagHeading).toBeInTheDocument();
-  });
-
-  test('Check if there is a title with the text "About PokéDex"', () => {
-    renderWithRouter(<About />);
-
-    const titleOfPage = screen.queryByText(/about pokédex/i);
-    expect(titleOfPage).toBeInTheDocument();
+    expect(getByText(/about pokédex/i)).toBeInTheDocument();
   });
 
   test('Check if the page contains two paragraphs with text about Pokédex', () => {
