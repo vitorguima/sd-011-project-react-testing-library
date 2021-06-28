@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import renderWithHistory from './helpers/renderWithHistory';
+import renderWithHistory from './aux/renderWithHistory';
 import sleep from './aux/sleep';
 import App from '../App';
 
