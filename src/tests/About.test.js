@@ -5,6 +5,7 @@ import { About } from '../components';
 describe('Teste o componente About', () => {
   it('Teste se a página contém as informações sobre a Pokédex', () => {
     const { getByRole } = render(<About />);
+    // getbyRole levels: https://testing-library.com/docs/queries/byrole/#level
     const info = getByRole('heading', { level: 2 });
     expect(info).toHaveTextContent(/About Pokédex/i);
   });
