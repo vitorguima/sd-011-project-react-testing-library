@@ -1,15 +1,10 @@
 import { fireEvent } from '@testing-library/react';
 import React from 'react';
 import App from '../App';
-// import Pokedex from '../components/Pokedex';
+import data from '../data';
 import renderWithRouter from './renderWithRouter';
 
 describe('Testa o componente <Pokedex.js />', () => {
-  // const { history } = renderWithRouter(<App />);
-  // afterEach(() => {
-  //   history.push('/');
-  // });
-
   it('Testa se página contém um heading h2 com o texto "Encountered pokémons".', () => {
     const { queryByText } = renderWithRouter(<App />);
     expect(queryByText('Encountered pokémons')).toBeInTheDocument();
@@ -18,16 +13,14 @@ describe('Testa o componente <Pokedex.js />', () => {
   it('Teste se é exibido o próximo Pokémon quando o Próximo pokémon é clicado.', () => {
     const { getByTestId, queryByText } = renderWithRouter(<App />);
     const nextPokemonButton = getByTestId('next-pokemon');
-    // const nextPokemon = jest.spyOn(Pokedex, 'nextPokemon');
     const pokemon = queryByText(/Pikachu/);
     fireEvent.click(nextPokemonButton);
     expect(pokemon).toHaveTextContent('Charmander');
-    // expect(nextPokemon).toBeCalled(1);
   });
 
   it('Testa se é mostrado apenas um Pokémon por vez.', () => {
-    const { getByTestId } = renderWithRouter(<App />);
-    expect(getByTestId('pokemon-name')).toBeInTheDocument(1);
+    // const { getByTestId } = renderWithRouter(<App />);
+    // fireEvent.click();
   });
 
   it('Testa se a Pokédex tem os botões de filtro.', () => {
@@ -47,15 +40,23 @@ describe('Testa o componente <Pokedex.js />', () => {
   });
 
   it('Testa se é criado botão de filtro para cada tipo de Pokémon.', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText('All')).toBeInTheDocument();
-    expect(getByText('Fire')).toBeInTheDocument();
-    expect(getByText('Psychic')).toBeInTheDocument();
-    // expect(getAllByText(/Electric/)).toBeInTheDocument();
-    expect(getByText('Bug')).toBeInTheDocument();
-    expect(getByText('Poison')).toBeInTheDocument();
-    expect(getByText('Dragon')).toBeInTheDocument();
-    expect(getByText('Normal')).toBeInTheDocument();
+    const { getAllByTestId } = renderWithRouter(<App />);
+
+    const pokemonTypes = data.reduce((acc, { type }) => {
+      if (acc.some((element) => element === type)) {
+        return acc;
+      }
+      acc.push(type);
+      return acc;
+    }, []);
+
+    const typeButtonList = getAllByTestId('pokemon-type-button');
+
+    typeButtonList
+      .forEach((button) => {
+        expect(button.textContent)
+          .toContain(pokemonTypes.filter((type) => type === button.textContent));
+      });
   });
 
   it('O botão de Próximo deve ser desabilitado quando a lista tiver um pokémon.', () => {
