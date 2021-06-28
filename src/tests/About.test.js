@@ -3,7 +3,7 @@ import { getByAltText, screen } from '@testing-library/react';
 import { About } from '../components';
 import renderWithRouter from './renderWithRouter';
 
-describe('Bateria de testes referente ao componente About', () => {
+describe('Test battery for the About component', () => {
   test('Verifica se a página contém um heading h2', () => {
     const { container } = renderWithRouter(<About />);
 
@@ -11,14 +11,14 @@ describe('Bateria de testes referente ao componente About', () => {
     expect(tagHeading).toBeInTheDocument();
   });
 
-  test('Verifica se existe um título com o texto "About PokéDex"', () => {
+  test('Check if there is a title with the text "About PokéDex"', () => {
     renderWithRouter(<About />);
 
     const titleOfPage = screen.queryByText(/about pokédex/i);
     expect(titleOfPage).toBeInTheDocument();
   });
 
-  test('Verifica se a página contém dois parágrafos com texto sobre a Pokédex', () => {
+  test('Check if the page contains two paragraphs with text about Pokédex', () => {
     const { container } = renderWithRouter(<About />);
 
     const tagParagraph = container.querySelectorAll('p');
@@ -29,7 +29,7 @@ describe('Bateria de testes referente ao componente About', () => {
     expect(tagParagraph[1].textContent.length).toBeGreaterThan(0);
   });
 
-  test('Verifica se a página contém uma imagem específica de uma Pokédex', () => {
+  test('Checks if the page contains a specific image of a Pokédex', () => {
     renderWithRouter(<About />);
 
     const imageOfPokedex = screen.getByAltText('Pokédex');
