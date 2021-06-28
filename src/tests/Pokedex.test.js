@@ -1,8 +1,6 @@
 import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
-// import Pokedex from '../components/Pokedex';
 import App from '../App';
 import pokemons from '../data';
 
@@ -44,7 +42,7 @@ describe('Checks Pokedex component', () => {
       }
     });
   });
-  it('Checks if theres a reset buttn with the text All', () => {
+  it('Checks if theres a reset button with the text All', () => {
     const { getByTestId } = renderWithRouter(<App />);
     const allBtn = screen.getByRole('button', { name: /All/i });
     expect(allBtn).toBeInTheDocument();
