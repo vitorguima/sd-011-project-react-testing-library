@@ -1,8 +1,6 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
-import { updateFavoritePokemons } from '../services/pokedexService';
 
 const matchTest = {
   isExact: true,
@@ -13,8 +11,8 @@ const matchTest = {
   url: '/pokemons/25',
 };
 
-let favortieByID = {
-  25: false 
+const favortieByID = {
+  25: false,
 };
 
 const pokemon = [
@@ -41,14 +39,6 @@ const pokemon = [
     summary: 'This intelligent Pokémon roasts hard',
   },
 ];
-
-function isFavoritePokemon() {
-  favortieByID = {
-    25: true,
-  };
-
-  return favortieByID;
-}
 
 describe('When render PokemonDetails', () => {
   it('have a text whit "<name> Details"', () => {
@@ -100,7 +90,7 @@ describe('When render PokemonDetails', () => {
       />,
     );
     const paragraphSummary = getByText('This intelligent Pokémon roasts hard');
-    expect(paragraphSummary.innerHTML).toBe('This intelligent Pokémon roasts hard');
+    expect(paragraphSummary).toBeInTheDocument();
   });
 });
 
@@ -148,6 +138,17 @@ describe('When render Detais, have a location area', () => {
     });
 
     it('click on favorite', () => {
+      // let favoriteByIdTest = {
+      //   25: false,
+      // };
+
+      // function changeFavorite() {
+      //   favoriteByIdTest = {
+      //     25: true,
+      //   };
+      //   return favoriteByIdTest;
+      // }
+
       const { getByRole } = renderWithRouter(
         <PokemonDetails
           isPokemonFavoriteById={ favortieByID }
