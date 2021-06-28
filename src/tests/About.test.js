@@ -3,13 +3,13 @@ import { render } from '@testing-library/react';
 import { About } from '../components';
 
 test('show infos about pokedex', () => {
-  const { getByTestId } = render(<About />);
-  expect(getByTestId('about-pokedex')).toHaveTextContent('About Pokédex');
+  const { getByText } = render(<About />);
+  expect(getByText('About Pokédex')).toBeInTheDocument();
 });
 
-test('show infos about pokedex', () => {
+test('show two p', () => {
   const { getAllByRole } = render(<About />);
-  expect(getAllByRole('p').length).toBe(2);
+  expect(getAllByRole('dialog').length).toBe(2);
 });
 
 test('show img', () => {
