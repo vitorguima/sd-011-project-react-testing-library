@@ -4,8 +4,12 @@ import { About } from '../components';
 
 test('show infos about pokedex', () => {
   const { getByTestId } = render(<About />);
-  expect(getByTestId('about-pokedex')).toBeInTheDocument();
   expect(getByTestId('about-pokedex')).toHaveTextContent('About Pokédex');
+});
+
+test('show infos about pokedex', () => {
+  const { getAllByRole } = render(<About />);
+  expect(getAllByRole('p').length).toBe(2);
 });
 
 test('show img', () => {
