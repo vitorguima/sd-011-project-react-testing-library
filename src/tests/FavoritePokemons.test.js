@@ -44,7 +44,7 @@ describe('Testing Requirement 03 - Component FavoritePokemons.js', () => {
     expect(getByText('Average weight: 2.9 kg')).toBeInTheDocument();
     const imageCaterpie = getByAltText(`${favorites[0].name} sprite`);
     expect(imageCaterpie).toBeInTheDocument();
-    expect(imageCaterpie.src).toBe(favorites[0].image);
+    expect(imageCaterpie).toHaveAttribute('src', favorites[0].image);
 
     // pikachu
     expect(getByText('Pikachu')).toBeInTheDocument();
@@ -52,6 +52,6 @@ describe('Testing Requirement 03 - Component FavoritePokemons.js', () => {
     expect(getByText('Average weight: 6.0 kg')).toBeInTheDocument();
     const imagePikachu = getByAltText(`${favorites[1].name} sprite`);
     expect(imagePikachu).toBeInTheDocument();
-    expect(imagePikachu.src).toBe(favorites[1].image);
+    expect(imagePikachu).toHaveAttribute('src', favorites[1].image);
   });
 });
