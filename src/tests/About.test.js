@@ -14,4 +14,11 @@ describe('Teste o componente About', () => {
     const parag = container.querySelectorAll('h2');
     expect(parag.length).toBe(1);
   });
+
+  it('Teste se a página contém a seguinte URL de uma Pokédex', () => {
+    const { getByRole } = render(<About />);
+    const url = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const img = getByRole('img');
+    expect(img.src).toContain(url);
+  });
 });
