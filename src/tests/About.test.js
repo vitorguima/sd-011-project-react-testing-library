@@ -10,7 +10,7 @@ describe('<About.js /> component testing', () => {
 
   it('contains h2 heading with the text "About Pokédex"', () => {
     const { getByRole } = render(<About />);
-    const heading = getByRole('heading');
+    const heading = getByRole('heading', { level: 2 });
     expect(heading).toBeInTheDocument();
     expect(heading.textContent).toBe('About Pokédex');
   });

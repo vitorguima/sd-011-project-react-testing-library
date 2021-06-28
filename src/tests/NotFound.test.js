@@ -5,7 +5,7 @@ import NotFound from '../components/NotFound';
 describe('<NotFound.js /> component testing', () => {
   it('contains h2 heading with the text "Page requested not found 😭"', () => {
     const { getByRole } = render(<NotFound />);
-    const heading = getByRole('heading');
+    const heading = getByRole('heading', { level: 2 });
     expect(heading).toBeInTheDocument();
     expect(heading.textContent).toBe('Page requested not found 😭');
   });
