@@ -48,7 +48,7 @@ describe('Requirement number 2', () => {
     expect(weight).toHaveTextContent(
       `Average weight: ${WEIGHT} ${UNIT}`,
     );
-    const image = getByAltText('Pikachu sprite');
+    const image = getByAltText(/sprite/i);
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', FIRST_POKEMON.image);
   });
@@ -77,7 +77,7 @@ describe('Requirement number 2', () => {
       />,
     );
 
-    const icon = getByAltText('Pikachu is marked as favorite');
+    const icon = getByAltText(/ is marked as favorite/i);
     expect(icon).toBeInTheDocument();
     expect(icon).toHaveAttribute('src', '/star-icon.svg');
   });
