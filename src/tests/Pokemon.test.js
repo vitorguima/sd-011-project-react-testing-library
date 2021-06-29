@@ -9,10 +9,10 @@ test('when theres no pokemon', () => {
   );
   const { image, name, averageWeight, type, id } = pokemons[1];
   const { value, measurementUnit } = averageWeight;
+  const pw = getByTestId('pokemon-weight');
   expect(getByTestId('pokemon-name')).toHaveTextContent(name);
   expect(getByTestId('pokemon-type')).toHaveTextContent(type);
-  expect(getByTestId('pokemon-weight')).toHaveTextContent(`Average weight: 
-  ${value} ${measurementUnit}`);
+  expect(pw).toHaveTextContent(`Average weight: ${value} ${measurementUnit}`);
   expect(getByAltText(`${name} sprite`).src).toBe(image);
   expect(getByAltText(`${name} is marked as favorite`).src).toBe('http://localhost/star-icon.svg');
   expect(getByText('More details').href).toBe(`http://localhost/pokemons/${id}`);
