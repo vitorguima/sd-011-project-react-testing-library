@@ -55,7 +55,8 @@ describe('', () => {
     const { unmount } = build(MEW_ID, false);
 
     const favoritePokemonCheckboxLabel = screen.getByText('Pokémon favoritado?');
-    const favoritePokemonCheckboxInput = favoritePokemonCheckboxLabel.querySelector('input');
+    const favoritePokemonCheckboxInput = favoritePokemonCheckboxLabel
+      .querySelector('input');
 
     expect(onUpdateFavoritePokemons).toBeCalledTimes(0);
 
