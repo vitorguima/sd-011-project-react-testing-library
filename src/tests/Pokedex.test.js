@@ -69,4 +69,15 @@ describe('Tests requisito 5', () => {
       fireEvent.click(nextPokemonButton);
     });
   });
+
+  // it('tests if All button is selected by default after page loads', () => {
+  //   const { getByRole } = renderWithRouter(<App />);
+
+  //   const allButton = getByRole('button', { name: /all/i });
+  //   const functionAllButton = async () => {
+  //     onload = await fireEvent.click(allButton);
+  //   };
+
+  //   expect(afterEach(functionAllButton)).toBeCalled();
+  // });
 });
