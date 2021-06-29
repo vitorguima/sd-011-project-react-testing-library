@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, act, fireEvent, within } from '@testing-library/react';
+import { screen, act, fireEvent } from '@testing-library/react';
 import { Pokedex } from '../components';
 import renderWithRouter from '../components/renderWithRouter';
 import pokemons from '../data';
@@ -14,14 +14,14 @@ const { click } = fireEvent;
 describe('First part of tests related to the Pokédex component.', () => {
   test(`Checks if the page contains an 'h2' heading
   with the text 'Encountered pokemons'.`, () => {
-    const { getByTestId } = renderWithRouter(
+    renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ {} }
       />,
     );
-    const { getByText } = within(getByTestId('tag-title-encountered-pokemons'));
-    expect(getByText(/encountered pokémons/i)).toBeInTheDocument();
+    const getByText = screen.getByText(/encountered pokémons/i);
+    expect(getByText).toBeInTheDocument();
   });
 
   test(`Test whether the 'next Pokémon' in the list is displayed

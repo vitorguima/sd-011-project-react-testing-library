@@ -71,11 +71,7 @@ class Pokedex extends React.Component {
 
     return (
       <div className="pokedex">
-        <h2
-          data-testid="tag-title-encountered-pokemons"
-        >
-          {`Encountered pokémons`}
-        </h2>
+        <h2>{`Encountered pokémons`}</h2>
         <Pokemon
           pokemon={ pokemon }
           isFavorite={ isPokemonFavoriteById[pokemon.id] }
