@@ -69,7 +69,7 @@ describe('Testando o componente Pokedex', () => {
     const dragon = getAllByRole('button', {
       name: /dragon/i,
     });
-  
+
     const buttonAll = getByRole('button', {
       name: /all/i,
     });
