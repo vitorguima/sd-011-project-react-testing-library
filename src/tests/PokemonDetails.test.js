@@ -4,6 +4,10 @@ import PokemonDetails from '../components/PokemonDetails';
 import renderWithRouter from '../renderWithRouter';
 import Data from '../data';
 
+const POKEMONS = Data;
+const ON_UPDATE = function onUpdateFavoritePokemons(pokemonId, isFavorite) {
+  ID_FAVORITE[pokemonId] = isFavorite;
+};
 describe('Requirement number 2', () => {
   const ID_FAVORITE = {
     4: false,
@@ -23,10 +27,6 @@ describe('Requirement number 2', () => {
     params: {
       id: '25',
     },
-  };
-  const POKEMONS = Data;
-  const ON_UPDATE = function onUpdateFavoritePokemons(pokemonId, isFavorite) {
-    ID_FAVORITE[pokemonId] = isFavorite;
   };
 
   it('should shows datails', () => {
