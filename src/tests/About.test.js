@@ -12,11 +12,9 @@ describe('Requisito 2 - Teste o componente <About/>', () => {
 
   it('Teste se a página contém 2 paragrafos de texto', () => {
     const { getByText } = renderWithRouter(<About />);
-    const text1 = getByText(`This application simulates a Pokédex,
-     a digital encyclopedia containing all Pokémons`);
+    const text1 = getByText('This application simulates a Pokédex', { exact: false });
     expect(text1).toBeInTheDocument();
-    const text2 = getByText(`One can filter Pokémons by type,
-     and see more details for each one of them`);
+    const text2 = getByText('One can filter Pokémons by type, and see', { exact: false });
     expect(text2).toBeInTheDocument();
   });
 
