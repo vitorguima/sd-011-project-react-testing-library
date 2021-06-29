@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, getAllByRole } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/dom';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
