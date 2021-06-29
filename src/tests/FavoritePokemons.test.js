@@ -10,10 +10,10 @@ describe('Testando o componente <FavoritePokemons.js />', () => {
     const { getByText } = render(<FavoritePokemons />);
 
     // Interact the elements if necessary.
-    const noFavorites = getByText(/No favorite/i);
+    const msg = getByText(/No favorite pokemon found/i);
 
     // Check if match.
-    expect(noFavorites).toHaveTextContent(/No favorite/i);
+    expect(msg).toBeInTheDocument();
   });
 
   it('Verifica se exibe todos os cards de pokémons favoritados', () => {
