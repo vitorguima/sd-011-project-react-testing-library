@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';/* o que faz a renderWithRouter? */
 
-describe('Testing the App component', () => {
+describe('Test the App component', () => {
   it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
@@ -16,7 +16,7 @@ describe('Testing the App component', () => {
   });
 
   it('Testing if Home is rendered on URL "/"', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { getByText, history } = renderWithRouter(<App />);/* pq eu tenho que reenderizar a app? */
     const home = getByText(/Home/i);
     fireEvent.click(home);
     const homePath = history.location.pathname;
