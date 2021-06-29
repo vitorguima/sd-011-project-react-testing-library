@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 
 describe('Requisito 5 - Teste o componente <Pokedex/>', () => {
@@ -75,15 +75,14 @@ describe('Requisito 5 - Teste o componente <Pokedex/>', () => {
     expect(buttonNext.disabled).toBe(true);
   });
   it('Testa se a Pokédex tem um botão para resetar o filtro', () => {
-    const { getByTestId } = renderWithRouter(
+    const { getByText, getByTestId } = renderWithRouter(
       <Pokedex
         pokemons={ pokemons }
         isPokemonFavoriteById={ {} }
       />,
     );
-    const buttonAll = getByTestId('');
+    const buttonAll = getByText('All');
     expect(buttonAll).toBeInTheDocument();
-    expect(buttonAll).toHaveTextContent('All');
     fireEvent.click(buttonAll);
     let pokemonName = getByTestId(name);
     expect(pokemonName).toHaveTextContent(/Pikachu/);
