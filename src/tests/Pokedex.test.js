@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from './renderWithRouter';
 import Pokedex from '../components/Pokedex';
 
 describe('Requisito 5 - Teste o componente <Pokedex/>', () => {
