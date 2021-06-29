@@ -1,6 +1,6 @@
 import React from 'react';
 import { within } from '@testing-library/react';
-import renderWithRoute from './renderWithRouter';
+import renderWithRoute from '../components/renderWithRouter';
 import { NotFound } from '../components';
 
 describe('', () => {

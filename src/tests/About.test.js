@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, within } from '@testing-library/react';
 import { About } from '../components';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../components/renderWithRouter';
 
 describe('Test battery for the About component', () => {
   test('Checks if the page contains a heading h2 with the text About Pokédex.', () => {
