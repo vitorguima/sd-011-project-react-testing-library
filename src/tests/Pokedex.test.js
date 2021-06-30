@@ -91,7 +91,7 @@ describe('Teste o componente <Pokedex.js />', () => {
     const normaltype = getByText(/Normal/);
     // clica no mesmo
     fireEvent.click(normaltype);
-    const nextPokemon = getByText(/Próximo pokémon/);
-    expect(nextPokemon).toBeDisabled();
+    const nextPokemon = getByText(/Próximo pokémon/i);
+    expect(nextPokemon.closest('button')).toHaveAttribute('disabled');
   });
 });
