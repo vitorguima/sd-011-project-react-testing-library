@@ -43,13 +43,3 @@ describe('Checks Pokemon component', () => {
     expect(favoritePokemon).toHaveAttribute('src', '/star-icon.svg');
   });
 });
-
-/*
-
-O ícone deve ser uma imagem com o atributo src contendo o caminho /star-icon.svg;
-
-A imagem deve ter o atributo alt igual a <pokemon> is marked as favorite, onde <pokemon> é o nome do Pokémon exibido.
-
-O que será verificado:
-
-Será avaliado se o arquivo teste Pokemon.test.js contemplam 100% dos casos de uso criados pelo Stryker. */
