@@ -22,7 +22,7 @@ test('Testa se é exibido todos os cards de pokémons favoritados', () => {
   userEvent.click(favoriteLink);
   history.push('/favorites');
 
-  expect(getByText(/Charmander/i)).toBeInTheDocument();
+  expect(getByText(/Pikachu/i)).toBeInTheDocument();
 });
 
 test('Testa se **nenhum** card de pokémon é exibido, caso não favoritado', () => {
