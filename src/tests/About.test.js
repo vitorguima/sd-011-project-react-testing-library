@@ -1,6 +1,5 @@
 import React from 'react';
-import { MemoryRouter, Route } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import About from '../components/About';
 
 test('Testa se a página contém informações sobre a Pokédex', () => {
