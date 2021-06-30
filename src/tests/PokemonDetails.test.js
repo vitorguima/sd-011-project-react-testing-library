@@ -5,7 +5,7 @@ import App from '../App';
 
 describe('Test pokemonDetails component', () => {
   it('Teste se infos do Pokémon selecionado são mostradas na tela.', () => {
-     // Access the screen elements.
+    // Access the screen elements.
     const { getByText } = renderWithRouter(<App />);
 
     // Interact the elements if necessary.
