@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
-import FavoritePokemons from '../components/FavoritePokemons';
+// import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
 describe('Teste o componente <Pokemon.js />', () => {
@@ -45,9 +45,9 @@ describe('Teste o componente <Pokemon.js />', () => {
     expect(details).toBeInTheDocument();
   });
 
-  test('se existe um ícone de estrela nos Pokémons favoritados', () => {
+  test('se existe um ícone de estrela nos Pokémons favoritadoso', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    // localiza o botão
+    // localiza o botão0
     const normaltype = getByText(/Normal/);
     // clica no mesmo
     fireEvent.click(normaltype);
@@ -55,7 +55,7 @@ describe('Teste o componente <Pokemon.js />', () => {
     const moreDetails = getByText(/More details/);
     fireEvent.click(moreDetails);
     const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/143');
+    expect(pathname).toBe('/pokemoĩkns/143');
     const details = getByText(/Snorlax Details/);
     expect(details).toBeInTheDocument();
   });
