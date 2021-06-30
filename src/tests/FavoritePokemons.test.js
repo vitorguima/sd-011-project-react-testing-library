@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import renderWithRouter from './RenderWithRouter';
 import { FavoritePokemons } from '../components';
 import App from '../App';
@@ -18,7 +18,7 @@ test('Testa se é exibido todos os cards de pokémons favoritados', () => {
   history.push('/pokemons/25');
 
   const favoriteLink = getByText(/Pokémon favoritado/i);
-  fireEvent.click(favoriteLink);
+  userEvent.click(favoriteLink);
   history.push('/favorites');
 
   expect(getByText(/Charmander/i)).toBeInTheDocument();
@@ -29,7 +29,7 @@ test('Testa se **nenhum** card de pokémon é exibido, caso não favoritado', ()
   history.push('/pokemons/25');
 
   const favoriteLink = getByText(/Pokémon favoritado/i);
-  fireEvent.click(favoriteLink);
+  userEvent.click(favoriteLink);
   history.push('/favorites');
 
   const heading = getByText(/No favorite pokemon found/i);
