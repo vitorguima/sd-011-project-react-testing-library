@@ -38,7 +38,7 @@ describe('Requisito 5 - componente Pokedex', () => {
       expect(buttonType).toBeInTheDocument();
     });
   });
-  test('', () => {
+  test('Se o botão de próximo pokemon é desabilitado', () => {
     const { queryAllByTestId, getByTestId } = renderWithRouter(<App />);
     const buttonsType = queryAllByTestId('pokemon-type-button');
     const buttonNext = getByTestId('next-pokemon');
