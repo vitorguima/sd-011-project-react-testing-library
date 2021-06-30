@@ -15,4 +15,7 @@ describe('Requisito 03: Teste o componente <FavoritePokemons.js />', () => {
   });
 });
 
-// Requisito feito com a ajuda do @Leo Funabashi
+// Requisito feito com a ajuda do @Léo Funabashi
+// Macete ensinado pelo @Léo Funabashi: seguir o passo a passo do que um
+// usuário faria para chegar até um determinado local do site, aplicando os
+// testes aprendidos no conteúdo.
