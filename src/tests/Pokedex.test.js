@@ -72,4 +72,10 @@ describe('Teste dos componentes do <Pokedex.js/>',
         const charmander = getByAltText('Charmander sprite');
         expect(charmander).toBeInTheDocument();
       });
+    it('Criado, dinamicamente, um botão de filtro para cada tipo de Pokémon', () => {
+      const { getAllByTestId } = renderWithRouter(<App />);
+      const buttons = getAllByTestId('pokemon-type-button');
+      const numOfButtons = 7;
+      expect(buttons.length).toBe(numOfButtons);
+    });
   });
