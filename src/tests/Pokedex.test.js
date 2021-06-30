@@ -62,12 +62,12 @@ describe('Teste dos componentes do <Pokedex.js/>',
 
     it('Teste se a Pokédex contém um botão para resetar o filtro',
       () => {
-        const { getByText, getByAltText, getByTestId } = renderWithRouter(<App />);
+        const { getByText, getByAltText } = renderWithRouter(<App />);
         const allButton = getByText(/All/);
         fireEvent.click(allButton);
         const pikachu = getByAltText('Pikachu sprite');
         expect(pikachu).toBeInTheDocument();
-        const nextButton = getByTestId('next-pokemon');
+        const nextButton = getByText(/Próximo pokémon/);
         fireEvent.click(nextButton);
         const charmander = getByAltText('Charmander sprite');
         expect(charmander).toBeInTheDocument();
