@@ -2,15 +2,6 @@ import React from 'react';
 import { About } from '../components';
 import renderWithRouter from './RenderWithRouter';
 
-// test('Testa se a página contém informações sobre a Pokédex', () => {
-//   const { history } = renderWithRouter(<About />);
-//   const routeAbout = '/about';
-//   history.push(routeAbout);
-
-//   const container = getByText(/This application simulates a Pokédex/);
-//   expect(container).toBeInTheDocument();
-// });
-
 test('Testa se a página contém um heading `h2` com o texto `About Pokédex`', () => {
   const { getByRole } = renderWithRouter(<About />);
   const heading = getByRole('heading', {
