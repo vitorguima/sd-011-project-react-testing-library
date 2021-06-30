@@ -59,4 +59,17 @@ describe('Teste dos componentes do <Pokedex.js/>',
       verrifyFilter('Electric');
       verrifyFilter('Normal');
     });
+
+    it('Teste se a Pokédex contém um botão para resetar o filtro',
+      () => {
+        const { getByText, getByAltText, getByTestId } = renderWithRouter(<App />);
+        const allButton = getByText(/All/);
+        fireEvent.click(allButton);
+        const pikachu = getByAltText('Pikachu sprite');
+        expect(pikachu).toBeInTheDocument();
+        const nextButton = getByTestId('next-pokemon');
+        fireEvent.click(nextButton);
+        const charmander = getByAltText('Charmander sprite');
+        expect(charmander).toBeInTheDocument();
+      });
   });
