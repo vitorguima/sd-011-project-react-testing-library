@@ -1,8 +1,8 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import RenderWithRouter from '../RenderWithRouter';
 
 describe('Teste o componente FavoritePokemons', () => {
   it('Teste caso não haja um pokemon favorito', () => {
@@ -11,7 +11,11 @@ describe('Teste o componente FavoritePokemons', () => {
   });
 
   it('Teste se é exibido todos os cards de pokémons favoritos', () => {
-    const { getByText, container, getAllByRole } = RenderWithRouter(<App />);
+    const { getByText, container, getAllByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
 
     const moreDetails = getByText(/More details/i);
     fireEvent.click(moreDetails);
@@ -19,14 +23,13 @@ describe('Teste o componente FavoritePokemons', () => {
     const favoriteCheckbox = getByText(/Pokémon favoritado?/i);
     fireEvent.click(favoriteCheckbox);
 
-    const favoriteList = getByText(/FavoritePokemons/i);
+    const favoriteList = getByText(/Favorite Pokémons/i);
     fireEvent.click(favoriteList);
 
     const image = getAllByRole('img');
     expect(image.length).toBe(2);
 
     const info = container.querySelectorAll('p');
-    console.log(info);
 
     const expectLengthOfTagP = 3;
     expect(info.length).toBe(expectLengthOfTagP);
