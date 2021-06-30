@@ -1,5 +1,5 @@
 import React from 'react';
-import { userEvent } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from './RenderWithRouter';
 import { FavoritePokemons } from '../components';
 import App from '../App';
@@ -11,6 +11,7 @@ test('Teste se é exibido na tela a mensagem `No favorite pokemon found`', () =>
   expect(heading).toBeInTheDocument();
 });
 
+//
 // https://testing-library.com/docs/ecosystem-user-event/
 
 test('Testa se é exibido todos os cards de pokémons favoritados', () => {
