@@ -4,8 +4,8 @@ import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 import renderWhithRouter from '../renderWithRouter';
 
-describe('Requisito 01', () => {
-  test('Deve mostrar o Pokédex quando a rota é `/', () => {
+describe('Requisito 01 teste App', () => {
+  it('Deve mostrar o Pokédex quando a rota é `/', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/'] }>
         <App />
@@ -14,7 +14,7 @@ describe('Requisito 01', () => {
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
-  test('Deve mostrar três links fixos de navegação quando a rota é `/', () => {
+  it('Deve mostrar três links fixos de navegação quando a rota é `/', () => {
     const { getByText } = renderWhithRouter(<App />);
     const homeLink = getByText('Home');
     const aboutLink = getByText('About');
@@ -24,28 +24,28 @@ describe('Requisito 01', () => {
     expect(favoritePokemonsLink).toBeInTheDocument();
   });
 
-  test('Deve redenrizar a pagina Home após clicar', () => {
+  it('Deve redenrizar a pagina Home após clicar', () => {
     const { getByText, history } = renderWhithRouter(<App />);
     fireEvent.click(getByText('Home'));
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
 
-  test('Verifica se a aplicação é redirecioda para a pagina About', () => {
+  it('Verifica se a aplicação é redirecioda para a pagina About', () => {
     const { getByText, history } = renderWhithRouter(<App />);
     fireEvent.click(getByText('About'));
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
-  test('Deve redirecionar para a pagina de Pokémons Favoritados', () => {
+  it('Deve redirecionar para a pagina de Pokémons Favoritados', () => {
     const { getByText, history } = renderWhithRouter(<App />);
     fireEvent.click(getByText('Favorite Pokémons'));
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
 
-  test('Deve redirecionar para a pagina `Not Found`', () => {
+  it('Deve redirecionar para a pagina `Not Found`', () => {
     const { getByText, history } = renderWhithRouter(<App />);
     history.push('not-found');
     const noMatch = getByText('Page requested not found');
