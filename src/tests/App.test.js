@@ -1,58 +1,59 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { render, fireEvent } from '@testing-library/react';
 import renderRouter from '../renderRouter';
 import App from '../App';
 
-describe('Testando o component App.', () => {
-  it('Verifica se a página principal é renderizada ao carregar no caminho "/"', () => {
-    const { getByText } = renderRouter(<App />);
-    const title = getByText(/Encountered pokémons/i);
-    expect(title).toBeInTheDocument();
+escribe('Teste dos componentes do <App.js/>', () => {
+  it('renders a reading with the text `Pokédex`', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const heading = getByText(/Pokédex/i);
+    expect(heading).toBeInTheDocument();
   });
 
-  it('Verifica se o topo da página contém links de navegação.', () => {
-    const { getByText } = renderRouter(<App />);
-    const home = getByText(/home/i);
-    const about = getByText(/about/i);
-    const favoritePokemons = getByText(/favorite pokémons/i);
-
-    expect(home).toBeInTheDocument();
-    expect(about).toBeInTheDocument();
-    expect(favoritePokemons).toBeInTheDocument();
+  it('Teste se a página principal da Pokédex é renderizada no caminho de URL', () => {
+    const { history } = renderRouter(<App />);
+    const url = history.location.pathname;
+    expect(url).toBe('/');
   });
 
-  it('Verifica se redireciona para "/" quando clica em Home.', () => {
-    const { getByText, history } = renderRouter(<App />);
-    const home = getByText(/home/i);
+  it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
+    const { getAllByRole } = renderRouter(<App />);
+    const link = getAllByRole('link');
+    expect(link[0].innerHTML).toBe('Home');
+    expect(link[1].innerHTML).toBe('About');
+    expect(link[2].innerHTML).toBe('Favorite Pokémons');
+  });
 
+  it('A aplicação redireciona para a página inicial, na URL /  ao clicar em Home', () => {
+    const { history, getByRole } = renderRouter(<App />);
+    const home = getByRole('link', { name: 'Home' });
     fireEvent.click(home);
-    const homeURL = history.location.pathname;
-    expect(homeURL).toBe('/');
+    expect(history.location.pathname).toBe('/');
   });
 
-  it('Verifica se redireciona para "/about" quando clica em About', () => {
-    const { getByText, history } = renderRouter(<App />);
-    const about = getByText(/About/i);
-
+  it('A aplicação redireciona para a página About, na URL /  ao clicar em About', () => {
+    const { history, getByRole } = renderRouter(<App />);
+    const about = getByRole('link', { name: 'About' });
     fireEvent.click(about);
-    const aboutURL = history.location.pathname;
-    expect(aboutURL).toBe('/about');
+    expect(history.location.pathname).toBe('/about');
   });
 
-  it('Verifica se redireciona para "/favorites" quando clica em Favorite Pokémon', () => {
-    const { getByText, history } = renderRouter(<App />);
-    const favoritePokemons = getByText(/favorite pokémons/i);
-
-    fireEvent.click(favoritePokemons);
-    const favoritePokemonsURL = history.location.pathname;
-    expect(favoritePokemonsURL).toBe('/favorites');
+  it('Redireciona para Pokémons Favoritados, na URL /  ao clicar em favorites', () => {
+    const { history, getByRole } = renderRouter(<App />);
+    const favorites = getByRole('link', { name: 'Favorite Pokémons' });
+    fireEvent.click(favorites);
+    expect(history.location.pathname).toBe('/favorites');
   });
 
-  it('Verifica se redireciona para a página Not Found se a URL for desconhecida', () => {
-    const { getByText, history } = renderRouter(<App />);
-
-    history.push('/pagina/que-nao-existe');
-    const notFoundMsg = getByText(/Page requested not found/i);
-    expect(notFoundMsg).toBeInTheDocument();
+  it('Redireciona para a página Not Found ao entrar em uma URL desconhecida.', () => {
+    const { history, getByText } = renderRouter(<App />);
+    history.push('*');
+    const text = getByText(/not found/);
+    expect(text).toBeInTheDocument();
   });
 });
