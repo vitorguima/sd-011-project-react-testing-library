@@ -1,6 +1,6 @@
 import React from 'react';
-import renderRouter from '../renderRouter';
 import { fireEvent } from '@testing-library/react';
+import renderRouter from '../renderRouter';
 import App from '../App';
 
 describe('Testando o component App.', () => {
