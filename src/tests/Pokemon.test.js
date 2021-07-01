@@ -33,4 +33,12 @@ test('este se ao clicar no link de navegação do Pokémon, redireciona', () => 
   expect(redirect).toBe('/pokemons/25');
 });
 
-test(' Teste se existe um ícone de estrela nos Pokémons favoritados', () => { });
+test(' Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+  const { getByText, getByAltText } = renderWithRouter(<App />);
+  const link = getByText(/More Details/i);
+  userEvent.click(link);
+  const linkFavorite = getByText(/Pokémon favoritado ?/i);
+  userEvent.click(linkFavorite);
+  const star = getByAltText(/Pikachu is marked as favorite/i);
+  expect(star.src).toContain('/star-icon.svg');
+});
