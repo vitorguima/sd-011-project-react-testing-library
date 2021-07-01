@@ -44,3 +44,16 @@ it('render About when clicked', () => {
   const { location: { pathname } } = history;
   expect(pathname).toBe('/about');
 });
+
+it('render Favorite Pokémons when clicked', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('Favorite Pokémons'));
+  const { location: { pathname } } = history;
+  expect(pathname).toBe('/favorites');
+});
+
+it('render Not Found when the path doenst', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  history.push('/notfound');
+  expect(getByText('Page requested not found')).toBeInTheDocument();
+});
