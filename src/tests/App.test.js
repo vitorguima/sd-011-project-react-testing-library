@@ -1,8 +1,8 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';/* o que faz a MemoryRouter? */
+import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
-import renderWithRouter from '../renderWithRouter';/* o que faz a renderWithRouter? */
+import renderWithRouter from '../renderWithRouter';
 
 describe('Test the App component', () => {
   it('renders a reading with the text `Pokédex`', () => {
@@ -16,7 +16,7 @@ describe('Test the App component', () => {
   });
 
   it('Testing if Home is rendered on URL "/"', () => {
-    const { getByText, history } = renderWithRouter(<App />);/* pq eu tenho que reenderizar a app? */
+    const { getByText, history } = renderWithRouter(<App />);
     const home = getByText(/Home/i);
     fireEvent.click(home);
     const homePath = history.location.pathname;
