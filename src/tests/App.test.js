@@ -30,3 +30,17 @@ it('The page should render the home, About and Favorite Pokemons links.', () => 
   expect(getByText('About')).toBeInTheDocument();
   expect(getByText('Favorite Pokémons')).toBeInTheDocument();
 });
+
+it('render Home when clicked', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('Home'));
+  const { location: { pathname } } = history;
+  expect(pathname).toBe('/');
+});
+
+it('render About when clicked', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  fireEvent.click(getByText('About'));
+  const { location: { pathname } } = history;
+  expect(pathname).toBe('/about');
+});
