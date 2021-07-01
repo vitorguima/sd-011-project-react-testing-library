@@ -11,15 +11,15 @@ test('Teste se é exibido na tela a mensagem, se não tiver pokémons favoritos.
 });
 
 test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
-  const { getByText, getByRole, history } = renderWithRouter(<App />);
+  const { getByText, getByRole } = renderWithRouter(<App />);
   const moreDetails = getByText(/More details/i);
   fireEvent.click(moreDetails);
   const clickFavorite = getByRole('checkbox');
+  expect(clickFavorite).not.toBeChecked();
   fireEvent.click(clickFavorite);
+  expect(clickFavorite).toBeChecked();
   const goToFavPoke = getByText(/Favorite Pokémons/i);
   fireEvent.click(goToFavPoke);
-  const { pathname } = history.location;
-  expect(pathname).toBe('/favorites');
   const averageWeight = getByText(/Average weight/i);
   expect(averageWeight).toBeInTheDocument();
 });
