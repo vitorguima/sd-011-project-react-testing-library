@@ -53,9 +53,11 @@ test('Testa se redireciona para a página de "About", na URL "/about"', () => {
 });
 
 test('Teste se redireciona página de `Pokémons Favoritados`, na URL `/favorites`', () => {
-  const { getByText, history } = renderWithRouter(<App/>);
-  const linkFavorites = getByText(/Favorite pokémons/);
-  fireEvent.click(linkFavorites);
-  const url = history.location.pathname;
-  expect(url).toBe('/favorites');
+  const { getByText, history, getByRole } = renderWithRouter(<App />);
+  const linkFavorites = getByRole('link', { name: /Favorite Pokémons/i });
+  userEvent.click(linkFavorites);
+  const urlFavorite = history.location.pathname;
+  const Favorites = getByText('Favorite Pokémons');
+  expect(urlFavorite).toBe('/favorites');
+  expect(Favorites).toBeInTheDocument();
 });
