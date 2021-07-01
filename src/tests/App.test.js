@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/dom';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './RenderWithRouter';
 
@@ -31,11 +31,13 @@ test('Testa os links do topo', () => {
 });
 
 test('Testa o redirecionamento na url "/" ao clicar em "Home"', () => {
-  const { getByText, history } = renderWithRouter(<App />);
-  const linkHome = getByText(/Home/);
-  fireEvent.click(linkHome);
+  const { getByText, getByRole, history } = renderWithRouter(<App />);
+  const linkHome = getByRole('link', { name: /Home/i });
+  userEvent.click(linkHome);
   const url = history.location.pathname;
+  const heading = getByText(/Pokédex/i);
   expect(url).toBe('/');
+  expect(heading).toBeInTheDocument();
 });
 
 test('Testa se redireciona para a página de "About", na URL "/about"', () => {
@@ -51,7 +53,7 @@ test('Testa se redireciona para a página de "About", na URL "/about"', () => {
 });
 
 test('Teste se redireciona página de `Pokémons Favoritados`, na URL `/favorites`', () => {
-  const { getByText, history } = renderWithRouter(<App />);
+  const { getByText, history } = renderWithRouter(<App/>);
   const linkFavorites = getByText(/Favorite pokémons/);
   fireEvent.click(linkFavorites);
   const url = history.location.pathname;
