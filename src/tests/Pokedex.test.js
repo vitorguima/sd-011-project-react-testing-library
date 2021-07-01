@@ -64,9 +64,9 @@ describe('Teste o componente <Pokedex.js />', () => {
     });
   it('Ao carregar a página, o filtro selecionado deverá ser All', () => {
     const { getByRole, getByText } = renderWithRouter(<App />);
-    const btnType = getByRole('button', { name: /All/i });
+    const btnTypeAll = getByRole('button', { name: /All/i });
     const btnNextPokemon = getByRole('button', { name: /Próximo pokémon/i });
-    fireEvent.click(btnType);
+    fireEvent.click(btnTypeAll);
     pokemons.forEach(({ name }) => {
       expect(getByText(name)).toBeInTheDocument();
       fireEvent.click(btnNextPokemon);
