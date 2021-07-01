@@ -15,19 +15,19 @@ test('renders a reading with the text `Pokédex` ', () => {
 });
 
 test('links in nav with text `Home`, `About` and `Favorite Pokémons`', () => {
-  const { getAllByTestId } = render(
+  const { getByText } = render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
   );
 
-  const firstLink = getAllByTestId('nav-link')[0];
-  const secondLink = getAllByTestId('nav-link')[1];
-  const thirdLink = getAllByTestId('nav-link')[2];
+  const firstLink = getByText(/Home/);
+  const secondLink = getByText(/About/);
+  const thirdLink = getByText(/Favorite Pokémons/);
 
-  expect(firstLink).toHaveTextContent(/Home/);
-  expect(secondLink).toHaveTextContent(/About/);
-  expect(thirdLink).toHaveTextContent(/Favorite Pokémons/);
+  expect(firstLink).toBeInTheDocument();
+  expect(secondLink).toBeInTheDocument();
+  expect(thirdLink).toBeInTheDocument();
 });
 
 test('link `Home` redirect to href `/`', () => {
