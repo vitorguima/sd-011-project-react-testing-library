@@ -5,12 +5,12 @@ import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
 
 describe('Teste o componente FavoritePokemons', () => {
-  it('Teste caso não haja um pokemon favorito', () => {
+  it('Teste caso não haja um pokemon favorito.', () => {
     const { getByText } = render(<FavoritePokemons />);
     expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
   });
 
-  it('Teste se é exibido todos os cards de pokémons favoritos', () => {
+  it('Teste se é exibido todos os cards de pokémons favoritos.', () => {
     const { getByText, container, getAllByRole } = render(
       <MemoryRouter>
         <App />
