@@ -2,35 +2,29 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import About from '../components/About';
 
-describe('Testando o componente About', () => {
-  it('Verifica se a página contém as informações sobre a Pokédex', () => {
+describe('Teste dos componentes do <About.js/>', () => {
+  it('Teste se a página contém as informações sobre a Pokédex', () => {
     const { getByText } = render(<About />);
-    const info = getByText(/This application simulates a Pokédex/i);
-    expect(info).toBeInTheDocument();
+    const text = getByText(/This application simulates/);
+    expect(text).toBeInTheDocument();
   });
 
-  it('Verifica se a página contém um "h2" com o texto "About Pokémon"', () => {
-    const { getByRole, getByText } = render(<About />);
-    const checkHeading = getByRole('heading', { level: 2 });
-    const title = getByText(/About Pokédex/i);
-    expect(checkHeading).toBeInTheDocument();
-    expect(title).toBeInTheDocument();
-    expect(checkHeading.innerHTML).toMatch('About Pokédex');
-  });
-
-  it('Verifica se a página contém dois parágrafos com texto sobre a Pokédex', () => {
-    const { getByText } = render(<About />);
-    const firstParagraph = getByText(/This application simulates a Pokédex/i);
-    const secondParagraph = getByText(/One can filter Pokémons by type/i);
-    expect(firstParagraph).toBeInTheDocument();
-    expect(secondParagraph).toBeInTheDocument();
-  });
-
-  it('Verifica se a página contém uma imagem de uma Pokédex', () => {
+  it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
     const { getByRole } = render(<About />);
-    const img = getByRole('img');
-    const url = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    expect(img).toBeInTheDocument();
-    expect(img.src).toContain(url);
+    const title = getByRole('heading', { level: 2, name: 'About Pokédex' });
+    expect(title).toBeInTheDocument();
+  });
+
+  it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
+    const { getAllByText } = render(<About />);
+    const paragraph = getAllByText(/s/);
+    expect(paragraph.length).toEqual(2);
+  });
+
+  it('Teste se a página contém uma determinada imagem ', () => {
+    const { getByRole } = render(<About />);
+    const image = getByRole('img');
+    expect(image.src).toContain('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
+
