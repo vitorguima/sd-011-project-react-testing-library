@@ -6,3 +6,5 @@ it('render message `No favorite pokemon found`', () => {
   const { getByText } = renderWithRouter(<FavotitePokemons />);
   expect(getByText('No favorite pokemon found')).toBeInTheDocument();
 });
+
+// test is passing but dont know why
