@@ -120,5 +120,7 @@ describe('Teste o componente <Pokemon.js />', () => {
     // verifica o src pelo alt
     const AverageWeight = getByText(/Average weight: 460.0 kg/);
     expect(AverageWeight).toBeInTheDocument();
+    const normal = getByText(/Normal/);
+    expect(normal).toBeInTheDocument();
   });
 });
