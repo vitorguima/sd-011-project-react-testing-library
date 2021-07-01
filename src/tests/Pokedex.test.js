@@ -105,7 +105,6 @@ describe('Teste o componente "Pokedex.js"', () => {
       expect(typePokemomBtn).toBeInTheDocument();
       userEvent.click(btnNextPokemon);
     }
-
     const pokemonTypeBtns = getAllByTestId('pokemon-type-button');
     expect(pokemonTypeBtns.length).toBe(typeQuantaty);
   });
