@@ -34,6 +34,7 @@ test('Testa o redirecionamento na url "/" ao clicar em "Home"', () => {
   const { getByText, getByRole, history } = renderWithRouter(<App />);
   const linkHome = getByRole('link', { name: /Home/i });
   userEvent.click(linkHome);
+
   const url = history.location.pathname;
   const heading = getByText(/Pokédex/i);
   expect(url).toBe('/');
@@ -41,15 +42,14 @@ test('Testa o redirecionamento na url "/" ao clicar em "Home"', () => {
 });
 
 test('Testa se redireciona para a página de "About", na URL "/about"', () => {
-  const { getByText, history } = renderWithRouter(<App />);
-  const linkAbout = getByText(/About/i);
-  fireEvent.click(linkAbout);
+  const { getByText, history, getByRole } = renderWithRouter(<App />);
+  const linkAbout = getByRole('link', { name: /about/i });
+  userEvent.click(linkAbout);
 
   const urlAbout = history.location.pathname;
+  const headingAbout = getByText(/about pokédex/i);
   expect(urlAbout).toBe('/about');
-
-  const aboutPage = getByText(/About Pokédex/);
-  expect(aboutPage).toBeInTheDocument();
+  expect(headingAbout).toBeInTheDocument();
 });
 
 test('Teste se redireciona página de `Pokémons Favoritados`, na URL `/favorites`', () => {
