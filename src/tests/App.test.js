@@ -1,8 +1,7 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
+// import userEvent from '@testing-library/user-event';
 import App from '../App';
-import About from '../components/About';
-import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from './RenderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -11,14 +10,14 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-it('Testa se renderiza a rota "/"', () => {
+test('Testa se renderiza a rota "/"', () => {
   renderWithRouter(<App />);
 
   const mainText = screen.getByText(/Encountered pokémons/i);
   expect(mainText).toBeInTheDocument();
 });
 
-it('Testa os links do topo', () => {
+test('Testa os links do topo', () => {
   renderWithRouter(<App />);
 
   const firstLink = screen.getByText(/Home/i);
@@ -31,7 +30,7 @@ it('Testa os links do topo', () => {
   expect(thirdLink).toBeInTheDocument();
 });
 
-it('Testa o redirecionamento na url "/" ao clicar em "Home"', () => {
+test('Testa o redirecionamento na url "/" ao clicar em "Home"', () => {
   const { getByText, history } = renderWithRouter(<App />);
   const linkHome = getByText(/Home/);
   fireEvent.click(linkHome);
@@ -39,8 +38,8 @@ it('Testa o redirecionamento na url "/" ao clicar em "Home"', () => {
   expect(url).toBe('/');
 });
 
-it('Testa se redireciona para a página de "About", na URL "/about"', () => {
-  const { getByText, history } = renderWithRouter(<About />);
+test('Testa se redireciona para a página de "About", na URL "/about"', () => {
+  const { getByText, history } = renderWithRouter(<App />);
   const linkAbout = getByText(/About/i);
   fireEvent.click(linkAbout);
 
@@ -51,8 +50,8 @@ it('Testa se redireciona para a página de "About", na URL "/about"', () => {
   expect(aboutPage).toBeInTheDocument();
 });
 
-it('Teste se redireciona página de `Pokémons Favoritados`, na URL `/favorites`', () => {
-  const { getByText, history } = renderWithRouter(<FavoritePokemons />);
+test('Teste se redireciona página de `Pokémons Favoritados`, na URL `/favorites`', () => {
+  const { getByText, history } = renderWithRouter(<App />);
   const linkFavorites = getByText(/Favorite pokémons/);
   fireEvent.click(linkFavorites);
   const url = history.location.pathname;
