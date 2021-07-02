@@ -1,56 +1,52 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { fireEvent } from '@testing-library/dom';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
-test('O nome e o tipo correto do pokémon aparece na tela', () => {
-  const { getByText, getAllByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByText(/pikachu/i)).toBeInTheDocument();
-  expect(getAllByText(/eletric/i)).toHaveLength(2);
-});
+describe('Test the component Pokemon', () => {
+  it('Test appears a card with the infos about a specified Pokémon ', () => {
+    const { getByAltText, getByTestId } = renderWithRouter(<App />);
 
-test('O peso medio do pokémon deve ser exibido', () => {
-  const { getByTestId } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByTestId('pokemon-weight').innerHTML).toBe('Average weigth:6.0kg');
-});
+    const namePokemon = getByTestId('pokemon-name');
+    expect(namePokemon).toHaveTextContent('Pikachu');
+    expect(namePokemon).toBeInTheDocument();
 
-test('A imagem deve conter um atributo src com URL da imagem do pokémon', () => {
-  const { getByRole, getByAltText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByRole('img').src).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
-  expect(getByAltText('Pikachu sprite')).toBeInTheDocument();
-});
+    const typePokemon = getByTestId('pokemon-type');
+    expect(typePokemon).toHaveTextContent('Electric');
+    expect(typePokemon).toBeInTheDocument();
 
-test('O pokemon exibido na Pokedex deve conter um link nav', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const pokemonLink = getByText(/more details/i);
-  expect(pokemonLink).toHaveAttribute('href', '/pokemons/25');
-});
+    const averageweightPokemon = getByTestId('pokemon-weight');
+    expect(averageweightPokemon).toHaveTextContent('Average weight: 6.0 kg');
+    expect(averageweightPokemon).toBeInTheDocument();
 
-test('Pokemons favoritados devem exibir ícone de uma estrela', () => {
-  const { getByText, getByAltText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  fireEvent.click(getByText(/more details/i));
-  fireEvent.click(getByText(/pokémon favoritado/i));
-  const favoritePokemon = getByAltText(/Pikachu is marked as favorite/i);
-  expect(favoritePokemon).toBeInTheDocument();
-  expect(favoritePokemon.src).toBe('http://localhost/star-icon.svg');
+    const img = getByAltText('Pikachu sprite');
+    const urlImg = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
+    expect(img).toHaveAttribute('src', urlImg);
+    expect(img).toHaveAttribute('alt', 'Pikachu sprite');
+  });
+
+  it('Test if More Details of Pokemon is rendered', () => {
+    const { getByText, history, getByRole, container } = renderWithRouter(<App />);
+
+    const details = getByText('More details');
+    expect(details).toBeInTheDocument();
+    fireEvent.click(details);
+
+    const pathName = history.location.pathname;
+    expect(pathName).toBe('/pokemons/25');
+
+    const checkboxButton = getByRole('checkbox');
+    expect(checkboxButton).toBeInTheDocument();
+    fireEvent.click(checkboxButton);
+
+    const redirect = getByText('Home');
+    fireEvent.click(redirect);
+
+    const favoriteIcon = container.querySelector('.favorite-icon');
+    expect(favoriteIcon).toBeInTheDocument();
+
+    const urlIcon = '/star-icon.svg';
+    expect(favoriteIcon).toHaveAttribute('src', urlIcon);
+    expect(favoriteIcon).toHaveAttribute('alt', 'Pikachu is marked as favorite');
+  });
 });
