@@ -1,19 +1,19 @@
 import React from 'react';
-import NotFound from '../components';
+import { screen } from '@testing-library/react';
 import renderWithRouter from '../components/renderWithRouter';
+import { NotFound } from '../components';
 
-describe('Test the <NotFound.js /> component', () => {
-  it('Test if page contains an h2 and the text Page requested not found', () => {
-    const { getByRole } = renderWithRouter(<NotFound />);
-    const messageDisplay = getByRole('heading', { level: 2 });
+describe('Test the NotFound component', () => {
+  test('Test if page contains an h2 and the text Page requested not found', () => {
+    renderWithRouter(<NotFound />);
 
-    expect(messageDisplay).toHaveTextContent(/Page requested not found/i);
-  });
+    const notFoundText = screen.getByRole(
+      'heading',
+      { level: 2, name: 'Page requested not found Crying emoji' },
+    );
+    const notFoundImage = screen.getAllByRole('img');
 
-  it('Test if image not found', () => {
-    const { getByAltText } = renderWithRouter(<NotFound />);
-    const notFoundIcon = getByAltText(/Pikachu crying/i);
-
-    expect(notFoundIcon).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
+    expect(notFoundText).toBeDefined();
+    expect(notFoundImage[1].src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
