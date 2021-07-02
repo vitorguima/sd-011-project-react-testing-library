@@ -1,24 +1,24 @@
-import userEvent from "@testing-library/user-event";
-import React from "react";
-import renderWithRouter from "../../renderWithRouter";
-import App from "../App";
-import pokemons from "../data";
+import userEvent from '@testing-library/user-event';
+import React from 'react';
+import renderWithRouter from '../../renderWithRouter';
+import App from '../App';
+import pokemons from '../data';
 
-const buttonNext = (getByText) => getByText("Próximo pokémon");
+const buttonNext = (getByText) => getByText('Próximo pokémon');
 
-describe("testing Pokedex component", () => {
+describe('testing Pokedex component', () => {
   test('contain a heading h2 with the text "Encountered pokémons"', () => {
     const { getByRole } = renderWithRouter(<App />);
 
-    const heading2 = getByRole("heading", { level: 2 });
+    const heading2 = getByRole('heading', { level: 2 });
     expect(heading2).toBeInTheDocument();
-    expect(heading2).toHaveTextContent("Encountered pokémons");
+    expect(heading2).toHaveTextContent('Encountered pokémons');
   });
 
-  test("shows next pokemon when the button is clicked", () => {
+  test('shows next pokemon when the button is clicked', () => {
     const { getByText, getAllByTestId } = renderWithRouter(<App />);
 
-    const buttonType = getAllByTestId("pokemon-type-button")[1];
+    const buttonType = getAllByTestId('pokemon-type-button')[1];
     expect(buttonType).toBeInTheDocument();
     userEvent.click(buttonType);
 
@@ -33,34 +33,34 @@ describe("testing Pokedex component", () => {
     expect(getByText(/charmander/i)).toBeInTheDocument();
   });
 
-  test("shows only one pokemon", () => {
+  test('shows only one pokemon', () => {
     const { getByText, container } = renderWithRouter(<App />);
 
-    const pokemonsShown = container.querySelectorAll(".pokemon");
+    const pokemonsShown = container.querySelectorAll('.pokemon');
     expect(pokemonsShown.length).toBe(1);
 
     userEvent.click(buttonNext(getByText));
     expect(pokemonsShown.length).toBe(1);
   });
 
-  test("testing filter buttons", () => {
+  test('testing filter buttons', () => {
     const { getByText, getAllByTestId } = renderWithRouter(<App />);
 
     const typesPokemon = [
-      "Electric",
-      "Fire",
-      "Bug",
-      "Poison",
-      "Psychic",
-      "Normal",
-      "Dragon",
+      'Electric',
+      'Fire',
+      'Bug',
+      'Poison',
+      'Psychic',
+      'Normal',
+      'Dragon',
     ];
 
     for (let index = 0; index < typesPokemon; index += 1) {
-      const button = getAllByTestId("pokemon-type-button")[index];
+      const button = getAllByTestId('pokemon-type-button')[index];
       expect(button).toBeInTheDocument();
       const filteredPokemons = pokemons.filter(
-        (pokemon) => pokemon.type === typesPokemon[index]
+        (pokemon) => pokemon.type === typesPokemon[index],
       );
       filteredPokemons.forEach((pokemon) => {
         expect(getByText(pokemon.name)).toBeInTheDocument();
@@ -70,9 +70,9 @@ describe("testing Pokedex component", () => {
     }
   });
 
-  test("testing button All", () => {
+  test('testing button All', () => {
     const { getByText } = renderWithRouter(<App />);
-    const buttonAll = getByText("All");
+    const buttonAll = getByText('All');
     expect(buttonAll).toBeInTheDocument();
     expect(buttonNext(getByText)).toBeInTheDocument();
 
@@ -89,7 +89,7 @@ describe("testing Pokedex component", () => {
     checksButtonAll();
   });
 
-  test("button to next pokemon must be disabled", () => {
+  test('button to next pokemon must be disabled', () => {
     const { getByText } = renderWithRouter(<App />);
 
     const buttonType = getByText(/Bug/i);
