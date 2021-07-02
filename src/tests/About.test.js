@@ -1,7 +1,3 @@
-it('Verifica se a página contém um h2 com o texto "Page requested not found 😭"', () => {
-  return 1;
-});
+// describe('Componente </About>', () => {
 
-it('Verifica se a página contém uma imagem específica', () => {
-  return 1;
-});
+// });
