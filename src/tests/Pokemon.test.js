@@ -15,3 +15,12 @@ it('cotains card with all pokemons informations', () => {
     fireEvent.click(getByText('Próximo pokémon'));
   });
 });
+
+it('contains link to Pokemon details', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  expect(getByText('More details')).toBeInTheDocument();
+  fireEvent.click(getByText('Próximo pokémon'));
+  fireEvent.click(getByText('More details'));
+  const { location: { pathname } } = history;
+  expect(pathname).toBe('/pokemons/4');
+});
