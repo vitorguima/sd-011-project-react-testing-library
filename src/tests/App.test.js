@@ -93,6 +93,7 @@ describe('App tests', () => {
         <App />
       </MemoryRouter>,
     );
+
     expect(getByText('Page requested not found')).toBeInTheDocument();
   });
 });
