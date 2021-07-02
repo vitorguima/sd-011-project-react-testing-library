@@ -4,6 +4,9 @@ import App from '../App';
 import data from '../data';
 import renderWithRouter from '../renderWithRouter';
 
+// for this tests I consulted filizzola's repo
+// https://github.com/tryber/sd-011-project-react-testing-library/blob/filizzola-testing-library/src/tests/Pokedex.test.js
+
 it('contains `Encountered pokémons`, `Próximo pokémon` button and each pokemon', () => {
   const { getByText } = renderWithRouter(<App />);
   const next = getByText('Próximo pokémon');
