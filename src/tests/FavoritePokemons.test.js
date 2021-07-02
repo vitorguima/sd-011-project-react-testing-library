@@ -1,19 +1,18 @@
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from '../components/renderWithRouter';
 import React from 'react';
+import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
 import { FavoritePokemons } from '../components';
 
-
-describe('Renders favorites Pokémons', () => {
-  it('renders a text "No favorite pokemon found"', () => {
+describe('Test the <FavoritePokemons.js />', () => {
+  it('Test message display if do not have favorite pokemons.', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons />);
-    const message = getByText(/No favorite pokemon found/i);
+    const messageDisplay = getByText(/No favorite pokemon found/i);
 
-    expect(message).toBeInTheDocument();
+    expect(messageDisplay).toBeInTheDocument();
   });
 
-  it('renders favorited pokemon when requested"', () => {
+  it('test all favorite pokemon cards exinbition', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
 
     userEvent.click(getByText('Home'));
@@ -21,12 +20,12 @@ describe('Renders favorites Pokémons', () => {
     userEvent.click(getByText('Pokémon favoritado?'));
     userEvent.click(getByText('Favorite Pokémons'));
 
-    const pokemon = getByTestId('pokemon-name');
+    const pokemonName = getByTestId('pokemon-name');
 
-    expect(pokemon).toBeInTheDocument();
+    expect(pokemonName).toBeInTheDocument();
   });
 
-  it('renders a message when no Pokémon is favorited', () => {
+  it('Test card not showing if card is not favorited.', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
 
     expect(getByText('No favorite pokemon found')).toBeInTheDocument();
