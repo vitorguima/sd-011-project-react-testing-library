@@ -4,7 +4,7 @@ import App from '../App';
 import data from '../data';
 import renderWithRouter from '../renderWithRouter';
 
-it('cotains card with all pokemons informations', () => {
+it('contains card with all pokemons informations', () => {
   const { getByTestId, getByText, getByAltText } = renderWithRouter(<App />);
   data.forEach((pokemon) => {
     expect(getByTestId('pokemon-name')).toHaveTextContent(pokemon.name);
@@ -18,9 +18,18 @@ it('cotains card with all pokemons informations', () => {
 
 it('contains link to Pokemon details', () => {
   const { getByText, history } = renderWithRouter(<App />);
-  expect(getByText('More details')).toBeInTheDocument();
+  const details = getByText('More details');
+  expect(details).toBeInTheDocument();
   fireEvent.click(getByText('Próximo pokémon'));
-  fireEvent.click(getByText('More details'));
+  fireEvent.click(details);
   const { location: { pathname } } = history;
   expect(pathname).toBe('/pokemons/4');
+});
+
+it('contains a star svg when pokemon is favorite', () => {
+  const { getByText, getByAltText } = renderWithRouter(<App />);
+  fireEvent.click(getByText('More details'));
+  fireEvent.click(getByText('Pokémon favoritado?'));
+  expect(getByAltText('Pikachu is marked as favorite'))
+    .toHaveAttribute('src', '/star-icon.svg');
 });
