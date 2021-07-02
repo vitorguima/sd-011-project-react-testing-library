@@ -1,4 +1,5 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
@@ -14,11 +15,9 @@ test('Test screen favorite message pokemon found', () => {
 test('Test show cards pokemons favorite', () => {
   const { history, getAllByText, getByRole } = renderWithRouter(<App />);
   history.push('/pokemons/25');
-  const favoritado = getByRole('checkbox');
-  fireEvent.click(favoritado);
+  fireEvent.click(getByRole('checkbox'));
   history.push('/pokemons/4');
-  fireEvent.click(favoritado);
+  fireEvent.click(getByRole('checkbox'));
   history.push('/favorites');
-  const pokemon = getAllByText(/kg/i);
-  expect(pokemon.length).toEqual(2);
+  expect(getAllByText(/kg/i).length).toEqual(2);
 });

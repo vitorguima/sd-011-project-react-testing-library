@@ -4,6 +4,8 @@ import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
+const favoriteGlobal = 'Favorite Pokémons';
+
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
@@ -16,40 +18,33 @@ test('renders a reading with the text `Pokédex`', () => {
 
 test('Test navigation links', () => {
   const { getByRole } = renderWithRouter(<App />);
-  const home = getByRole('link', { name: 'Home' });
-  const about = getByRole('link', { name: 'About' });
-  const favorite = getByRole('link', { name: 'Favorite Pokémons' });
-  expect(home).toBeInTheDocument();
-  expect(about).toBeInTheDocument();
-  expect(favorite).toBeInTheDocument();
+  expect(getByRole('link', { name: 'Home' })).toBeInTheDocument();
+  expect(getByRole('link', { name: 'About' })).toBeInTheDocument();
+  expect(getByRole('link', { name: favoriteGlobal })).toBeInTheDocument();
 });
 test('Test navigation is correct', () => {
   const { getByText } = renderWithRouter(<App />);
-  const home = getByText('Home');
-  const about = getByText('About');
-  const favorite = getByText('Favorite Pokémons');
-  expect(home).toBeInTheDocument();
-  expect(about).toBeInTheDocument();
-  expect(favorite).toBeInTheDocument();
+  expect(getByText('Home')).toBeInTheDocument();
+  expect(getByText('About')).toBeInTheDocument();
+  expect(getByText(favoriteGlobal)).toBeInTheDocument();
 });
-it('Eender "Home"', () => {
+test('Eender "Home"', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText('Home'));
   expect(history.location.pathname).toBe('/');
 });
-it('Render "About"', () => {
+test('Render "About"', () => {
   const { getByText, history } = renderWithRouter(<App />);
   fireEvent.click(getByText('About'));
   expect(history.location.pathname).toBe('/about');
 });
-it('Render "Favorite Pokémons"', () => {
+test('Render "Favorite Pokémons"', () => {
   const { getByText, history } = renderWithRouter(<App />);
-  fireEvent.click(getByText('Favorite'));
+  fireEvent.click(getByText(favoriteGlobal));
   expect(history.location.pathname).toBe('/favorites');
 });
-it('Render "Not Found" not exist', () => {
+test('Render "Not Found" not exist', () => {
   const { getByText, history } = renderWithRouter(<App />);
   history.push('/path/random');
-  const notFound = getByText(/Page requested not found/i);
-  expect(notFound).toBeInTheDocument();
+  expect(getByText(/Page requested not found/i)).toBeInTheDocument();
 });
