@@ -23,7 +23,6 @@ describe('Teste o componente About.js', () => {
     const { container } = render(<About />);
 
     const paragraphPokedex = container.querySelectorAll('p');
-
     expect(paragraphPokedex.length).toBe(2);
   });
   it('Teste se a página contém uma imagem de uma Pokédex', () => {
