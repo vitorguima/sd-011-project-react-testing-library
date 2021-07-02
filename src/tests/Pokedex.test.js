@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { Pokedex } from '../components';
 import pokemons from '../data';
-import renderWithRouter from 'renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 const mockFavorite = {
   4: false,
@@ -15,6 +15,8 @@ const mockFavorite = {
   148: false,
   151: false,
 };
+
+const pLength = 7;
 
 test('Teste o componente Pokedex.js', () => {
   const { getByText } = renderWithRouter(
@@ -31,7 +33,8 @@ test('Teste o componente Pokedex.js', () => {
 
   expect(getByText('All')).toBeInTheDocument();
   expect(getByText('Próximo pokémon')).toBeInTheDocument();
-  expect(getAllByTestId('pokemon-type-button').length).toBe('7');
+  // no magic numbers (lint problems): https://eslint.org/docs/rules/no-magic-numbers
+  expect(getAllByTestId('pokemon-type-button').length).toBe(pLength);
 
   pokemons.map((pokemon) => {
     const { type } = pokemon;
