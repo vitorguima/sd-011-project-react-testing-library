@@ -1,14 +1,14 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import { fireEvent } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
 import pokedata from '../data';
 
 describe('Test if Pokémon component is properly rendered', () => {
   it('test is a card is rendered and contains specific pokemon informations', () => {
     const firstPokemon = pokedata[0];
-    const { name, type, averageWeight: { value, measurementUnit} } = firstPokemon;
+    const { name, type, averageWeight: { value, measurementUnit } } = firstPokemon;
     const { container, getByText, getByTestId } = renderWithRouter(
       <Pokemon pokemon={ firstPokemon } />,
     );
