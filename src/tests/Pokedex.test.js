@@ -30,7 +30,7 @@ describe('Test Pokédex Component', () => {
       const currentPokemon = getByTestId('pokemon-name');
 
       expect(elem).toBe(currentPokemon.textContent);
-      userEvent.click(getByTestId(btnNexttext));
+      userEvent.click(getByTestId(nextBtntext));
     });
   });
 
@@ -42,7 +42,7 @@ describe('Test Pokédex Component', () => {
       userEvent.click(elem);
       for (let i = 0; i < numberOfPokemons; i += 1) {
         expect(getByTestId('pokemon-type').textContent).toBe(elem.textContent);
-        userEvent.click(getByTestId(btnNexttext));
+        userEvent.click(getByTestId(nextBtntext));
       }
     });
   });

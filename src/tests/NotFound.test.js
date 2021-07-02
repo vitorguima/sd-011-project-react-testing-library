@@ -4,7 +4,7 @@ import renderWithRouter from '../components/renderWithRouter';
 import { NotFound } from '../components';
 
 describe('Test the NotFound component', () => {
-  test('Test if page contains an h2 and the text Page requested not found', () => {
+  it('Test if page contains an h2 and the text Page requested not found', () => {
     renderWithRouter(<NotFound />);
 
     const notFoundText = screen.getByRole(
