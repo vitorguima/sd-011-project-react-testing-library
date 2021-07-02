@@ -26,8 +26,6 @@ describe('Componente <favoritePokemons/>', () => {
 
   it('Teste se nenhum card de pokémon é exibido, se ele não estiver favoritado', () => {
     const { queryByText } = renderWithRouter(<FavoritePokemons />);
-    const pokemon = queryByText('Pikachu');
-
-    expect(pokemon).not.toBeInTheDocument();
+    expect(queryByText('Pikachu')).not.toBeInTheDocument();
   });
 });
