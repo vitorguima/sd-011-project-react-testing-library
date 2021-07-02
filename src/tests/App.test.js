@@ -3,22 +3,18 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
+test('if there are three links in page', () => {
   const { getByText } = render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
   );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+  const linkHome = getByText('Home');
+  const linkAbout = getByText('About');
+  const linkFavoritePokemons = getByText('Favorite Pokémons');
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  expect(linkHome).toBeInTheDocument();
+  expect(linkAbout).toBeInTheDocument();
+  expect(linkFavoritePokemons).toBeInTheDocument();
 });
