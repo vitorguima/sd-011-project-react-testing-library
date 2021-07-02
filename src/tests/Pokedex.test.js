@@ -109,4 +109,3 @@ describe('Teste o componente "Pokedex.js"', () => {
     expect(pokemonTypeBtns.length).toBe(typeQuantaty);
   });
 });
-
