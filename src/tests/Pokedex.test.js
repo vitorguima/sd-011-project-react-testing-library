@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { Pokedex } from '../components';
 import pokemons from '../data';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from 'renderWithRouter';
 
 const mockFavorite = {
   4: false,
