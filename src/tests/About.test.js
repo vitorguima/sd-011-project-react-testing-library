@@ -16,9 +16,7 @@ describe('Componente </About>', () => {
     const p = container.querySelectorAll('p');
 
     expect(p).toHaveLength(2);
-    p.forEach((pp) => {
-      expect(pp).toHaveTextContent(/./);
-    });
+    p.forEach((pp) => expect(pp).toHaveTextContent(/./));
   });
 
   it('Verifica se a página contém uma imagem com URL específica', () => {
