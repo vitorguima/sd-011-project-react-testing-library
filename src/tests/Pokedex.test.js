@@ -24,6 +24,8 @@ test('Teste o componente Pokedex.js', () => {
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  expect(getByText('All')).toBeInTheDocument();
+  expect(getByText('Próximo pokémon')).toBeInTheDocument();
 });
 
 test('Teste o componente Pokedex.js', () => {
@@ -31,8 +33,6 @@ test('Teste o componente Pokedex.js', () => {
     <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ mockFavorite } />,
   );
 
-  expect(getByText('All')).toBeInTheDocument();
-  expect(getByText('Próximo pokémon')).toBeInTheDocument();
   // no magic numbers (lint problems): https://eslint.org/docs/rules/no-magic-numbers
   expect(getAllByTestId('pokemon-type-button').length).toBe(pLength);
 
