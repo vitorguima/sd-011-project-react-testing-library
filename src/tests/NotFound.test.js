@@ -10,6 +10,7 @@ describe('Componente <NotFound/>', () => {
     expect(h2).toBeInTheDocument();
     expect(h2).toHaveTextContent('Page requested not found 😭');
   });
+
   it('Verifica se a página contém uma imagem com URL específica', () => {
     const { container } = render(<NotFound />);
     const img = container.querySelector('img');
