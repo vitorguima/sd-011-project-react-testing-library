@@ -42,5 +42,7 @@ describe('Testando Pokemon.js', () => {
     expect(image).toContainHTML('star-icon.svg');
     expect(image).toContainHTML('Alakazam is marked as favorite');
     expect(history.location.pathname).toBe(URL);
+
+    fireEvent.click(getByRole('checkbox'));
   });
 });
