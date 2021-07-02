@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 
 test('Teste o componente Pokemon.js', () => {
   const { getByText, getByAltText, getByTestId } = renderWithRouter(
-    <Pokemon pokemon={ pokemons } isFavorite />,
+    <Pokemon pokemon={ pokemons[1] } isFavorite />,
   );
 
   const { name, image, averageWeight, type, id } = pokemons[1];
