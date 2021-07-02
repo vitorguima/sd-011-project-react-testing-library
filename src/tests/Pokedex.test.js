@@ -34,6 +34,7 @@ test('Teste o componente Pokedex.js', () => {
   );
 
   // no magic numbers (lint problems): https://eslint.org/docs/rules/no-magic-numbers
+  // solution: make a variable to store the number
   expect(getAllByTestId('pokemon-type-button').length).toBe(pLength);
 
   pokemons.map((pokemon) => {
