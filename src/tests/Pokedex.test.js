@@ -1,8 +1,8 @@
 import React from 'react';
-import { Pokedex } from '../components';
 import { fireEvent } from '@testing-library/react';
+import { Pokedex } from '../components';
 import pokemons from '../data';
-import renderWithRouter from '../renderWithRouter';
+import renderWithRouter from './renderWithRouter';
 
 const mockFavorite = {
   4: false,
@@ -18,7 +18,7 @@ const mockFavorite = {
 
 test('Teste o componente Pokedex.js', () => {
   const { getByText } = renderWithRouter(
-    <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ mockFavorite } />
+    <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ mockFavorite } />,
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
@@ -26,7 +26,7 @@ test('Teste o componente Pokedex.js', () => {
 
 test('Teste o componente Pokedex.js', () => {
   const { getByText, getAllByTestId, getByRole } = renderWithRouter(
-    <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ mockFavorite } />
+    <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ mockFavorite } />,
   );
 
   expect(getByText('All')).toBeInTheDocument();
