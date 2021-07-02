@@ -42,4 +42,3 @@ describe('Testes para página "Favorite Pokémons"', () => {
     expect(foundDragonair).toBeInTheDocument();
   });
 });
-
