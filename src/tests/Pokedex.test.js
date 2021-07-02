@@ -4,67 +4,78 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
-const pokemonsName = pokemons.map(({ name }) => name);
-const numberOfPokemons = pokemonsName.length;
-const buttonNextPokemon = 'next-pokemom';
+const pokemonNames = pokemons.map(({ name }) => name);
+const numberOfPokemons = pokemonNames.length;
+const buttonNextPokemon = 'next-pokemon';
 
-test('page contains a heading h2 with the text "Encountered pokemons"', () => {
-  const { getByRole } = renderWithRouter(<App />);
-  expect(getByRole('heading', { level: 2 })).toHaveTextContent('Encountered pokémons');
-});
+describe('Test Pokédex', () => {
+  test('render a header with text "Encontered pokémons"', () => {
+    const { getByRole } = renderWithRouter(<App />);
 
-test('render pokemom one by one', () => {
-  const { getByTestId } = renderWithRouter(<App />);
-
-  pokemonsName.forEach((el) => {
-    const nameID = getByTestId('pokemon-name');
-
-    expect(el).toBe(nameID.textContent);
-    userEvent.click(getByTestId(buttonNextPokemon));
+    expect(getByRole('heading', { level: 2 })).toHaveTextContent('Encountered pokémons');
   });
-});
 
-test('render pokemon by type', () => {
-  const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
-  const pokemonTypeButton = getAllByTestId('pokemon-type-button');
+  test('the next pokemon when nextButton is clicked', () => {
+    const { getByTestId } = renderWithRouter(<App />);
 
-  pokemonTypeButton.forEach((el) => {
-    userEvent.click(el);
-    for (let index = 0; index < numberOfPokemons; index += 1) {
-      expect(getByTestId('pokemom-type').textContent).toBe(el.textContent);
-      userEvent.click(getByTestId(buttonNextPokemo));
-    }
+    const buttonNext = getByTestId(buttonNextPokemon);
+
+    expect(buttonNext).toHaveTextContent('Próximo pokémon');
   });
-});
 
-test('Pokédex contains a button to reset the filter', () => {
-  const { getByText, getByTestId } = renderWithRouter(<App />);
+  test('renders pokemons, one by one', () => {
+    const { getByTestId } = renderWithRouter(<App />);
 
-  expect(getByText('All')).toBeInTheDocument();
-  userEvent.click(getByText('All'));
+    pokemonNames.forEach((el) => {
+      const currPokemon = getByTestId('pokemon-name');
 
-  const displayedPokemom = [];
-
-  for (let index = 0; index < numberOfPokemons; index += 1) {
-    const nameID = getByTestId('pokemon-name').textContent;
-    displayedPokemom.push(nameID);
-    userEvent.click(getByTestId(buttonNextPokemon));
-  }
-  pokemons.forEach(({ name }) => {
-    const comparation = displayedPokemom.find((el) => el === name);
-    expect(comparation).toBe(name);
+      expect(el).toBe(currPokemon.textContent);
+      userEvent.click(getByTestId(buttonNextPokemon));
+    });
   });
-});
 
-test('a filter button is dynamically created for each type of Pokémon.', () => {
-  const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
-  const pokemonTypeButton = getAllByTestId('pokemon-type-button');
+  test('renders pokemons by type ', () => {
+    const { getByTestId, getAllByTestId } = renderWithRouter(<App />);
+    const pokemonTypeButton = getAllByTestId('pokemon-type-button');
 
-  pokemonTypeButton.forEach((el) => {
-    const currType = pokemons.filter(({ type }) => type === el.textContent);
-    if (currType.length === 1) {
+    pokemonTypeButton.forEach((el) => {
       userEvent.click(el);
-      expect(getByTestId(buttonNextPokemon)).toBeDisabled();
+      for (let index = 0; index < numberOfPokemons; index += 1) {
+        expect(getByTestId('pokemon-type').textContent).toBe(el.textContent);
+        userEvent.click(getByTestId(buttonNextPokemon));
+      }
+    });
+  });
+
+  test('Pokédex contains a button to reset the filter', () => {
+    const { getByText, getByTestId } = renderWithRouter(<App />);
+
+    expect(getByText('All')).toBeInTheDocument();
+    userEvent.click(getByText('All'));
+
+    const displayedPokemom = [];
+
+    for (let index = 0; index < numberOfPokemons; index += 1) {
+      const currPokemon = getByTestId('pokemon-name').textContent;
+      displayedPokemom.push(currPokemon);
+      userEvent.click(getByTestId(buttonNextPokemon));
     }
+    pokemons.forEach(({ name }) => {
+      const comparation = displayedPokemom.find((el) => el === name);
+      expect(comparation).toBe(name);
+    });
+  });
+
+  test('a filter button is dynamically created for each type of Pokémon.', () => {
+    const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
+    const pokemonTypeButton = getAllByTestId('pokemon-type-button');
+
+    pokemonTypeButton.forEach((el) => {
+      const currType = pokemons.filter(({ type }) => type === el.textContent);
+      if (currType.length === 1) {
+        userEvent.click(el);
+        expect(getByTestId(buttonNextPokemon)).toBeDisabled();
+      }
+    });
   });
 });
