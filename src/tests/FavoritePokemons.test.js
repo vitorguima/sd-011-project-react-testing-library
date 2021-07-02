@@ -24,9 +24,3 @@ test('Teste se é exibido todos os cards de pokémons favoritados.', () => {
 
   expect(pokemon).toBeInTheDocument();
 });
-
-test('Teste se nenhum card de pokémon é exibido, se ele não estiver favoritado.', () => {
-  const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
-
-  expect(getByText('No favorite pokemon found')).toBeInTheDocument();
-});
