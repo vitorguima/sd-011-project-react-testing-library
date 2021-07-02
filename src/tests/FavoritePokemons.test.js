@@ -11,7 +11,7 @@ describe('Teste o componente <FavoritePokemons.js />', () => {
     expect(noFavoriteMessage).toBeInTheDocument();
 
     const pokemonOverview = container.querySelector('.pokemon-overview');
-    expect(pokemonOverview).toBe(null);
+    expect(pokemonOverview).not.toBeInTheDocument();
   });
 
   it('Teste se é exibido todos os cards de pokémons favoritados', () => {
