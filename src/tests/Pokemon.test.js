@@ -99,4 +99,3 @@ describe('Teste do componente "Pokemon.js"', () => {
     expect(getImg[1].alt).toBe(`${name} is marked as favorite`);
   });
 });
-
