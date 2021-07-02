@@ -3,23 +3,25 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('Test App', () => {
+  test('renders a reading with the text `Pokédex`', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const heading = getByText(/Pokédex/i);
+    expect(heading).toBeInTheDocument();
+  });
 
-test('Pokédex is rendered when loading application in URL path /', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
-  expect(getByText('Home')).toBeInTheDocument();
-  expect(getByText('About')).toBeInTheDocument();
-  expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  test('Pokédex is rendered when loading application in URL path /', () => {
+    const { getByText } = render(
+      <MemoryRouter initialEntries={ ['/'] }>
+        <App />
+      </MemoryRouter>,
+    );
+    expect(getByText('Home')).toBeInTheDocument();
+    expect(getByText('About')).toBeInTheDocument();
+    expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  });
 });
