@@ -23,4 +23,18 @@ describe('Requisito 06 Pokemon', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
   });
+
+  it('Deve existir um icone com de estrelas nos pokemons favoritados', () => {
+    const { getAllByRole, getByRole } = renderWithRouter(<App />);
+
+    const linkDetails = getByRole('link', { name: /More details/ });
+    fireEvent.click(linkDetails);
+
+    const checkFavorite = getByRole('checkbox');
+    fireEvent.click(checkFavorite);
+
+    const imageStar = getAllByRole('img');
+    expect(imageStar[1].src).toContain('/star-icon.svg');
+    expect(imageStar[1].alt).toContain('Pikachu is marked as favorite');
+  });
 });
