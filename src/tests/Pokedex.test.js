@@ -1,9 +1,8 @@
 import React from 'react';
-import { fireEvent, getAllByText } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/dom';
 import renderWhithRouter from '../renderWithRouter';
 import App from '../App';
 import data from '../data';
-import { render } from 'react-dom';
 
 const idN = 'pokemon-name';
 
@@ -16,7 +15,7 @@ describe('Requisito 05 Pokedex', () => {
   });
 
   it('Deve exibir proximo pokémon ao clicar no botão', () => {
-    const { getByRole, getByTestId} = renderWhithRouter(<App />);
+    const { getByRole, getByTestId } = renderWhithRouter(<App />);
 
     const btn = getByRole('button', { name: /Próximo pokémon/ });
     const namePokemon = getByTestId(idN).textContent;
@@ -28,7 +27,7 @@ describe('Requisito 05 Pokedex', () => {
   it('Deve mostrar o primeiro pokemon da lista se estiver no ultimo', () => {
     const { getByRole, getByTestId } = renderWhithRouter(<App />);
 
-    const btnType =  getByRole('button', { name: /Fire/ });
+    const btnType = getByRole('button', { name: /Fire/ });
     const pokeType = getByTestId('pokemon-type');
     const button = getByRole('button', { name: /Próximo pokémon/ });
 
