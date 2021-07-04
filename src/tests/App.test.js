@@ -25,11 +25,11 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('testa se tem links', () => {
-  const { getByText } = render(<App />);
+  const { getByText } = renderWithRouter(<App />);
 
-  expect(getByText('Home')).toBeInTheDocument();
-  expect(getByText('About')).toBeInTheDocument();
-  expect(getByText('Favorite Pokémons')).toBeInTheDocument();
+  expect(getByText(/home/i)).toBeInTheDocument();
+  expect(getByText(/About/i)).toBeInTheDocument();
+  expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument();
 });
 
 test('Teste se a aplicação é redirecionada para a página inicial', () => {
