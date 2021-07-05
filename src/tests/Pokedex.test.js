@@ -97,7 +97,7 @@ describe('Testing Pokedex component', () => {
     );
     const filterButtons = getAllByTestId(pokemonTypeButton);
     filterButtons.forEach((filterButton) => {
-      if (filterButton.innerHTML === 'Eletric') fireEvent.click(filterButton);
+      if (filterButton.innerHTML === 'Electric') fireEvent.click(filterButton);
     });
     const pokemonName = getByTestId('pokemon-name');
     const nextPokemon = getByText(nextButton);
