@@ -49,3 +49,10 @@ describe('Test interactions on NavBar', () => {
       expect(pathname).toBe('/favorites');
     });
 });
+
+test('Test whether the application is redirected to a page not found',
+  () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/notfound');
+    expect(getByText('Page requested not found')).toBeInTheDocument();
+  });
