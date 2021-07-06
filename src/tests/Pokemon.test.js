@@ -7,6 +7,7 @@ test('Test the <Pokemon.js /> component', () => {
   const { getByText, getByAltText, getAllByText } = renderWithRouter(<App />);
   expect(getByText('Pikachu')).toBeInTheDocument();
   expect(getAllByText('Electric').length).toBe(2);
+  expect(getByText('Average weight: 6.0 kg')).toBeInTheDocument();
   const btn = getByText('More details');
   fireEvent.click(btn);
   const lbl = getByText('Pokémon favoritado?');
