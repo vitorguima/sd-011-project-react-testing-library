@@ -16,8 +16,9 @@ test('Test whether the next Pokémon in the list is displayed', () => {
 });
 
 test('Test if Pokédex has filter buttons', () => {
+  const numb = 7;
   const { getByText, getAllByTestId } = renderWithRouter(<App />);
-  getAllByTestId('pokemon-type-button');
+  expect(getAllByTestId('pokemon-type-button').length).toBe(numb);
   const btnPsychic = getByText('Psychic');
   const btnAll = getByText('All');
   fireEvent.click(btnPsychic);
