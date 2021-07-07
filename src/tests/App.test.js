@@ -91,3 +91,17 @@ describe('teste de rotas e renderização da página favorite Pokemons', () => {
     expect(title).toBeInTheDocument();
   });
 });
+
+describe('teste de rotas e renderização da página "not found"', () => {
+
+  it(
+    'Verifica se a página not found é renderizada ao acessar uma rota inexistente',
+    () => {
+      const { getByRole } = renderWithRouter(<App />, ['shalalala']);
+
+      const title = getByRole('heading', { level: 2, name: /not found/i });
+
+      expect(title).toBeInTheDocument();
+    },
+  );
+});
