@@ -4,7 +4,7 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('testing Pokemon Page', () => {
-  it('Teste se é renderizado um card com as informações de determinado pokémon', () => {
+  it('testing if theres a link to details', () => {
     const { getByRole, getByText, getByTestId } = renderWithRouter(<App />);
     const fireButton = getByRole('button', { name: /Fire/i });
     fireEvent.click(fireButton);
