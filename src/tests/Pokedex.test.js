@@ -24,7 +24,7 @@ const types = [
   'Electric', 'Fire', 'Bug', 'Poison', 'Psychic', 'Normal', 'Dragon',
 ];
 
-describe('Testando o componente Pokedex', () => {
+describe('Teste o componente <Pokedex.js />', () => {
   it('Se página contém um heading h2 com o texto Encountered pokémons"', () => {
     const { getByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favoritePokemons } />,
