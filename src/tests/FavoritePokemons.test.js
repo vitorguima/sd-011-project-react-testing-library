@@ -17,11 +17,11 @@ describe('FavoritePokemon tests', () => {
     expect(text).toBeInTheDocument();
   });
 
-  it('', () => {
-    const { getByRole, getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-  });
+  // it('', () => {
+  //   const { getByRole, getByText } = render(
+  //     <MemoryRouter>
+  //       <App />
+  //     </MemoryRouter>,
+  //   );
+  // });
 });
