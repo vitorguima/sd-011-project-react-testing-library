@@ -4,17 +4,16 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('PokemonDetails tests', () => {
-  const textDetails = 'more details';
   test('Tests if the selected Pokémons information is shown on the screen',
     () => {
       const { getByText, getByRole } = renderWithRouter(<App />);
-      const moreDetails = getByText(textDetails);
+      const moreDetails = getByText(/more details/i);
       fireEvent.click(moreDetails);
 
-      const pokeName = getByText('Pikachu Details');
+      const pokeName = getByText(/Pikachu Details/i);
       const textTitle = 'Summary';
       const heading = getByRole('heading', { level: 2, name: textTitle });
-      const detailsText = getByText('This intelligent Pokémon');
+      const detailsText = getByText(/This intelligent Pokémon/i);
 
       expect(pokeName).toBeInTheDocument();
       expect(heading).toHaveTextContent(textTitle);
@@ -26,13 +25,13 @@ describe('PokemonDetails tests', () => {
   test('Tests if there is a section on the page with maps with pokemons locations',
     () => {
       const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
-      const moreDetails = getByText(textDetails);
+      const moreDetails = getByText(/more details/i);
       fireEvent.click(moreDetails);
       const text = 'Game Locations of Pikachu';
       const textH2 = getByRole('heading', { level: 2, name: text });
-      const location1 = getByText('Kanto Viridian Forest');
-      const location2 = getByText('Kanto Power Plant');
-      const altText = getAllByAltText('pikachu location');
+      const location1 = getByText(/Kanto Viridian Forest/i);
+      const location2 = getByText(/Kanto Power Plant/i);
+      const altText = getAllByAltText(/pikachu location/i);
       const url1 = 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
       const url2 = 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png';
 
@@ -45,19 +44,19 @@ describe('PokemonDetails tests', () => {
       expect(altText[1].src).toBe(url2);
     });
 
-  test('Tests if the user can bookmark a pokemon through the details page.',
+  test('Tests if the user can bookmark a pokemon through the details page',
     () => {
       const { getByText, getByRole } = renderWithRouter(<App />);
-      const textDetails2 = getByText(textDetails);
-      fireEvent.click(textDetails2);
-      const favBtn = getByRole('checkbox');
-      const favText = getByText('Pokémon favoritado?');
-      expect(favBtn).not.toBeChecked();
-      fireEvent.click(favBtn);
-      expect(favBtn).toBeChecked();
-      fireEvent.click(favBtn);
-      expect(favBtn).not.toBeChecked();
-      expect(favBtn).toBeInTheDocument();
-      expect(favText).toBeInTheDocument();
+      const textDetails = getByText(/more details/i);
+      fireEvent.click(textDetails);
+      const favbtn = getByRole('checkbox');
+      const favTxt = getByText('Pokémon favoritado?');
+      expect(favbtn).not.toBeChecked();
+      fireEvent.click(favbtn);
+      expect(favbtn).toBeChecked();
+      fireEvent.click(favbtn);
+      expect(favbtn).not.toBeChecked();
+      expect(favbtn).toBeInTheDocument();
+      expect(favTxt).toBeInTheDocument();
     });
 });
