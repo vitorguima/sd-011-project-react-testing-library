@@ -6,20 +6,20 @@ import renderWithRouter from './renderWithRouter';
 test('Teste se é renderizado um card pokemon-name', () => {
   const { getByTestId } = renderWithRouter(<App />);
   const test = getByTestId('pokemon-name');
-  // console.log(test);
-  expect(test).toBeInTheDocument();
+  // console.log(test.innerHTML);
+  expect(test.innerHTML).toBe('Pikachu');
 });
 
 test('Teste se é renderizado um card pokemontype', () => {
   const { getByTestId } = renderWithRouter(<App />);
   const test = getByTestId('pokemon-type');
-  expect(test).toBeInTheDocument();
+  expect(test.innerHTML).toBe('Electric');
 });
 
 test('Teste se é renderizado um card- weight ', () => {
   const { getByTestId } = renderWithRouter(<App />);
   const test = getByTestId('pokemon-weight');
-  expect(test).toBeInTheDocument();
+  expect(test.innerHTML).toBe('Average weight: 6.0 kg');
 });
 
 test('testa se aparece a imagem', () => {
