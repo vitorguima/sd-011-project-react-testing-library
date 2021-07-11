@@ -19,19 +19,18 @@ test('testa botão se tem o texto', () => {
 test('test click ', () => {
   const { getByText } = renderWithRouter(<App />);
   const evento = fireEvent.click(getByText(/All/i));
-  console.log( evento );
+  // console.log(evento); não precisava do expect
   expect(evento).toBe(true);
-})
-
+});
 
 test('testa botão all', () => {
   const { getByRole } = renderWithRouter(<App />);
-  const btn = getByRole( 'button', { name : /All/i });
-    // expect(btn).not.toBeInTheDocument();
+  const btn = getByRole('button', { name: /All/i });
+  // expect(btn).not.toBeInTheDocument();
   expect(btn).toBeInTheDocument();
 });
 
-test ('testa se tem apenas um por vez', () => {
+test('testa se tem apenas um por vez', () => {
   const { container } = renderWithRouter(<App />);
   const pokemonLength = container.querySelectorAll('.pokemon');
   // console.log( ...pokemonLength );
@@ -44,15 +43,15 @@ test ('testa se tem apenas um por vez', () => {
   console.log(pokemonLength.length);
 }); */
 
-test ('testa se tem 7 botoes para filtro', () => {
+test('testa se tem 7 botoes para filtro', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
+  const numero = 7;
   const pokemonLength = getAllByTestId('pokemon-type-button');
   // console.log( pokemonLength.length );
-  expect(pokemonLength.length).toBe(7);
+  expect(pokemonLength.length).toBe(numero);
 });
-/////////////////////////////////////////////////////////////////////////////////
 
-test ('testa botões electric' , () => {
+test('testa botões electric', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const btn = getAllByRole('button', {
     name: /electric/i,
@@ -60,7 +59,7 @@ test ('testa botões electric' , () => {
   expect(btn.length).toBe(1);
 });
 
-test ('testa botões fire' , () => {
+test('testa botões fire', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const btn = getAllByRole('button', {
     name: /fire/i,
@@ -68,7 +67,7 @@ test ('testa botões fire' , () => {
   expect(btn.length).toBe(1);
 });
 
-test ('testa botões bug' , () => {
+test('testa botões bug', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const btn = getAllByRole('button', {
     name: /bug/i,
@@ -76,7 +75,7 @@ test ('testa botões bug' , () => {
   expect(btn.length).toBe(1);
 });
 
-test ('testa botões poison' , () => {
+test('testa botões poison', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const btn = getAllByRole('button', {
     name: /poison/i,
@@ -84,7 +83,7 @@ test ('testa botões poison' , () => {
   expect(btn.length).toBe(1);
 });
 
-test ('testa botões psychic ' , () => {
+test('testa botões psychic ', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const btn = getAllByRole('button', {
     name: /psychic/i,
@@ -92,7 +91,7 @@ test ('testa botões psychic ' , () => {
   expect(btn.length).toBe(1);
 });
 
-test ('testa botões normal' , () => {
+test('testa botões normal', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const btn = getAllByRole('button', {
     name: /normal/i,
@@ -100,7 +99,7 @@ test ('testa botões normal' , () => {
   expect(btn.length).toBe(1);
 });
 
-test ('testa botões dragon ' , () => {
+test('testa botões dragon ', () => {
   const { getAllByRole } = renderWithRouter(<App />);
   const btn = getAllByRole('button', {
     name: /dragon/i,
