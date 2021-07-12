@@ -1,4 +1,3 @@
-import { getAllByText } from '@testing-library/dom';
 import React from 'react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from '../renderWithRouter';
@@ -59,7 +58,7 @@ describe('Testa o componente <FavoritePokemons.js />', () => {
 
   it('Testa se é exibido todos os cards de pokémons favoritados', () => {
     const { getAllByTestId } = renderWithRouter(
-      <FavoritePokemons pokemons={ favoritePokemons } />
+      <FavoritePokemons pokemons={ favoritePokemons } />,
     );
     const favoritePokemonsList = getAllByTestId('pokemon-name');
     expect(favoritePokemonsList.length).toBe(2);
