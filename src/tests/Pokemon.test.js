@@ -42,4 +42,5 @@ test('test link', () => {
   // console.log(imgFavorite);
   const url = '/star-icon.svg';
   expect(imgFavorite.src).toContain(url);
+  expect(imgFavorite.alt).toContain('Pikachu is marked as favorite');
 });
