@@ -10,13 +10,12 @@ describe('Teste o componente Pokemon', () => {
     const { getByText, getByTestId, getByRole } = renderWithRouter(<App />);
     const pokemon = getByText(/pikachu/i);
     const pokemonType = getByTestId('pokemon-type');
-    const pokemonWeight = getByText(/kg/i);
     const pokemonImage = getByRole('img');
 
     expect(pokemon).toBeInTheDocument();
     expect(pokemonType.innerHTML).toBe('Electric');
-    // expect(pokemonType[0]).toBeInTheDocument();
-    expect(pokemonWeight).toBeInTheDocument();
+    expect(getByText('Pikachu')).toBeInTheDocument();
+    expect(getByText('Average weight: 6.0 kg')).toBeInTheDocument();
 
     expect(pokemonImage.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(pokemonImage.alt).toBe('Pikachu sprite');
