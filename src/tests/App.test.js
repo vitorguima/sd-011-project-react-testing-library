@@ -93,7 +93,6 @@ describe('teste de rotas e renderização da página favorite Pokemons', () => {
 });
 
 describe('teste de rotas e renderização da página "not found"', () => {
-
   it(
     'Verifica se a página not found é renderizada ao acessar uma rota inexistente',
     () => {
