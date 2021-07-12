@@ -2,22 +2,24 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import { About } from '../components';
 
-test('Teste se a página contém as informações sobre a Pokédex', () => {
-  const { getByText } = renderWithRouter(<About />);
+describe('2. Teste o componente <About.js /.', () => {
+  it('Teste se a página contém as informações sobre a Pokédex', () => {
+    const { getByText } = renderWithRouter(<About />);
 
-  expect(getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
-  expect(getByText(/One can filter Pokémons by type/i)).toBeInTheDocument();
-});
+    expect(getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
+    expect(getByText(/One can filter Pokémons by type/i)).toBeInTheDocument();
+  });
 
-test('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
-  const { getByRole, getByText } = renderWithRouter(<About />);
-  expect(getByRole('heading')).toBeInTheDocument();
-  expect(getByText('About Pokédex')).toBeInTheDocument();
-});
+  it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
+    const { getByRole, getByText } = renderWithRouter(<About />);
+    expect(getByRole('heading')).toBeInTheDocument();
+    expect(getByText('About Pokédex')).toBeInTheDocument();
+  });
 
-test('Teste se a página contém a imagem de uma Pokédex.', () => {
-  const { container } = renderWithRouter(<About />);
-  const image = container.querySelector('.pokedex-image');
+  it('Teste se a página contém a imagem de uma Pokédex.', () => {
+    const { container } = renderWithRouter(<About />);
+    const image = container.querySelector('.pokedex-image');
 
-  expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(image.src).toBe('https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+  });
 });
