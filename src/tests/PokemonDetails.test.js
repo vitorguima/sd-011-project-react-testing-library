@@ -38,7 +38,11 @@ describe('Componente <PokemonDetails />', () => {
   });
 
   it('Teste se o usuário pode favoritar um pokémon pela da página de detalhes.', () => {
-    const { getByText, getByLabelText, getByRole } = renderWithRouter(<App />);
+    const {
+      getByText,
+      getByLabelText,
+      getByAltText,
+    } = renderWithRouter(<App />);
 
     const moreDetails = getByText(/more details/i);
     expect(moreDetails).toBeInTheDocument();
@@ -48,11 +52,10 @@ describe('Componente <PokemonDetails />', () => {
     expect(favoriteCheckboxLabel).toBeInTheDocument();
     fireEvent.click(favoriteCheckboxLabel);
 
-    const favoriteCheckbox = getByRole('checkbox');
-    expect(favoriteCheckbox).toBeInTheDocument();
-    expect(favoriteCheckbox).toBeChecked();
-    fireEvent.click(favoriteCheckbox);
+    const favorite = getByAltText(/favorite$/i);
+    expect(favorite).toBeInTheDocument();
+    fireEvent.click(favoriteCheckboxLabel);
 
-    expect(favoriteCheckbox).not.toBeChecked();
+    expect(favorite).not.toBeInTheDocument();
   });
 });
