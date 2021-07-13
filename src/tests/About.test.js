@@ -3,14 +3,14 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('Testing About component', () => {
-  it('Test Pokédex information ', () => {
+  test('Test Pokédex information ', () => {
     render(<About />);
     const heading = screen.getByText('About Pokédex');
     expect(heading).toBeInTheDocument();
     expect(heading.tagName).toBe('H2');
   });
 
-  it('Test if the page contains two paragraphs with text about Pokédex', () => {
+  test('Test if the page contains two paragraphs with text about Pokédex', () => {
     render(<About />);
     const p1 = screen.getByText('This application simulates a Pokédex, '
       + 'a digital encyclopedia containing all Pokémons');
@@ -20,7 +20,7 @@ describe('Testing About component', () => {
     expect(p2).toBeInTheDocument();
   });
 
-  it('test if it contains an image', () => {
+  test('test if it contains an image', () => {
     render(<About />);
     const image = screen.getByRole('img');
     const imageAdress = image.src;
