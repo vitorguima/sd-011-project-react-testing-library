@@ -12,14 +12,15 @@ describe('Test all App component', () => {
   });
 
   test('if `About` component contains 2 paragraphs about the application', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
+    const { container } = renderWithRouter(<About />);
 
-    const paragraphs = getAllByTestId('paragraph');
+    const paragraphs = container.querySelectorAll('p');
     const { length } = paragraphs;
 
     expect(paragraphs).toHaveLength(length);
     paragraphs.forEach((paragraph) => {
       expect(paragraph.tagName).toBe('P');
+      expect(paragraph.textContent).not.toBeNull();
     });
   });
 
