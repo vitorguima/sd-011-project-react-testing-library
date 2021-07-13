@@ -24,28 +24,28 @@ describe('Componente <Pokedex />', () => {
   });
 
   it('Teste se é criado um botão de filtro para cada tipo de Pokémon', () => {
-    const { getByRole, getAllByTestId, getByText } = renderWithRouter(<App />);
+    const { getAllByRole, getAllByTestId, getByText } = renderWithRouter(<App />);
 
     const pokemonTypeButton = getAllByTestId('pokemon-type-button');
     const pokemonTypes = 7;
     const allButton = getByText('All');
 
-    const fire = getByRole('button', { name: 'Fire' });
-    const electric = getByRole('button', { name: 'Electric' });
-    const poison = getByRole('button', { name: 'Poison' });
-    const psychic = getByRole('button', { name: 'Psychic' });
-    const dragon = getByRole('button', { name: 'Dragon' });
-    const normal = getByRole('button', { name: 'Normal' });
-    const bug = getByRole('button', { name: 'Bug' });
+    const fire = getAllByRole('button', { name: 'Fire' });
+    const electric = getAllByRole('button', { name: 'Electric' });
+    const poison = getAllByRole('button', { name: 'Poison' });
+    const psychic = getAllByRole('button', { name: 'Psychic' });
+    const dragon = getAllByRole('button', { name: 'Dragon' });
+    const normal = getAllByRole('button', { name: 'Normal' });
+    const bug = getAllByRole('button', { name: 'Bug' });
 
     expect(pokemonTypeButton).toHaveLength(pokemonTypes);
-    expect(allButton).toBeInTheDocument();
-    expect(fire).toBeInTheDocument();
-    expect(electric).toBeInTheDocument();
-    expect(poison).toBeInTheDocument();
-    expect(psychic).toBeInTheDocument();
-    expect(dragon).toBeInTheDocument();
-    expect(normal).toBeInTheDocument();
-    expect(bug).toBeInTheDocument();
+    expect(allButton).toBeInTheDocument(1);
+    expect(fire).toHaveLength(1);
+    expect(electric).toHaveLength(1);
+    expect(poison).toHaveLength(1);
+    expect(psychic).toHaveLength(1);
+    expect(dragon).toHaveLength(1);
+    expect(normal).toHaveLength(1);
+    expect(bug).toHaveLength(1);
   });
 });
