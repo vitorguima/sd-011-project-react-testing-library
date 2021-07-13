@@ -49,6 +49,7 @@ describe('Componente <PokemonDetails />', () => {
     fireEvent.click(favoriteCheckboxLabel);
 
     const favoriteCheckbox = getByRole('checkbox');
+    expect(favoriteCheckbox).toBeInTheDocument();
     expect(favoriteCheckbox).toBeChecked();
     fireEvent.click(favoriteCheckbox);
 
