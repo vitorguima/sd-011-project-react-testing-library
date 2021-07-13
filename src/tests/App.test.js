@@ -3,7 +3,6 @@ import { fireEvent } from '@testing-library/dom';
 import renderWithRouter from '../helper/renderWithRouter';
 import App from '../App';
 
-
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = renderWithRouter(<App />);
   const heading = getByText(/Pokédex/i);
