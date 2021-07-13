@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/dom';
-import renderWithRouter from '../helper/renderWithRouter';
+import renderWithRouter from '../components/renderWithRouter';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
