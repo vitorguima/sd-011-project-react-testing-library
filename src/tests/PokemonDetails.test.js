@@ -6,18 +6,16 @@ import App from '../App';
 describe('Componente <PokemonDetails />', () => {
   it('Verifica se informações de determinado pokemon é mostrado na tela', () => {
     const { getByText } = renderWithRouter(<App />);
-
     const moreDetails = getByText(/More Details/i);
     fireEvent.click(moreDetails);
-
     const pikachuDetails = getByText('Pikachu Details');
     const h2Summary = getByText('Summary');
     const pokemonDetails = getByText(/This intelligent Pokémon roasts hard berries/i);
 
+    expect(moreDetails).not.toBeInTheDocument();
     expect(pikachuDetails).toBeInTheDocument();
     expect(h2Summary).toBeInTheDocument();
     expect(pokemonDetails).toBeInTheDocument();
-    expect(moreDetails).not.toBeInTheDocument();
   });
 
   it('Teste se existe uma seção com os mapas contendo as localizações do pokémon', () => {
@@ -34,6 +32,7 @@ describe('Componente <PokemonDetails />', () => {
     pokemonLocations.forEach((pokemon) => {
       expect(pokemon).toBeInTheDocument();
       expect(pokemon).toHaveAttribute('src');
+      expect(pokemon.src).toBeTruthy();
     });
   });
 
