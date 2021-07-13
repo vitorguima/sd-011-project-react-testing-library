@@ -31,9 +31,9 @@ it('Verifica se possui um link de navegação', () => {
 });
 
 it('Verifica e existe um ícone de estrela nos Pokémons favoritados', () => {
-  const { getByAltText, container, getByText } = renderWithRouter(<App />);
+  const { getByAltText, getByText } = renderWithRouter(<App />);
 
-  const details = getByText(/More details/); 
+  const details = getByText(/More details/);
   fireEvent.click(details);
 
   const favPokemon = getByText(/Pokémon favoritado/);
