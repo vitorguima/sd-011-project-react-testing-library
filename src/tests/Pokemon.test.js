@@ -37,7 +37,7 @@ describe('Testa o componente <Pokemon.js />', () => {
   });
 
   it('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
-    const { getByAltText, getByTestId } = renderWithRouter(<Pokemon
+    const { getByAltText } = renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
       isFavorite
     />);

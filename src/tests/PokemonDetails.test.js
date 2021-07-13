@@ -4,12 +4,14 @@ import App from '../App';
 import pokemons from '../data';
 import renderWithRouter from '../renderWithRouter';
 
+const label = 'pokemon-name';
+
 describe('Testa o componente <PokemonDetails.js />', () => {
   it('Testa se as informações detalhadas do Pokémon selecionado são mostradas', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const detailsLink = getByText(/More details/);
     fireEvent.click(detailsLink);
-    const pokemonName = getByTestId('pokemon-name').innerHTML;
+    const pokemonName = getByTestId(label).innerHTML;
     const title = getByText(`${pokemonName} Details`);
     expect(title).toBeInTheDocument();
     expect(detailsLink).not.toBeInTheDocument();
@@ -24,7 +26,7 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     const { getByText, getByTestId, getAllByAltText } = renderWithRouter(<App />);
     const detailsLink = getByText(/More details/);
     fireEvent.click(detailsLink);
-    const pokemonName = getByTestId('pokemon-name').innerHTML;
+    const pokemonName = getByTestId(label).innerHTML;
     const mapHeading = getByText(`Game Locations of ${pokemonName}`);
     expect(mapHeading).toBeInTheDocument();
     const locationsLength = getAllByAltText(`${pokemonName} location`).length;
@@ -43,7 +45,7 @@ describe('Testa o componente <PokemonDetails.js />', () => {
       getByRole } = renderWithRouter(<App />);
     const detailsLink = getByText(/More details/);
     fireEvent.click(detailsLink);
-    const pokemonName = getByTestId('pokemon-name').innerHTML;
+    const pokemonName = getByTestId(label).innerHTML;
     const favoriteLabel = getByLabelText('Pokémon favoritado?');
     expect(favoriteLabel).toBeInTheDocument();
     const favoriteBox = getByRole('checkbox');
