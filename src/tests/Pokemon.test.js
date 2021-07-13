@@ -10,8 +10,8 @@ it('Teste se é renderizado um card com as informações de determinado pokemon'
 
   const pokemonIMG = getByRole('img');
 
-  expect(getByText(/Pikachu/i)).toBeInTheDocument();
-  expect(getByText(/Average weight/i)).toBeInTheDocument();
+  expect(getByText('Pikachu')).toBeInTheDocument();
+  expect(getByText('Average weight: 6.0 kg')).toBeInTheDocument();
   expect(pokemonIMG.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   expect(pokemonIMG.alt).toBe('Pikachu sprite');
   expect(getByTestId('pokemon-type')).toHaveTextContent('Electric');
