@@ -46,7 +46,7 @@ describe('Componente <PokemonDetails />', () => {
     const moreDetails = getByText(/more details/i);
     expect(moreDetails).toBeInTheDocument();
     fireEvent.click(moreDetails);
-    const favoriteLabel = getByLabelText(/Pokémon favoritado?/);
+    const favoriteLabel = getByLabelText(/favoritado\?/i);
     fireEvent.click(favoriteLabel);
     const altFav = getByAltText(/favorite$/i);
     expect(altFav).toBeInTheDocument();
