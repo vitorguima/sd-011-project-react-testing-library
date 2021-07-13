@@ -39,7 +39,6 @@ describe('Componente <PokemonDetails />', () => {
   it('Teste se o usuário pode favoritar um pokémon pela da página de detalhes.', () => {
     const {
       getByText,
-      getByLabelText,
       getByAltText,
       getByRole,
     } = renderWithRouter(<App />);
