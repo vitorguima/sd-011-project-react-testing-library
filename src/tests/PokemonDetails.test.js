@@ -32,7 +32,7 @@ describe('Componente <PokemonDetails />', () => {
     pokemonLocations.forEach((pokemon) => {
       expect(pokemon).toBeInTheDocument();
       expect(pokemon).toHaveAttribute('src');
-      expect(pokemon.src).toBeTruthy();
+      expect(pokemon.src.length).toBeGreaterThan(0);
     });
   });
 
