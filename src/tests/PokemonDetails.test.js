@@ -59,5 +59,5 @@ test('favoritar um pokémon através da página de detalhes.', () => {
   // como clickei agora existe a imagem e a tag
   expect(label).toBeInTheDocument();
   fireEvent.click(favoritado); // clicou novamente,çlog não ta favoritado
-  expect(label).not.toBeInTheDocument();
+  expect(label).not.toBeInTheDocument(); // tenta 3
 });
