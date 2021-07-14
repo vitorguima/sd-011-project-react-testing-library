@@ -2,7 +2,6 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
-import About from '../components/About';
 
 describe('', () => {
   it('renders a reading with the text `Pokédex`', () => {
@@ -49,7 +48,7 @@ describe('', () => {
     fireEvent.click(home);
     const title = getByText(/Encountered pokémons/i);
     expect(title).toBeInTheDocument();
-  })
+  });
 
   it('testa a url de about', () => {
     const { getByText } = render(
