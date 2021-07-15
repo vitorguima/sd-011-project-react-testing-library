@@ -4,7 +4,6 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import data from '../data';
-//consultado por conta de erro no memoryRouter
 
 describe('Component <PokemonDetails.js /> Test', () => {
   const button = 'More details';
