@@ -9,18 +9,4 @@ describe('Test the <FavoritePokemons.js /> component', () => {
 
     expect(unfavoritePokemon).toBeInTheDocument();
   });
-
-  // test('Test if all favorite Pokemon cards are displayed.', () => {
-  //   const { getByText } = renderWithRouter(<FavoritePokemons />);
-  //   const notFoundFavorite = getByText('No favorite pokemon found');
-
-  //   expect(notFoundFavorite).toBeInTheDocument();
-  // });
-
-  // test('Test if no Pokemon card is displayed, if it is not favorited.', () => {
-  //   const { getByText } = renderWithRouter(<FavoritePokemons />);
-  //   const notFoundFavorite = getByText('No favorite pokemon found');
-
-  //   expect(notFoundFavorite).toBeInTheDocument();
-  // });
 });
