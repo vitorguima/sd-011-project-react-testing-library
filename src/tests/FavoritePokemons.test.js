@@ -1,8 +1,8 @@
 import React from 'react';
+import { fireEvent } from '@testing-library/dom';
 import renderWithRouter from '../services/renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import { fireEvent, getByRole } from '@testing-library/dom';
 
 describe('Test all Favorite Pokemons component', () => {
   test('if renders `Favorites` component with Heading `Favorite Pokémons`', () => {
