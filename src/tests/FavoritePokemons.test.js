@@ -4,6 +4,7 @@
 // https://testing-library.com/docs/queries/about/
 // https://testing-library.com/docs/queries/byalttext/
 // Baseado nos requisitos 2, 3 e 4
+// Requisito feito junto com o colega Nikolas Silva
 
 import React from 'react';
 import { render } from '@testing-library/react';

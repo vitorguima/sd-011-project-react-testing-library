@@ -1,3 +1,11 @@
+// Requisito resolvido revendo aulas e acessando o site:
+// https://testing-library.com/docs/queries/about/
+// https://app.betrybe.com/course/live-lectures/sd-cohort-8#aula-153-rtl-testando-react-router
+// https://testing-library.com/docs/queries/about/
+// https://testing-library.com/docs/queries/byalttext/
+// Baseado nos requisitos 2, 3 e 4
+// Requisito feito junto com o colega Nikolas Silva
+
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
