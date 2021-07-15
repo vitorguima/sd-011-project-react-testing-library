@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../services/renderWithRouter';
 import About from '../components/About';
 
-describe('Test all App component', () => {
+describe('Test all About component', () => {
   test('if renders `About` component with Heading `About Pokédex`', () => {
     const { getByRole } = renderWithRouter(<About />);
 
