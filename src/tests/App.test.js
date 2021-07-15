@@ -5,10 +5,11 @@ import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
-    <MemoryRouter>
+    <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+  expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
+
+// Source: https://github.com/tryber/sd-011-project-react-testing-library/pull/166/
