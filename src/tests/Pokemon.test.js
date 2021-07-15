@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import RenderWithRouter from './RenderWithRouter';
+import RenderWithRouter from './renderWithRouter';
 import data from '../data';
 import { Pokemon } from '../components';
 
