@@ -19,3 +19,14 @@ test('Testa se é renderizado um card com as informações de determinado pokém
   const pokeImg = getByAltText(`${pokeName.innerHTML} sprite`);
   expect(pokeImg).toHaveAttribute('src', pokemons[0].image);
 });
+
+test('Testa se o card contém um link para detalhes', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const linkDetails = getByText('More details');
+  expect(linkDetails).toBeInTheDocument();
+  expect(linkDetails).toHaveAttribute('href', `/pokemons/${pokemons[0].id}`);
+});
