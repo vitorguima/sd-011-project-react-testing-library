@@ -1,50 +1,55 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './renderWithRouter';
-import Pokemon from '../components/Pokemon';
 import App from '../App';
-import pokemons from '../data';
+import RenderWithRouter from './RenderWithRouter';
+import data from '../data';
+import { Pokemon } from '../components';
 
-describe('test component pokemon', () => {
-  test('if render pokemon card', () => {
-    const { getByTestId, getByAltText } = renderWithRouter(<Pokemon
-      pokemon={ pokemons[1] }
-      isFavorite
-    />);
-
-    const pokeName = getByTestId('pokemon-name');
-    expect(pokeName).toHaveTextContent('Charmander');
-
-    const pokeType = getByTestId('pokemonType');
-    expect(pokeType).toHaveTextContent('Fire');
-
-    const pokeWeight = getByTestId('pokemon-weight');
-    expect(pokeWeight).toHaveTextContent('Average weight: 8.5 kg');
-
-    const pokeImage = getByAltText('Charmander sprite');
-    expect(pokeImage.src).toBe('https://cdn.bulbagarden.net/upload/0/0a/Spr_5b_004.png');
+describe('Component <Pokemon.js /> Test', () => {
+  test('renders a pokémon card with info', () => {
+    const pokemons = data.map((pokemon) => pokemon.image);
+    const { getByTestId, getByAltText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const name = getByTestId('pokemon-name');
+    expect(name).toHaveTextContent('Pikachu');
+    const type = getByTestId('pokemon-type');
+    expect(type).toHaveTextContent('Electric');
+    const weight = getByTestId('pokemon-weight');
+    expect(weight).toHaveTextContent('Average weight: 6.0 kg');
+    const image = getByAltText('Pikachu sprite');
+    expect(image).toHaveAttribute('src', pokemons[0]);
   });
 
-  test('if link to pokemon "more details" works', () => {
-    const { getByRole, getByText, history } = renderWithRouter(<App />);
-
-    const detailsLink = getByRole('link', { name: /more details/i });
-    userEvent.click(detailsLink);
-
-    const path = history.location.pathname;
-    expect(path).toBe('/pokemons/25');
-    const pokemonNameDetails = getByText(/Pikachu Details/i);
-    expect(pokemonNameDetails).toBeInTheDocument();
+  test('pokémon card contains a link to pokémon details', () => {
+    const { getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const link = getByText('More details');
+    expect(link).toBeInTheDocument();
   });
 
-  test('if there are an star icon at favorite pokemon', () => {
-    const { getByAltText } = renderWithRouter(<Pokemon
-      pokemon={ pokemons[0] }
-      isFavorite
-    />);
+  test('navigation to pokemon detail + URL contains pokémon id', () => {
+    const { history, getByText } = RenderWithRouter(
+      <Pokemon pokemon={ data[0] } />,
+    );
+    const link = getByText('More details');
+    userEvent.click(link);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');
+  });
 
-    const icon = getByAltText(/Pikachu is marked as favorite/i);
-    expect(icon).toBeInTheDocument();
-    expect(icon).toHaveAttribute('src', '/star-icon.svg');
+  test('star icon on favorite pokémons', () => {
+    const { getByAltText } = RenderWithRouter(
+      <Pokemon pokemon={ data[0] } isFavorite />,
+    );
+    const star = getByAltText('Pikachu is marked as favorite');
+    expect(star).toHaveAttribute('src', '/star-icon.svg');
   });
 });
