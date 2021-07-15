@@ -4,6 +4,8 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import data from '../data';
+// Consultei o pull request da ana paula machado para tentar entender se havia algum falso positivo
+// Source https://github.com/tryber/sd-09-project-react-testing-library/pull/18/files
 
 describe('Component <PokemonDetails.js /> Test', () => {
   const button = 'More details';
