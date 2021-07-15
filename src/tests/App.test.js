@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
-describe('Teste se toda a página inicial está sendo exibida corretamente', () => {
+describe('Test whether the entire home page is displayed correctly', () => {
   test('Renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
