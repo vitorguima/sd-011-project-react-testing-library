@@ -1,49 +1,58 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import data from '../data';
+//consultado por conta de erro no memoryRouter
 
-describe('testing PokemonDetails.js', () => {
-  test('if info about pokemon details show on the screen', () => {
-    const { getByText, getByRole } = renderWithRouter(<App />);
-    const detailsButton = getByText(/More details/i);
-    fireEvent.click(detailsButton);
-    expect(getByText(/Pikachu Details/i)).toBeInTheDocument();
-    expect(detailsButton).not.toBeInTheDocument();
-    expect(getByRole('heading', { name: /Summary/i })).toBeInTheDocument();
-    expect(getByText(/This intelligent Pokémon/i)).toBeInTheDocument();
+describe('Component <PokemonDetails.js /> Test', () => {
+  const button = 'More details';
+  test('renders pokémon details info', () => {
+    const { getByRole, getByText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const link = getByText(button);
+    userEvent.click(link);
+    const details = getByText('Pikachu Details');
+    expect(details).toBeInTheDocument();
+    expect(link).not.toBeInTheDocument();
+    const heading = getByRole('heading', { level: 2, name: 'Summary' });
+    expect(heading).toBeInTheDocument();
+    const paragraph = getByText(/This intelligent Pokémon/i);
+    expect(paragraph).toBeInTheDocument();
   });
 
-  test('if there are a map with the locations of the pokemon', () => {
-    const { getByText, getByRole, getAllByAltText } = renderWithRouter(<App />);
-
-    const details = getByText('More details');
-    fireEvent.click(details);
-
-    const headLocations = getByRole('heading', { name: 'Game Locations of Pikachu' });
-    expect(headLocations.tagName).toBe('H2');
-
-    const locations = getAllByAltText('Pikachu location');
-    const length = 2;
-    expect(locations.length).toBe(length);
-
-    const source = 'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png';
-    const nameLocation = getByText('Kanto Viridian Forest');
-
-    expect(locations[0].src).toBe(source);
-    expect(nameLocation).toBeInTheDocument();
+  test('renders a section with pokémon location maps', () => {
+    const { getByText, getAllByAltText } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const link = getByText(button);
+    userEvent.click(link);
+    const locations = getByText('Game Locations of Pikachu');
+    expect(locations).toBeInTheDocument();
+    const maps = getAllByAltText('Pikachu location');
+    expect(maps).toHaveLength(2);
+    maps.forEach((location, index) => {
+      expect(location).toHaveAttribute('src', data[0].foundAt[index].map);
+    });
   });
 
-  test('if user can favorite a pokemon on details page', () => {
-    const { getByText, getByRole, getByAltText } = renderWithRouter(<App />);
-    const detailsButton = getByText(/More details/i);
-    fireEvent.click(detailsButton);
-    const favoritePoke = getByRole('checkbox', { name: 'Pokémon favoritado?' });
-    expect(favoritePoke).toBeInTheDocument();
-    fireEvent.click(favoritePoke);
-    const favoriteIcon = getByAltText('Pikachu is marked as favorite');
-    expect(favoriteIcon).toBeInTheDocument();
-    fireEvent.click(favoritePoke);
-    expect(favoriteIcon).not.toBeInTheDocument();
+  test('pokémon can be favorited', () => {
+    const { getByText, getByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const link = getByText(button);
+    userEvent.click(link);
+    const favorite = getByRole('checkbox', { name: 'Pokémon favoritado?' });
+    expect(favorite).not.toBeChecked();
+    userEvent.click(favorite);
+    expect(favorite).toBeChecked();
   });
 });
