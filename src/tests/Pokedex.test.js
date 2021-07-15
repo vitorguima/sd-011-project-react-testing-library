@@ -26,43 +26,7 @@ test('Testa se é exibido o próximo Pokémon ao clicar no botão Próximo poké
   fireEvent.click(buttonNext);
   const atualPokemon = getByTestId('pokemon-name');
   console.log(atualPokemon.innerHTML);
-  expect(atualPokemon.innerText !== firstPokemon.innerHTML).toBe(true);
-});
-
-test('O botão deve conter o texto Próximo pokémon', () => {
-  const { container } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const button = container.querySelector('.pokedex-button');
-  expect(button.innerHTML).toBe('Próximo pokémon');
-});
-
-test('Os Pokémons são mostrados, um a um, ao clicar sucessivamente no botão', () => {
-  const { getByTestId, getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const previusPokemom = getByTestId('pokemon-name');
-  console.log(previusPokemom.innerHTML);
-  const pokeButton = getByText(/Próximo pokémon/i);
-  fireEvent.click(pokeButton);
-  expect(previusPokemom.innerHTML !== 'Pikachu').toBe(true);
-});
-
-test('O primeiro Pokémon é mostrado ao clicar no botão, se estiver no último', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const pokeButton = getByText(/Próximo pokémon/i);
-  pokemons.forEach(() => fireEvent.click(pokeButton));
-  const firstPokemon = getByText(pokemons[0].name);
-  // console.log(firstPokemon.innerHTML);
-  expect(firstPokemon).toBeInTheDocument();
+  expect(atualPokemon.innerText === firstPokemon.innerHTML).toBe(false);
 });
 
 test('Testa se é mostrado apenas um Pokémon por vez', () => {
@@ -71,8 +35,8 @@ test('Testa se é mostrado apenas um Pokémon por vez', () => {
       <App />
     </MemoryRouter>,
   );
-  const totalPokemon = container.querySelectorAll('.pokemon');
-  expect(totalPokemon.length === 1).toBe(true);
+  const pokemonsOnScreen = container.querySelectorAll('.pokemon');
+  expect(pokemonsOnScreen.length === 1).toBe(true);
 });
 
 test('Testa se a Pokédex tem os botões de filtro', () => {
@@ -99,18 +63,38 @@ test('São exibidos apenas os Pokemons do tipo selecionado', () => {
   });
 });
 
-// test('O texto do botão corresponde ao nome do tipo', () => {
-//   const { getAllByTestId, getByTest } = render(
+test('Testa se a Pokédex contém um botão para resetar o filtro', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const resetButton = getByText('All');
+  expect(resetButton).toBeInTheDocument();
+});
+
+test('Testa se há um botão de filtro para cada tipo de Pokémon', () => {
+  const { getAllByTestId } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const typeButtons = getAllByTestId('pokemon-type-button');
+  const maptypeButtons = typeButtons.map((item) => item.textContent);
+  console.log(maptypeButtons);
+  expect(maptypeButtons.includes('Fire')).toBe(true);
+  expect(maptypeButtons.includes('Psychic')).toBe(true);
+  expect(maptypeButtons.includes('Electric')).toBe(true);
+  expect(maptypeButtons.includes('Bug')).toBe(true);
+  expect(maptypeButtons.includes('Poison')).toBe(true);
+  expect(maptypeButtons.includes('Dragon')).toBe(true);
+  expect(maptypeButtons.includes('Normal')).toBe(true);
+});
+
+// test('O botão Próximo pokémon deve ser desabilitado quando só tiver um pokémon', () => {
+//   const { getAllByTestId } = render(
 //     <MemoryRouter>
 //       <App />
 //     </MemoryRouter>,
 //   );
-//   const filterButtons = getAllByTestId('pokemon-type-button');
-//   filterButtons.forEach((filter) => {
-//     fireEvent.click(filter);
-
-//     const buttonName = getByTest(filter.innerText);
-
-//     expect(buttonName).toBeInTheDocument();
-//   });
 // });
