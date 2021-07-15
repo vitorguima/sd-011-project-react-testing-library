@@ -9,6 +9,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 // import Pokedex from '../components/Pokedex';
 import App from '../App';
+import pokemons from '../data';
 
 test('Testa se a pág contém um heading h2 com o texto Encountered pokémons', () => {
   const { container } = render(
