@@ -14,48 +14,71 @@ describe('Requisito 7', () => {
     expect(headingElement).toBeInTheDocument();
   });
 
-  /*
-  it('if pokemon\'s type is correct', () => {
-    const { getByTestId, getByText } = renderWithRouter(<App />);
+  it('if pokemon\'s link details not exists', () => {
+    const { getByText } = renderWithRouter(<App />);
     const moreDetailsElement = getByText(/more details/i);
     fireEvent.click(moreDetailsElement);
 
-    const typeElement = getByTestId('pokemon-type');
-
-    expect(typeElement).toHaveTextContent(/electric/i);
+    expect(moreDetailsElement).not.toBeInTheDocument();
   });
 
-  it('if pokemon\'s weight is correct', () => {
-    const { getByTestId, getByText } = renderWithRouter(<App />);
+  it('if pokemon\'s summary is correct', () => {
+    const { getByText } = renderWithRouter(<App />);
     const moreDetailsElement = getByText(/more details/i);
     fireEvent.click(moreDetailsElement);
 
-    const weightElement = getByTestId('pokemon-weight');
+    const summaryElement = getByText(/summary/i);
 
-    expect(weightElement).toHaveTextContent(/average weight: 6.0 kg/i);
+    expect(summaryElement).toBeInTheDocument();
   });
 
-  it('if pokemon\'s image is correct', () => {
-    const { getByAltText, getByText } = renderWithRouter(<App />);
+  it('if pokemon\'s paragraph exists', () => {
+    const { getByText } = renderWithRouter(<App />);
     const moreDetailsElement = getByText(/more details/i);
     fireEvent.click(moreDetailsElement);
 
-    const imageElement = getByAltText(/pikachu sprite/i);
+    const paragraphElement = getByText(/This intelligent Pokémon roasts hard berries/i);
 
-    expect(imageElement.src).toBe('https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(paragraphElement).toBeInTheDocument();
   });
 
-  it('if pokemon\'s weight is correct', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+  it('if pokemon\'s game location is correct', () => {
+    const { getByText } = renderWithRouter(<App />);
     const moreDetailsElement = getByText(/more details/i);
     fireEvent.click(moreDetailsElement);
 
-    const { pathname } = history.location;
+    const locationHeadingElement = getByText(/Game Locations of Pikachu/i);
 
-    expect(pathname).toBe('/pokemons/25');
+    expect(locationHeadingElement).toBeInTheDocument();
   });
 
-  it('if pokemon\'s favorite star is correct', () => {
+  it('if pokemon\'s location to have 2 childrens', () => {
+    const { getByText, getAllByAltText } = renderWithRouter(<App />);
+    const moreDetailsElement = getByText(/more details/i);
+    fireEvent.click(moreDetailsElement);
+
+    const imageElement = getAllByAltText(/Pikachu location/i);
+    expect(imageElement[0].src).toBe('https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(imageElement[1].src).toBe('https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+
+    const firstText = getByText(/Kanto Viridian Forest/);
+    const lastText = getByText(/Kanto Power Plant/);
+
+    expect(firstText).toBeInTheDocument();
+    expect(lastText).toBeInTheDocument();
+  });
+
+  it('if pokemon\'s favorite star exists', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const moreDetailsElement = getByText(/more details/i);
+    fireEvent.click(moreDetailsElement);
+
+    const toFavorite = document.getElementById('favorite');
+
+    expect(toFavorite).toBeInTheDocument();
+  });
+
+  it('if pokemon\'s favorite star works', () => {
     const { getByAltText, getByText } = renderWithRouter(<App />);
     const moreDetailsElement = getByText(/more details/i);
     fireEvent.click(moreDetailsElement);
@@ -66,7 +89,19 @@ describe('Requisito 7', () => {
     const favoriteStar = getByAltText(/pikachu is marked as favorite/i);
 
     expect(favoriteStar).toBeInTheDocument();
-    expect(favoriteStar.src).toBe('/star-icon.svg');
+
+    fireEvent.click(toFavorite);
+
+    expect(favoriteStar).not.toBeInTheDocument();
   });
-  */
+
+  it('if pokemon\'s favorite star has a label', () => {
+    const { getByLabelText, getByText } = renderWithRouter(<App />);
+    const moreDetailsElement = getByText(/more details/i);
+    fireEvent.click(moreDetailsElement);
+
+    const toFavorite = getByLabelText(/Pokémon favoritado/);
+
+    expect(toFavorite).toBeInTheDocument();
+  });
 });
