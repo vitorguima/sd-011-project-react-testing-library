@@ -3,7 +3,7 @@
 // https://app.betrybe.com/course/live-lectures/sd-cohort-8#aula-153-rtl-testando-react-router
 // https://testing-library.com/docs/queries/about/
 // https://testing-library.com/docs/queries/byalttext/
-// Baseado no requisito 2
+// Baseado nos requisitos 2, 3 e 4
 
 import React from 'react';
 import { render } from '@testing-library/react';

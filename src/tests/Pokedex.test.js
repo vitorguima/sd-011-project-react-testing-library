@@ -66,3 +66,21 @@ test('Teste se a Pokédex contém um botão para resetar o filtro', () => {
   const checkBtn = getByText(/All/i);
   expect(checkBtn).toBeInTheDocument();
 });
+
+test('Testa se há um botão de filtro para cada tipo de Pokémon', () => {
+  const { getAllByTestId } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const typeButtons = getAllByTestId('pokemon-type-button');
+  const maptypeButtons = typeButtons.map((item) => item.textContent);
+  console.log(maptypeButtons);
+  expect(maptypeButtons.includes('Fire')).toBe(true);
+  expect(maptypeButtons.includes('Psychic')).toBe(true);
+  expect(maptypeButtons.includes('Electric')).toBe(true);
+  expect(maptypeButtons.includes('Bug')).toBe(true);
+  expect(maptypeButtons.includes('Poison')).toBe(true);
+  expect(maptypeButtons.includes('Dragon')).toBe(true);
+  expect(maptypeButtons.includes('Normal')).toBe(true);
+});
