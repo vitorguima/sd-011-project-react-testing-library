@@ -3,6 +3,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
+// usando e ajudado pelo italo de mato turma 10 b e usando com referencia o git gub do filizola
+// https://github.com/tryber/sd-011-project-react-testing-library/pull/13/files
 describe('Test whether the entire home page is displayed correctly', () => {
   test('Renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
