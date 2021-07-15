@@ -30,7 +30,7 @@ describe('tests PokemonDetails component', () => {
   });
 
   test('Tests section with maps and pokémon location', () => {
-    const { history, getByAltText, getByRole, getByText,  } = renderWithRouter(<App />);
+    const { history, getByAltText, getByRole, getByText } = renderWithRouter(<App />);
     history.push(mewPokemom);
 
     const title = getByRole('heading', { level: 2, name: 'Game Locations of Mew' });
