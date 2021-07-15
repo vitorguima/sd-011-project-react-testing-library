@@ -45,3 +45,24 @@ test('Testa se existe na página uma seção com os mapas', () => {
   expect(imgDetails[0]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
   expect(imgDetails[0]).toHaveAttribute('alt', `${pokemons[0].name} location`);
 });
+
+test('Testa se o usuário pode favoritar um pokémon através da página de detalhes', () => {
+  const { getByText, getByRole } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const moreDetails = getByText(/More details/);
+  fireEvent.click(moreDetails);
+
+  const chkLabel = getByText('Pokémon favoritado?');
+  expect(chkLabel).toBeInTheDocument();
+
+  const chkBox = getByRole('checkbox');
+  expect(chkBox).toBeInTheDocument();
+
+  fireEvent.click(chkBox);
+  expect(chkBox).toBeChecked();
+  fireEvent.click(chkBox);
+  expect(chkBox).not.toBeChecked();
+});
