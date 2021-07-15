@@ -40,13 +40,16 @@ test('Testa se é mostrado apenas um Pokémon por vez', () => {
 });
 
 test('Testa se a Pokédex tem os botões de filtro', () => {
-  const { container } = render(
+  const { getAllByTestId } = render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
   );
-  const filterButtons = container.querySelectorAll('.filter-button');
-  expect(filterButtons.length >= 1).toBe(true);
+  const filterButtons = getAllByTestId('pokemon-type-button');
+  const mapFilterButtons = filterButtons.map((item) => item.textContent);
+  console.log(mapFilterButtons);
+  const totalTypes = 7;
+  expect(filterButtons.length).toBe(totalTypes);
 });
 
 test('São exibidos apenas os Pokemons do tipo selecionado', () => {
@@ -71,6 +74,9 @@ test('Testa se a Pokédex contém um botão para resetar o filtro', () => {
   );
   const resetButton = getByText('All');
   expect(resetButton).toBeInTheDocument();
+  fireEvent.click(resetButton);
+  const allPokemons = getByText(pokemons[0].name);
+  expect(allPokemons).toBeInTheDocument();
 });
 
 test('Testa se há um botão de filtro para cada tipo de Pokémon', () => {
@@ -91,10 +97,14 @@ test('Testa se há um botão de filtro para cada tipo de Pokémon', () => {
   expect(maptypeButtons.includes('Normal')).toBe(true);
 });
 
-// test('O botão Próximo pokémon deve ser desabilitado quando só tiver um pokémon', () => {
-//   const { getAllByTestId } = render(
-//     <MemoryRouter>
-//       <App />
-//     </MemoryRouter>,
-//   );
-// });
+test('O botão Próximo pokémon deve ser desabilitado quando só tiver um pokémon', () => {
+  const { getByRole } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const eletricButton = getByRole('button', { name: /Electric/ });
+  fireEvent.click(eletricButton);
+  const nextButton = getByRole('button', { name: /Próximo pokémon/ });
+  expect(nextButton.disabled).toBe(true);
+});
