@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 import pokemons from '../data';
 
@@ -29,4 +29,19 @@ test('Testa se o card contém um link para detalhes', () => {
   const linkDetails = getByText('More details');
   expect(linkDetails).toBeInTheDocument();
   expect(linkDetails).toHaveAttribute('href', `/pokemons/${pokemons[0].id}`);
+});
+
+test('Testa se existe um ícone de estrela nos Pokémons favoritados', () => {
+  const { getByText, getByLabelText, getByAltText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const moreDetails = getByText(/More details/);
+  fireEvent.click(moreDetails);
+  const favoritedPoke = getByLabelText('Pokémon favoritado?');
+  fireEvent.click(favoritedPoke);
+  const starIcon = getByAltText(`${pokemons[0].name} is marked as favorite`);
+  expect(starIcon).toBeInTheDocument();
+  expect(starIcon).toHaveAttribute('src', '/star-icon.svg');
 });
